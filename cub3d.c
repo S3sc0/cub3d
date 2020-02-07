@@ -39,16 +39,27 @@ int	zome(int key, void *param)
 	return (0);
 }
 
-int		main(void)
+void	draw_lines(int color)
+{
+	int i;
+	int y;
+
+	i = 0;
+	y = 0;
+	while (i < wx)
+		mlx_pixel_put(mlx_ptr, win_ptr, i++, y++, color);
+}
+
+int	main(void)
 {
 	rx = 240;
 	ry = 240;
 	wx = 1024;
-	wy = 768;
+	wy = 700;
 
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, wx, wy, "cub3d");
-	//draw_lines(0xD95284);
+	draw_lines(0xD95284);
 	mlx_key_hook(win_ptr, zome, (void*)0);
 	mlx_loop(mlx_ptr);
 	return (0);
