@@ -6,11 +6,11 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 09:35:04 by aamzouar          #+#    #+#             */
-/*   Updated: 2019/12/25 09:35:07 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/15 16:37:26 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "cub3d.h"
 
 int		check_n(char *str)
 {
