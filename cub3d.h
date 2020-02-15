@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/15 15:54:49 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/15 16:18:44 by aamzouar         ###   ########.fr       */
+/*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
+/*   Updated: 2020/02/15 16:14:02 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef CUB3D_H
 
-int		main(int argc, char *argv[])
+#define CUB3D_H
+
+#include "get_next_line.h"
+#include <mlx.h>
+#include "libft.h"
+
+typedef static
 {
-	if (argc != 2 || argc != 3)
-		ft_putstr_fd("Wrong Number Of Argument\n", 1);
-	return (0);
-}
+	int		wx;
+	int		wy;
+	char	*path[5];
+	int		floor[3];
+	int		cell[3];
+	char	**map;
+}			info;
+
+#endif
