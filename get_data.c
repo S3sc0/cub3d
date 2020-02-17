@@ -6,11 +6,11 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 15:24:06 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/17 10:05:10 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/17 11:10:57 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.c"
+#include "cub3d.h"
 
 // this function will get the resolution data but it is not converted to integer yet
 char	**get_resolution(char *data_file)
