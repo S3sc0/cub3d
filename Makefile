@@ -12,3 +12,6 @@
 
 all:
 	@clang -I /usr/local/include *.c libft.a -L /usr/local/lib -lmlx -framework OpenGl -framework Appkit
+
+cpm:
+	@gcc -I /usr/local/include/ *.c libft.a -L /usr/local/lib/ -lmlx -lXext -lX11
