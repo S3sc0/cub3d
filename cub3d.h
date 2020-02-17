@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/17 10:03:43 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:30:18 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ char		**get_path(char *data_file, char *identifier);
 int			get_color(char *data_file, char *identifier);
 char		**get_map(char *data_file, int *sign);
 char		**allocate(char	*data_file);
+void		free_2D(char **array);
 
 #endif

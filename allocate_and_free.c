@@ -6,12 +6,13 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 08:19:44 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/17 10:04:02 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:33:51 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// this function allocates the 2D arrays but actuall specified for get_the_map
 char	**allocate(char *data_file)
 {
 	int		fd;
@@ -32,4 +33,15 @@ char	**allocate(char *data_file)
 	if (!(map = (char **)malloc(sizeof(char*) * i + 1))) // + one for the NULL terminator
 		return (NULL);
 	return (map);
+}
+
+// this function frees only 2D arrays that ft_split returns for example
+void	free_2D(char **array)
+{
+	int i;
+
+	i = 0;
+	while (array[i] != NULL)
+		free(array[i++]);
+	free(array);
 }

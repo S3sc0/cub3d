@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 15:24:06 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/17 11:10:57 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:28:13 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int		get_color(char *data_file, char *identifier)
 	}
 	tmp = ft_split(line, ' '); // free this please
 	the_color = convert_to_dec(tmp[1]);
+	free_2D(tmp);
 	free(line);
 	close(fd);
 	return (the_color);
