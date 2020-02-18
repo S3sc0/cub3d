@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 08:19:44 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/17 14:33:51 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/18 14:35:47 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ char	**allocate(char *data_file)
 	char	**map;
 	int		i;
 
-	i = 0;
+	i = 20;
 	fd = open(data_file, O_RDONLY);
 	while (get_next_line(fd, &line) == 1)
 	{
-		if (ft_memcmp(line, "1", 1) == 0 || i != 0) // this function would help in error handling if there 1111\n\n1111
+		if (ft_memcmp(line, "1", 1) == 0) // this function would help in error handling if there 1111\n\n1111
 			i++;
 		free(line);
 	}

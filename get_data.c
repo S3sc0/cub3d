@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 15:24:06 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/17 14:28:13 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/18 15:34:40 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int		convert_to_dec(char *line)
 	char	**rgb;
 	int		color;
 
-	rgb = ft_split(line, ',');
+	rgb = ft_split(line, ','); // free this one too please
 	color = ft_atoi(rgb[2]) * 65536 + ft_atoi(rgb[1]) * 256; // applying the equation B * 65536 + G * 256 + R
 	color += ft_atoi(rgb[0]); // to get the rgb color in decmal format
-	return (0);
+	return (color);
 }
 
 // this function and with the help of convert_to_dec we can get the rgb color data from the data_file
@@ -78,9 +78,9 @@ int		get_color(char *data_file, char *identifier)
 			break ;
 		free(line);
 	}
-	tmp = ft_split(line, ' '); // free this please
+	tmp = ft_split(line, ' ');
 	the_color = convert_to_dec(tmp[1]);
-	free_2D(tmp);
+	free_2D(tmp); // i don't need it anymore so i free it here
 	free(line);
 	close(fd);
 	return (the_color);
@@ -95,7 +95,8 @@ char	**get_map(char *data_file, int *sign)
 	int		i;
 
 	i = 0;	
-	the_map = allocate(data_file); // here we allocate the buffer size >= to the map
+	if (!(the_map = allocate(data_file))) // here we allocate the buffer size >= to the map
+		return (NULL);
 	fd = open(data_file, O_RDONLY);
 	while ((*sign = get_next_line(fd, &line)) == 1)
 	{

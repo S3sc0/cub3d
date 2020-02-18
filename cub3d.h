@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/18 08:30:34 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/18 11:10:41 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ typedef struct
 	char 	**SO;
 	char 	**WE;
 	char	**S;
-	char 	*map;
-	char	**fre;
 }				data;
 
 int			get_next_line(int fd, char **line);
@@ -40,7 +38,12 @@ int			get_color(char *data_file, char *identifier);
 char		**get_map(char *data_file, int *sign);
 char		**allocate(char	*data_file);
 void		free_2D(char **array);
-int			size_xy(char *data_file, char id, int state);
-char		*path(char *data_file, int id, int state);
+int			size_xy(char *data_file, char id);
+char		*path(char *data_file, int id);
+int			size_xy(char *data_file, char id);
+char		*path(char *data, int id);
+int			rgb_color(char *data_file, char id);
+char		**the_map(char *data_file);
+void		initialize_data(char *data_file);
 
 #endif
