@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:52:12 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/18 08:55:50 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/18 10:06:53 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		size_xy(char *data_file, char id, int state)
 {
 	data static	size;
 
-	if (data_file != NULL && id == '\0')
+	if (data_file != NULL)
 		size.fre = get_resolution(data_file);
 	if (id == 'x')
 		return (ft_atoi(size.fre[1]));
@@ -49,6 +49,6 @@ char	*path(char *data_file, int id, int state)
 	while (i < id - 1)
 		i++;
 	if (state == 1)
-		free_2D(*(p+i));
+		free_2D(*(p+i)); // freeing one by one
 	return ((*(p+i))[1]); // after i got the memeber of the structure i've taken the content of the index specified
 }
