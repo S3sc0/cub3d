@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:54:49 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/21 11:39:23 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/21 12:09:11 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		main(int argc, char *argv[])
 		ft_putstr_fd("Wrong Number Of Arguments\n", 2); // error if there is more or less then required number of arguments
 		return (-1);
 	}
-	if(!(check_errors(store_data(argv[1]))))
+	if(!(check_errors(store_data(argv[1])))) // if there an error just exit
 		exit(1);
 	return (0);
 }
