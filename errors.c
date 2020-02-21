@@ -6,13 +6,14 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 08:59:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/20 12:24:53 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/21 11:54:37 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_free(char **splited)
+// this function free all 2D arrays
+void	free_2D(char **splited)
 {
 	int i;
 
@@ -30,27 +31,32 @@ int		count_items(char **str)
 	i = 0;
 	while (str[i] != NULL)
 		i++;
-	return (0);
+	return (i);
 }
 
 // this function will check that the resolution data is correct
 int		check_resolution(char *s)
 {
-	char	*str;
+	char	**str;
 	int		i;
+	int		ret;
 
+	ret = 1;
 	i = -1;
 	str = ft_split(s, ' ');
 	if (count_items(str) != 3) // should only be 3 arguments
-		return (0);
-	while (str[1][++i] != '\0') // if it's not int return 0
-		if (str[1][i] < '0' || str[1][i] > '9')
-			return (0);
+		ret = 0;
+	while (str[1][++i] != '\0') // if it's not number return 0
+		if ((str[1][i] < '0' || str[1][i] > '9') && (ret = 0))
+			break ;
 	i = -1;
 	while (str[2][++i] != '\0')
-		if (str[2][i] < '0' || str[2][i] > '9')
-			return (0);
-	return (1);
+		if ((str[2][i] < '0' || str[2][i] > '9') && (ret = 0))
+			break ;
+	if (ret == 0)
+		ft_putstr_fd("Something Wrong With The Resolution Element\n", 2);
+	free_2D(str);
+	return (ret);
 }
 
 // this function will redirect the specified information to their functions to be checked
@@ -63,7 +69,7 @@ int		check_errors(char *stored_data)
 	data = ft_split(stored_data, '\n');
 	while (data[i] != NULL)
 	{
-		if (data[i][0] == 'R'i && data[i][1] == ' ')
+		if (data[i][0] == 'R' && data[i][1] == ' ')
 			ret = check_resolution(data[i]);
 		i++;
 	}
