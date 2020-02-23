@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/20 08:59:04 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/23 16:26:08 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,8 @@ typedef struct
 
 int			get_next_line(int fd, char **line);
 int			check_errors(char *stored_data);
+void		free_2D(char **splited);
+int			count_items(char **str);
+int			check_map(char **s, char *d);
 
 #endif
