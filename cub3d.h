@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/23 16:26:08 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/24 07:59:25 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ int			check_errors(char *stored_data);
 void		free_2D(char **splited);
 int			count_items(char **str);
 int			check_map(char **s, char *d);
+int			extension_check(char *file_name);
+int			file_existence(int fd);
 
 #endif
