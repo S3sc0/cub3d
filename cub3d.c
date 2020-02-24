@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:54:49 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/24 08:08:23 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/24 10:15:34 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ int		main(int argc, char *argv[])
 	}
 	if(!(check_errors(get_data(argv[1])))) // if there an error just exit
 		exit(1);
+	ft_data(get_data(argv[1]));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/24 07:59:25 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/24 09:39:51 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct
 	char	*S;
 	int		floor;
 	int		cell;
-	char	*the_map;
+	char	**the_map;
 }			data;
 
 int			get_next_line(int fd, char **line);
@@ -43,5 +43,7 @@ int			count_items(char **str);
 int			check_map(char **s, char *d);
 int			extension_check(char *file_name);
 int			file_existence(int fd);
+void		alloc_fail(void *state);
+data		ft_data(char *data_file);
 
 #endif

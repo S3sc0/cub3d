@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 07:30:15 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/24 08:06:40 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/24 09:36:59 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,14 @@ int		file_existence(int fd)
 		return (0);
 	}
 	return (1);
+}
+
+// if the allocation fails then exit and return an erron message
+void	alloc_fail(void *state)
+{
+	if (state == NULL)
+	{
+		perror("Error ");
+		exit(1);
+	}
 }
