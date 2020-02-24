@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/24 09:39:51 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/24 14:42:38 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>
+
+void	*g_mlx_ptr;
+void	*g_win_ptr;
 
 typedef struct
 {
@@ -43,7 +46,8 @@ int			count_items(char **str);
 int			check_map(char **s, char *d);
 int			extension_check(char *file_name);
 int			file_existence(int fd);
-void		alloc_fail(void *state);
+void		if_fail(void *state);
 data		ft_data(char *data_file);
+void		open_window();
 
 #endif

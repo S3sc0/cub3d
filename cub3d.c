@@ -6,11 +6,16 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:54:49 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/24 10:15:34 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/24 14:43:24 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	rendering(void)
+{
+	open_window();
+}
 
 // In this function we'll store data in a variable called "data" so we can use it later
 char	*get_data(char *data_file)
@@ -51,5 +56,8 @@ int		main(int argc, char *argv[])
 	if(!(check_errors(get_data(argv[1])))) // if there an error just exit
 		exit(1);
 	ft_data(get_data(argv[1]));
+	if_fail(g_mlx_ptr = mlx_init());
+	rendering();
+	mlx_loop(g_mlx_ptr);
 	return (0);
 }
