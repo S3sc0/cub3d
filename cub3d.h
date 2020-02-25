@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/24 14:42:38 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/25 11:14:59 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define CUB3D_H
 
 #define BUFFER_SIZE 10000
+#define SQUARE_SIZE 32
 
 # include <mlx.h>
 # include "libft.h"
@@ -48,6 +49,7 @@ int			extension_check(char *file_name);
 int			file_existence(int fd);
 void		if_fail(void *state);
 data		ft_data(char *data_file);
-void		open_window();
+void		open_window(void);
+void		create_map(void);
 
 #endif

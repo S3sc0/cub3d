@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:54:49 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/24 14:43:24 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/25 10:41:33 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	rendering(void)
 {
 	open_window();
+	create_map();
 }
 
 // In this function we'll store data in a variable called "data" so we can use it later
