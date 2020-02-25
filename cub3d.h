@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/25 15:07:22 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/25 15:53:24 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ typedef struct
 	int		walkD;
 	int		turnD;
 	int		moveS;
-	int		rotationA;
-	int		rotationS;
+	float	rotationA;
+	float	rotationS;
 	int		mStep;
 }			player;
 
