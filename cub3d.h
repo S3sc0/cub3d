@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/25 11:14:59 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:07:24 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>
+# include <math.h>
 
 void	*g_mlx_ptr;
 void	*g_win_ptr;
@@ -39,6 +40,17 @@ typedef struct
 	int		cell;
 	char	**the_map;
 }			data;
+
+typedef struct
+{
+	int		x;
+	int		y;
+	int		walkD;
+	int		turnD;
+	int		moveS;
+	int		rotationA;
+	int		rotationS;
+}			player;
 
 int			get_next_line(int fd, char **line);
 int			check_errors(char *stored_data);
