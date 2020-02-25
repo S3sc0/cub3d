@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/25 14:07:24 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/25 15:07:22 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct
 	int		moveS;
 	int		rotationA;
 	int		rotationS;
+	int		mStep;
 }			player;
 
 int			get_next_line(int fd, char **line);
@@ -63,5 +64,6 @@ void		if_fail(void *state);
 data		ft_data(char *data_file);
 void		open_window(void);
 void		create_map(void);
-
+void		rec(int x, int y, char fill, int sym);
+void		player2D(char sym, int x, int y);
 #endif

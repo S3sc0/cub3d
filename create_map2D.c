@@ -6,31 +6,50 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 10:39:49 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/25 12:07:33 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/25 15:07:51 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // this function just draws rectangles
-void	rec(int x, int y, char fill)
+void	rec(int x, int y, char sym, int color)
 {
 	int		i;
 	int		j;
 
 	i = 0;
-	if (fill == '1' || fill == '2')
+	if (sym == '1' || sym == '2')
 	{
 		while (i < SQUARE_SIZE)
 		{
 			j = 0;
 			while (j < SQUARE_SIZE)
 			{
-				mlx_pixel_put(g_mlx_ptr, g_win_ptr, x + i, y + j, 0xE84D6C);
+				mlx_pixel_put(g_mlx_ptr, g_win_ptr, x + i, y + j, color);
 				j++;
 			}
 			i++;
 		}
+	}
+}
+
+// here we just go through x raw and redirect to "rec" function
+void	check_2Dmap(int i, int y, data info)
+{
+	int		j;
+	int		x;
+
+	j = 0;
+	x = 0;
+	while (info.the_map[i][j] != '\0')
+	{
+		rec(x, y, info.the_map[i][j], 0xE84D6C);
+		x += SQUARE_SIZE;
+		player2D(info.the_map[i][j], x, y);
+		if (info.the_map[i][j + 1] == '\0')
+			break ;
+		j += 2;
 	}
 }
 
@@ -42,8 +61,6 @@ void	create_map(void)
 {
 	data	info;
 	int		i;
-	int		j;
-	int		x;
 	int		y;
 
 	info = ft_data(NULL);
@@ -51,16 +68,7 @@ void	create_map(void)
 	i = 0;
 	while (info.the_map[i] != NULL)
 	{
-		x = 0;
-		j = 0;
-		while (info.the_map[i][j] != '\0')
-		{
-			rec(x, y, info.the_map[i][j]);
-			x += SQUARE_SIZE;
-			if (info.the_map[i][j + 1] == '\0')
-				break ;
-			j += 2;
-		}
+		check_2Dmap(i, y, info);
 		y += SQUARE_SIZE;
 		i++;
 	}
