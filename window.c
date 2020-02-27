@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 11:00:19 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/24 15:41:37 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/26 21:54:01 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 // and this function exits the program when it encounters 53 meaning ESC and k 
 int		close_program(int key, int state)
 {
-	if (key == 53 && state == 1)
+	if ((char)state == 'k' || key == 53)
+	{
+		mlx_destroy_window(g_mlx_ptr, g_win_ptr);
 		exit(0);
-	if ((char)state == 'k')
-		exit(0);
+	}
 	return (0);
 }
 

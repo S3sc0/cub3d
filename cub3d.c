@@ -6,17 +6,11 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:54:49 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/25 10:41:33 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/26 21:54:46 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	rendering(void)
-{
-	open_window();
-	create_map();
-}
 
 // In this function we'll store data in a variable called "data" so we can use it later
 char	*get_data(char *data_file)
@@ -28,7 +22,7 @@ char	*get_data(char *data_file)
 	int		state;
 
 	fd = open(data_file, O_RDONLY);
-	if (!extension_check(data_file) || !file_existence(fd))
+	if (!file_existence(fd) || !extension_check(data_file))
 		exit(1);
 	data = ft_strdup("");
 	while ((state = get_next_line(fd, &line)) >= 0)
@@ -58,7 +52,7 @@ int		main(int argc, char *argv[])
 		exit(1);
 	ft_data(get_data(argv[1]));
 	if_fail(g_mlx_ptr = mlx_init());
-	rendering();
+	open_window();
 	mlx_loop(g_mlx_ptr);
 	return (0);
 }
