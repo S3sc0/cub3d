@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 07:30:15 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/24 14:34:20 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/27 15:45:00 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	if_fail(void *state)
 	if (state == NULL)
 	{
 		perror("Error ");
+		mlx_destroy_window(g_mlx_ptr, g_win_ptr);
 		exit(1);
 	}
 }

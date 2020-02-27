@@ -6,14 +6,26 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:05:29 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/27 15:23:01 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/27 17:19:28 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// this function detemines which angle our player will face 
+int		which_angle(char c)
+{
+	if (c == 'N')
+		return (270);
+	else if (c == 'E')
+		return (0);
+	else if (c == 'S')
+		return (90);
+	return (180);
+}
+
 // initial x and y coordinates of the player
-void	coor_xny(player *init)
+char	coor_xny(player *init)
 {
 	int		i;
 	int		j;
@@ -31,7 +43,7 @@ void	coor_xny(player *init)
 		{
 			c = info.the_map[j][i];
 			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-				return ;
+				return(c);
 			if (info.the_map[j][i + 1] == '\0')
 				break ;
 			init->x += SQUARE_SIZE;
@@ -40,21 +52,23 @@ void	coor_xny(player *init)
 		init->y += SQUARE_SIZE;
 		j++;
 	}
+	return (c);
 }
 
 // initial or get the player variable
 player	*myPlayer(int state)
 {
 	static player	*init;
+	char			c;
 
 	if (state == 1)
 	{
 		init = malloc(sizeof(int) * 6 + sizeof(double) * 2);
-		coor_xny(init);
+		c = coor_xny(init);
 		init->walkD = 0;
 		init->turnD = 0;
 		init->moveS = 10;
-		init->rotationA = 270;
+		init->rotationA = which_angle(c);
 		init->rotationS = 10;
 		init->mStep = init->walkD * init->moveS;
 	}

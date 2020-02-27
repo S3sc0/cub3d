@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 14:28:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/27 15:36:32 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/27 15:57:25 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int		Awall(double x, double y)
 	info = ft_data(NULL);
 	i = floor(x / SQUARE_SIZE) * 2;
 	j = floor(y / SQUARE_SIZE);
-	printf("x = %d n y = %d n %c\n", i, j, info.the_map[j][i]);
 	if (info.the_map[j][i] == '1' || info.the_map[j][i] == '2')
 		return (1);
 	return (0);
