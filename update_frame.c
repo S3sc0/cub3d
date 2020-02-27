@@ -6,12 +6,13 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 14:28:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/27 14:59:22 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/27 15:36:32 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// turn the color of the screen to black to refill it with a new frame
 void	turn_frame_black(void)
 {
 	data	info;
@@ -33,16 +34,40 @@ void	turn_frame_black(void)
 	mlx_put_image_to_window(g_mlx_ptr, g_win_ptr, g_img_ptr, 0 , 0);
 }
 
+// checks if the current x and y are a well
+int		Awall(double x, double y)
+{
+	int		i;
+	int		j;
+	data	info;
+
+	info = ft_data(NULL);
+	i = floor(x / SQUARE_SIZE) * 2;
+	j = floor(y / SQUARE_SIZE);
+	printf("x = %d n y = %d n %c\n", i, j, info.the_map[j][i]);
+	if (info.the_map[j][i] == '1' || info.the_map[j][i] == '2')
+		return (1);
+	return (0);
+}
+
 // here we update x and y of the player
 void	update_walk(int key, player *plr)
 {
+	double	wanted_x;
+	double	wanted_y;
+
 	if (key == 126)
 		plr->walkD = 1;
 	else if (key == 125)
 		plr->walkD = -1;
 	plr->mStep = plr->walkD * plr->moveS;
-	plr->x += cos(plr->rotationA * RADIN) * plr->mStep;
-	plr->y += sin(plr->rotationA * RADIN) * plr->mStep;
+	wanted_x = plr->x + cos(plr->rotationA * RADIN) * plr->mStep;
+	wanted_y = plr->y + sin(plr->rotationA * RADIN) * plr->mStep;
+	if (Awall(wanted_x, wanted_y) == 0)
+	{
+		plr->x = wanted_x;
+		plr->y = wanted_y;
+	}
 }
 
 // here we update the player's view angle

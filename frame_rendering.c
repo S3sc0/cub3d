@@ -6,11 +6,30 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:51:34 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/27 14:09:51 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/27 15:10:48 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// draw a line which show our player point of view
+void	line(player plr, int color)
+{
+	int i;
+	double x;
+	double y;
+
+	x = plr.x;
+	y = plr.y;
+	i = 0;
+	while (i < 25)
+	{
+		x += cos(plr.rotationA * RADIN);
+		y += sin(plr.rotationA * RADIN);
+		put_pixel_img(x, y, color);
+		i++;
+	}
+}
 
 // the function which draws squares
 void	rec(int x, int y, int color)
@@ -65,7 +84,7 @@ void	player_render(void)
 	player plr;
 
 	plr = *myPlayer(0);
-	rec(plr.x, plr.y, 0xF20505);
+	line(plr, 0xF20505);
 }
 
 // this which draws the whole frame in the screen
