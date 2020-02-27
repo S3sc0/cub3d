@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/26 21:48:25 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/27 14:58:59 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #define BUFFER_SIZE 10000
 #define SQUARE_SIZE 32 
+#define RADIN (M_PI / 180)
 
 # include <mlx.h>
 # include "libft.h"
@@ -26,6 +27,9 @@
 
 void	*g_mlx_ptr;
 void	*g_win_ptr;
+void	*g_img_ptr;
+int		*g_img_data;
+int		g_line;
 
 typedef struct
 {
@@ -43,8 +47,8 @@ typedef struct
 
 typedef struct
 {
-	double		x;
-	double		y;
+	double	x;
+	double	y;
 	int		walkD;
 	int		turnD;
 	int		moveS;
@@ -63,9 +67,11 @@ int			file_existence(int fd);
 void		if_fail(void *state);
 data		ft_data(char *data_file);
 void		open_window(void);
-void		create_map(void);
-void		rec(int x, int y, char fill, int sym);
-void		player2D(char sym, int x, int y);
-int			wallAt(int x, int y);
+void		frame_render(void);
+void		init_frame(void);
+void		put_pixel_img(int x, int y, int color);
+player		*myPlayer(int state);
+void		turn_frame_black(void);
+void		update_player(int key);
 
 #endif

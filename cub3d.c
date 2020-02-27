@@ -6,11 +6,23 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:54:49 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/26 21:54:46 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/27 14:58:12 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// here we update the whole frame if the given key is valid
+int		update(int key)
+{
+	if (key == 126 || key == 124 || key == 125 || key == 123)
+	{
+		turn_frame_black();
+		update_player(key);
+		frame_render();
+	}
+	return (0);
+}
 
 // In this function we'll store data in a variable called "data" so we can use it later
 char	*get_data(char *data_file)
@@ -52,7 +64,8 @@ int		main(int argc, char *argv[])
 		exit(1);
 	ft_data(get_data(argv[1]));
 	if_fail(g_mlx_ptr = mlx_init());
-	open_window();
+	init_frame();
+	mlx_hook(g_win_ptr, 2, 0, update, (void*)0);
 	mlx_loop(g_mlx_ptr);
 	return (0);
 }
