@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:51:34 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/27 15:10:48 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/28 15:06:02 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	map_render(char **map)
 		while (map[j][i] != '\0')
 		{
 			if (map[j][i] == '1' || map[j][i] == '2')
-				rec(x, y, 0xFFFFFF);
+				rec(x, y, 0x6F04D9);
 			x += SQUARE_SIZE;
 			if (map[j][i + 1] == '\0')
 				break ;
@@ -79,21 +79,21 @@ void	map_render(char **map)
 }
 
 // draw the player
-void	player_render(void)
+void	player_render(player plr)
 {
-	player plr;
-
-	plr = *myPlayer(0);
 	line(plr, 0xF20505);
 }
 
 // this which draws the whole frame in the screen
 void	frame_render(void)
 {
-	data f;
+	data	f;
+	player	plr;
 
 	f = ft_data(NULL);
+	plr = *myPlayer(0);
 	map_render(f.the_map);
-	player_render();
+	player_render(plr);
+	rays(plr, f);
 	mlx_put_image_to_window(g_mlx_ptr, g_win_ptr, g_img_ptr, 0, 0);
 }

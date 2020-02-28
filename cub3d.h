@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/27 20:34:43 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/28 15:24:45 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #define RADIN (M_PI / 180)
 #define FOV_ANGLE 60
 #define WALL_WIDTH 1
+#define Ystep -SQUARE_SIZE
 
 # include <mlx.h>
 # include "libft.h"
@@ -75,5 +76,7 @@ void		put_pixel_img(int x, int y, int color);
 player		*myPlayer(int state);
 void		turn_frame_black(void);
 void		update_player(int key);
+int			Awall(double x, double y);
+void		rays(player plr, data info);
 
 #endif
