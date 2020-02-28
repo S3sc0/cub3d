@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/27 14:58:59 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/02/27 20:34:43 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #define BUFFER_SIZE 10000
 #define SQUARE_SIZE 32 
 #define RADIN (M_PI / 180)
+#define FOV_ANGLE 60
+#define WALL_WIDTH 1
 
 # include <mlx.h>
 # include "libft.h"
