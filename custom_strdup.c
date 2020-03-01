@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_casting.c                                      :+:      :+:    :+:   */
+/*   custom_strdup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/28 14:32:11 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/01 15:55:14 by aamzouar         ###   ########.fr       */
+/*   Created: 2020/03/01 14:28:44 by aamzouar          #+#    #+#             */
+/*   Updated: 2020/03/01 15:54:31 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// initial each ray then it goes in a while for a check
-void	rays(player plr, data info)
+// this function is ft_strdup but custom for the map content
+char	*custom_strdup(char *str)
 {
-	float	x;
-	float	y;
 	int		i;
-	float	rayAngle;
+	char	*s;
+	int		j;
 
-	rayAngle = plr.rotationA - (FOV_ANGLE / 2);
+	j = 0;
 	i = 0;
-	while (i < 1)
+	while (str[j] != '\0')
 	{
-		x = plr.x;
-		y = plr.y;
-		while (Awall(x, y) == 0)
-		{
-			x += cos(rayAngle * RADIN);
-			y += sin(rayAngle * RADIN);
-			put_pixel_img(x, y, 0xFFFFFF);
-		}
-		rayAngle += FOV_ANGLE / 1.0;
+		if (str[j] != ' ')
+			i++;
+		j++;
+	}
+	if (!(s = (char*)malloc(sizeof(char) * i + 1)))
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] != ' ')
+			s[j++] = str[i];
 		i++;
 	}
+	s[j] = '\0';
+	return (s);
 }

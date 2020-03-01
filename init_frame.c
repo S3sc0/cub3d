@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:05:29 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/27 17:19:28 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/01 15:20:47 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,8 @@ char	coor_xny(player *init)
 			c = info.the_map[j][i];
 			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 				return(c);
-			if (info.the_map[j][i + 1] == '\0')
-				break ;
 			init->x += SQUARE_SIZE;
-			i += 2;
+			i++;
 		}
 		init->y += SQUARE_SIZE;
 		j++;

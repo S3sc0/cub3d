@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:51:34 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/28 15:06:02 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/01 15:54:43 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,7 @@ void	map_render(char **map)
 			if (map[j][i] == '1' || map[j][i] == '2')
 				rec(x, y, 0x6F04D9);
 			x += SQUARE_SIZE;
-			if (map[j][i + 1] == '\0')
-				break ;
-			i += 2;
+			i++;
 		}
 		y += SQUARE_SIZE;
 		j++;

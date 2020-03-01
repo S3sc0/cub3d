@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 08:09:35 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/24 14:36:41 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/01 15:35:44 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	store_map(char **s, data *ptr)
 	if_fail(ptr->the_map = (char**)malloc(sizeof(char*) * i + 1));
 	while (j < i)
 	{
-		ptr->the_map[j]	= ft_strdup(s[j]);
+		ptr->the_map[j]	= custom_strdup(s[j]);
 		j++;
 	}
 	ptr->the_map[j] = NULL;

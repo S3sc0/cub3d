@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 14:28:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/27 15:57:25 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/01 15:22:36 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void	turn_frame_black(void)
 }
 
 // checks if the current x and y are a well
-int		Awall(double x, double y)
+int		Awall(float x, float y)
 {
 	int		i;
 	int		j;
 	data	info;
 
 	info = ft_data(NULL);
-	i = floor(x / SQUARE_SIZE) * 2;
+	i = floor(x / SQUARE_SIZE);
 	j = floor(y / SQUARE_SIZE);
 	if (info.the_map[j][i] == '1' || info.the_map[j][i] == '2')
 		return (1);
@@ -52,8 +52,8 @@ int		Awall(double x, double y)
 // here we update x and y of the player
 void	update_walk(int key, player *plr)
 {
-	double	wanted_x;
-	double	wanted_y;
+	float	wanted_x;
+	float	wanted_y;
 
 	if (key == 126)
 		plr->walkD = 1;
