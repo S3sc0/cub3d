@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 16:11:48 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/23 16:22:58 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/01 16:53:10 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,18 @@ int		check_map(char **s, char *d)
 	int		i;
 	int		max;
 	int		sn;
+	int		len;
 
 	sn = 0;
 	max = count_items(s);
-	ret = 2;
 	i = 0;
 	ret = check_map_order(d);
+	len = ft_strlen(*s);
 	while (s[i] != NULL && ret == 2)
 	{
 		ret = map_check_tail(s[i], i, max - 1, &sn);
+		if (s[i] != NULL && len != ft_strlen(s[i]))
+			ret = 0;
 		i++;
 	}
 	if (ret == 0 || sn != 1)

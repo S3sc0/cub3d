@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/01 14:39:56 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/01 16:22:21 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void		update_player(int key);
 int			Awall(float x, float y);
 void		rays(player plr, data info);
 char		*custom_strdup(char *str);
+int			map_complete(int i, int ret);
 
 #endif

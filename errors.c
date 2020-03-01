@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 08:59:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/23 16:25:53 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/01 16:22:25 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,7 @@ int		check_errors(char *stored_data)
 			break ;
 		i++;
 	}
-	if (i != 9 && ret != 0)
-		ft_putstr_fd("The Map's File Is Not Complete\n", 2);
+	ret = map_complete(i, ret);
 	free_2D(data);
 	return (ret);
 }
