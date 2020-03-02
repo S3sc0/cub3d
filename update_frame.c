@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 14:28:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/01 15:22:36 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/02 11:26:01 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	update_turn(int key, player *plr)
 	else if (key == 124)
 		plr->turnD = 1;
 	plr->rotationA += plr->turnD * plr->rotationS;
+	plr->rotationA = normA(plr->rotationA);
 }
 
 // this function just redirects to the correct function depends on key

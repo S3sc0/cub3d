@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:32:11 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/01 15:55:14 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/02 11:18:07 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,30 @@
 // initial each ray then it goes in a while for a check
 void	rays(player plr, data info)
 {
-	float	x;
-	float	y;
-	int		i;
-	float	rayAngle;
+	float		x;
+	float		y;
+	float		nextX;
+	float		nextY;
+	int			db;
 
-	rayAngle = plr.rotationA - (FOV_ANGLE / 2);
-	i = 0;
-	while (i < 1)
+	db = plr.rotationA > 0 && plr.rotationA < 180 ? SQUARE_SIZE : -1;
+	y = floor(plr.y / SQUARE_SIZE) * SQUARE_SIZE + db;
+	if (plr.rotationA == 0 || plr.rotationA == 180 || plr.rotationA == 360)
 	{
-		x = plr.x;
-		y = plr.y;
-		while (Awall(x, y) == 0)
-		{
-			x += cos(rayAngle * RADIN);
-			y += sin(rayAngle * RADIN);
-			put_pixel_img(x, y, 0xFFFFFF);
-		}
-		rayAngle += FOV_ANGLE / 1.0;
-		i++;
+		x = 0;
+		nextX = 0;
+	}
+	else
+	{
+		x = plr.x + (plr.y - y) / tan(plr.rotationA * RADIN);
+		nextX = SQUARE_SIZE / tan(plr.rotationA * RADIN);
+	}
+	nextY = plr.rotationA > 0 && plr.rotationA < 180 ? SQUARE_SIZE : SQUARE_SIZE * -1;
+	while (x >= 0 && x < info.wx && y >= 0 && y < info.wy && Awall(x, y) == 0)
+	{
+		x += nextX;
+		y += nextY;
+		put_pixel_img(x, y, 0xFFFFFF);
+		printf("%f %d\n", nextY, plr.rotationA);
 	}
 }
