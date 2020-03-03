@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/02 12:13:32 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/03 22:35:48 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ void		rays(player plr, data info);
 char		*custom_strdup(char *str);
 int			map_complete(int i, int ret);
 int			normA(int angle);
+int			max_crd(crd intersect);
 
 #endif
