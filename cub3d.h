@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/01 20:22:05 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/02 12:13:32 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,12 @@ typedef struct
 	int		rotationS;
 	int		mStep;
 }			player;
+
+typedef struct
+{
+	float	x;
+	float	y;
+}			crd;
 
 int			get_next_line(int fd, char **line);
 int			check_errors(char *stored_data);
