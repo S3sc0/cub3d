@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:05:29 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/01 15:20:47 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/05 21:23:39 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ player	*myPlayer(int state)
 		c = coor_xny(init);
 		init->walkD = 0;
 		init->turnD = 0;
-		init->moveS = 10;
+		init->moveS = 15;
 		init->rotationA = which_angle(c);
-		init->rotationS = 10;
+		init->rotationS = 3;
 		init->mStep = init->walkD * init->moveS;
 	}
 	return(init);

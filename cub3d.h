@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/03 22:35:48 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/05 20:53:57 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define CUB3D_H
 
 #define BUFFER_SIZE 10000
-#define SQUARE_SIZE 32 
+#define SQUARE_SIZE 64 
 #define RADIN (M_PI / 180)
 #define FOV_ANGLE 60
 #define WALL_WIDTH 1
@@ -27,6 +27,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include <math.h>
+# include <limits.h>
 
 void	*g_mlx_ptr;
 void	*g_win_ptr;
@@ -88,5 +89,6 @@ char		*custom_strdup(char *str);
 int			map_complete(int i, int ret);
 int			normA(int angle);
 int			max_crd(crd intersect);
+void		wall_rendering(float ray_d, int x, data info);
 
 #endif
