@@ -6,16 +6,23 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 11:00:19 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/26 21:54:01 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/05 22:14:41 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// and this function exits the program when it encounters 53 meaning ESC and k 
-int		close_program(int key, int state)
+// close whenever I've touched the red dot close button
+int		red_dot(int key)
 {
-	if ((char)state == 'k' || key == 53)
+	mlx_destroy_window(g_mlx_ptr, g_win_ptr);
+	exit(0);
+}
+
+// close the window whenever i press esc 
+int		e_s_c(int key)
+{
+	if (key == 53)
 	{
 		mlx_destroy_window(g_mlx_ptr, g_win_ptr);
 		exit(0);
@@ -34,6 +41,6 @@ void	open_window(void)
 	if (info.wy > 1395)
 		info.wy = 1395;
 	if_fail(g_win_ptr = mlx_new_window(g_mlx_ptr, info.wx, info.wy, "Cub3D"));
-	mlx_key_hook(g_win_ptr, close_program, (int*)1);
-	mlx_hook(g_win_ptr, 17, 0, close_program, (int*)2);
+	mlx_key_hook(g_win_ptr, e_s_c, (void*)0);
+	mlx_hook(g_win_ptr, 17, 0, red_dot, (void*)0);
 }
