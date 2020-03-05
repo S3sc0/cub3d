@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 08:09:35 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/01 15:35:44 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/05 21:54:16 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	store_color(char *s, data *ptr)
 
 	str = ft_split(s, ' ');
 	rgb = ft_split(str[1], ',');
-	rgb_color = ft_atoi(rgb[2]) * 65536 + ft_atoi(rgb[1]) * 256 + ft_atoi(rgb[0]);
+	rgb_color = ft_atoi(rgb[0]) * 65536 + ft_atoi(rgb[1]) * 256 + ft_atoi(rgb[2]);
 	if (str[0][0] == 'F')
 		ptr->floor = rgb_color;
 	else if (str[0][0] == 'C')

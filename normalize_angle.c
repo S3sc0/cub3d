@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 18:58:41 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/05 21:23:48 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/05 21:38:58 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		normA(int angle)
 {
 	if (angle > 360)
-		return (3);
+		return (5);
 	else if (angle < 0)
 		return (angle + 360);
 	return (angle);

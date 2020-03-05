@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:51:34 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/05 20:44:27 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/05 21:42:45 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,35 @@ void	player_render(player plr)
 	line(plr, 0xF20505);
 }
 
+// draw the cell and floor
+void	draw_background(data info)
+{
+	int		x;
+	int		y;
+
+	y = 0;
+	while (y < info.wy / 2)
+	{
+		x = 0;
+		while (x < info.wx)
+		{
+			put_pixel_img(x, y, info.cell);
+			x++;
+		}
+		y++;
+	}
+	while (y < info.wy)
+	{
+		x = 0;
+		while (x < info.wx)
+		{
+			put_pixel_img(x, y, info.floor);
+			x++;
+		}
+		y++;
+	}
+}
+
 // this which draws the whole frame in the screen
 void	frame_render(void)
 {
@@ -92,6 +121,7 @@ void	frame_render(void)
 	plr = *myPlayer(0);
 	//map_render(f.the_map);
 	//player_render(plr);
+	draw_background(f);
 	rays(plr, f);
 	mlx_put_image_to_window(g_mlx_ptr, g_win_ptr, g_img_ptr, 0, 0);
 }
