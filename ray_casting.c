@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:32:11 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/05 21:13:07 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:16:59 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,20 @@ crd		v_intersect(float rayAngle, player plr)
 	return (intersect);
 }
 
-float	calc_distance(player plr, crd hi, crd vi)
+// calc the distance between the ray intersect and the player position
+float	calc_distance(player plr, crd hi, crd vi, float rayAngle)
 {
 	float	res1;
 	float	res2;
+	float	ret;
 
 	res1 = sqrt(pow(plr.x - hi.x, 2) + pow(plr.y - hi.y, 2));
 	res2 = sqrt(pow(plr.x - vi.x, 2) + pow(plr.y - vi.y, 2));
 	if (res1 < res2)
-		return (res1);
-	return (res2);
+		ret = res1 * cos((rayAngle - plr.rotationA) * RADIN);
+	else
+		ret = res2 * cos((rayAngle - plr.rotationA) * RADIN);
+	return (ret);
 }
 
 // initial each ray then it goes in a while for a check
@@ -109,7 +113,7 @@ void	rays(player plr, data info)
 	rayNum = 0;
 	while (rayNum < info.wx)
 	{
-		dst = calc_distance(plr, h_intersect(rayAngle, plr), v_intersect(rayAngle, plr));
+		dst = calc_distance(plr, h_intersect(rayAngle, plr), v_intersect(rayAngle, plr), rayAngle);
 		wall_rendering(dst, rayNum, info);
 		rayAngle += FOV_ANGLE / (float)info.wx;
 		rayNum++;

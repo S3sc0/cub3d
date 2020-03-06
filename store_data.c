@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 08:09:35 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/05 21:54:16 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/06 12:20:12 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void	store_resolution(char *s, data *ptr)
 	str = ft_split(s, ' ');
 	ptr->wx = ft_atoi(str[1]);
 	ptr->wy = ft_atoi(str[2]);
+	if (ptr->wx > 2560)
+		ptr->wx = 2560;
+	if (ptr->wy > 1395)
+		ptr->wy = 1395;
 	free_2D(str);
 }
 

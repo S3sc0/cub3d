@@ -6,12 +6,13 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 20:04:58 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/05 21:32:01 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/06 12:03:17 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// here we render our walls
 void	wall_rendering(float ray_d, int x, data info)
 {
 	float	dpp;

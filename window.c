@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 11:00:19 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/05 22:14:41 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/06 12:19:50 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,6 @@ void	open_window(void)
 	data info;
 
 	info = ft_data(NULL);
-	if (info.wx > 2560)
-		info.wx = 2560;
-	if (info.wy > 1395)
-		info.wy = 1395;
 	if_fail(g_win_ptr = mlx_new_window(g_mlx_ptr, info.wx, info.wy, "Cub3D"));
 	mlx_key_hook(g_win_ptr, e_s_c, (void*)0);
 	mlx_hook(g_win_ptr, 17, 0, red_dot, (void*)0);
