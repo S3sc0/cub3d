@@ -1,11 +1,10 @@
-R 2000 1000
+R 1000 1000
 
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-
-S ./path_to_the_spirte_texture
+NO ./textures/redbrick.XPM
+SO ./textures/mossy.XPM
+WE ./textures/eagle.XPM
+EA ./textures/greystone.XPM
+S ./textures/barrel.XPM
 
 C 77,80,140
 F 242,80,65

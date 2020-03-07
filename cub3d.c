@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:54:49 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/02/27 14:58:12 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/06 21:28:54 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int		main(int argc, char *argv[])
 	}
 	if(!(check_errors(get_data(argv[1])))) // if there an error just exit
 		exit(1);
-	ft_data(get_data(argv[1]));
 	if_fail(g_mlx_ptr = mlx_init());
+	ft_data(get_data(argv[1]));
 	init_frame();
 	mlx_hook(g_win_ptr, 2, 0, update, (void*)0);
 	mlx_loop(g_mlx_ptr);

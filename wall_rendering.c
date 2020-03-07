@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 20:04:58 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/06 12:03:17 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/07 18:55:48 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,21 @@
 // here we render our walls
 void	wall_rendering(float ray_d, int x, data info)
 {
-	float	dpp;
-	float	wall_h;
-	float	i;
-	int		start_h;
+	wall	w;
+	int		i;
+	int		y;
 
+	w.dpp = (info.wx / 2) / tan((FOV_ANGLE * RADIN) / 2);
+	w.bottom  = (SQUARE_SIZE / ray_d) * w.dpp;
+	w.bottom = w.bottom > info.wy ? info.wy : w.bottom;
+	w.top = (info.wy - w.bottom) / 2;
+	y = w.top;
 	i = 0;
-	dpp = (info.wx / 2) / tan((FOV_ANGLE * RADIN) / 2);
-	wall_h = (SQUARE_SIZE / ray_d) * dpp;
-	wall_h = wall_h > info.wy ? info.wy : wall_h;
-	start_h = (info.wy - wall_h) / 2;
-	while (i < wall_h)
+	while (i < w.bottom)
 	{
-		put_pixel_img(x, start_h, 0xFFFFFF);
-		start_h++;
+		w.offset_y = (y - w.top) * (64.0 / w.bottom);
+		g_img_data[x + y * (g_line / 4)] = info.NO[64 * w.offset_y + g_offset_x];
+		y++;
 		i++;
 	}
 }

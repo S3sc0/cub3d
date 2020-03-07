@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:32:11 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/06 14:16:59 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/07 18:47:38 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,15 @@ float	calc_distance(player plr, crd hi, crd vi, float rayAngle)
 	res1 = sqrt(pow(plr.x - hi.x, 2) + pow(plr.y - hi.y, 2));
 	res2 = sqrt(pow(plr.x - vi.x, 2) + pow(plr.y - vi.y, 2));
 	if (res1 < res2)
+	{
+		g_offset_x = (int)hi.x % SQUARE_SIZE; // we'll use this value for the texture thing
 		ret = res1 * cos((rayAngle - plr.rotationA) * RADIN);
+	}
 	else
+	{
+		g_offset_x = (int)vi.y % SQUARE_SIZE;
 		ret = res2 * cos((rayAngle - plr.rotationA) * RADIN);
+	}
 	return (ret);
 }
 

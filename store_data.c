@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 08:09:35 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/06 12:20:12 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/06 21:35:22 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,26 @@ void	store_resolution(char *s, data *ptr)
 void	store_path(char *s, data *ptr)
 {
 	char	**str;
+	void	*xpm_ptr;
+	int		b[3];
+	int		res[2];
 
 	str = ft_split(s, ' ');
+	if (!(xpm_ptr = mlx_xpm_file_to_image(g_mlx_ptr, str[1], &res[0], &res[1])))
+	{
+		ft_putstr_fd("The Path Of The XPM File Doesn't Exist", 2);
+		exit(1);
+	}
 	if (ft_memcmp(str[0], "NO", 2) == 0)
-		ptr->NO = ft_strdup(str[1]);
+		ptr->NO = (int*)mlx_get_data_addr(xpm_ptr, &b[0], &b[1], &b[2]);
 	else if (ft_memcmp(str[0], "EA", 2) == 0)
-		ptr->EA = ft_strdup(str[1]);
+		ptr->EA = (int*)mlx_get_data_addr(xpm_ptr, &b[0], &b[1], &b[2]);
 	else if (ft_memcmp(str[0], "SO", 2) == 0)
-		ptr->SO = ft_strdup(str[1]);
+		ptr->SO = (int*)mlx_get_data_addr(xpm_ptr, &b[0], &b[1], &b[2]);
 	else if (ft_memcmp(str[0], "WE", 2) == 0)
-		ptr->WE = ft_strdup(str[1]);
+		ptr->WE = (int*)mlx_get_data_addr(xpm_ptr, &b[0], &b[1], &b[2]);
 	else if (ft_memcmp(str[0], "S", 1) == 0)
-		ptr->S = ft_strdup(str[1]);
+		ptr->S = (int*)mlx_get_data_addr(xpm_ptr, &b[0], &b[1], &b[2]);
 	free_2D(str);
 }
 

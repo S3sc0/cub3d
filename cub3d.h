@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/05 20:53:57 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/07 18:18:09 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,17 @@ void	*g_win_ptr;
 void	*g_img_ptr;
 int		*g_img_data;
 int		g_line;
+int		g_offset_x;
 
 typedef struct
 {
 	int		wx;
 	int		wy;
-	char 	*NO;
-	char 	*EA;
-	char 	*SO;
-	char 	*WE;
-	char	*S;
+	int 	*NO;
+	int 	*EA;
+	int 	*SO;
+	int 	*WE;
+	int		*S;
 	int		floor;
 	int		cell;
 	char	**the_map;
@@ -66,6 +67,14 @@ typedef struct
 	float	x;
 	float	y;
 }			crd;
+
+typedef	struct
+{
+	float	dpp;
+	float	bottom;
+	int		top;
+	int		offset_y;
+}			wall;
 
 int			get_next_line(int fd, char **line);
 int			check_errors(char *stored_data);
