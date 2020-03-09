@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/08 00:50:26 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/09 16:37:04 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	*g_img_ptr;
 int		*g_img_data;
 int		g_line;
 int		g_offset_x;
+int		*g_texture;
 
 typedef struct
 {
@@ -96,8 +97,9 @@ int			Awall(float x, float y);
 void		rays(player plr, data info);
 char		*custom_strdup(char *str);
 int			map_complete(int i, int ret);
-int			normA(int angle);
+float		normA(float angle);
 int			max_crd(crd intersect);
 void		wall_rendering(float ray_d, int x, data info);
+void		select_texture(char c, float ray_angle);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:32:11 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/07 22:44:52 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/09 16:37:36 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,13 @@ float	calc_distance(player plr, crd hi, crd vi, float rayAngle)
 	res2 = sqrt(pow(plr.x - vi.x, 2) + pow(plr.y - vi.y, 2));
 	if (res1 < res2)
 	{
+		select_texture('h', rayAngle);
 		g_offset_x = (int)hi.x % SQUARE_SIZE; // we'll use this value for the texture thing
 		ret = res1 * cos((rayAngle - plr.rotationA) * RADIN);
 	}
 	else
 	{
+		select_texture('v', rayAngle);
 		g_offset_x = (int)vi.y % SQUARE_SIZE;
 		ret = res2 * cos((rayAngle - plr.rotationA) * RADIN);
 	}
@@ -122,6 +124,7 @@ void	rays(player plr, data info)
 		dst = calc_distance(plr, h_intersect(rayAngle, plr), v_intersect(rayAngle, plr), rayAngle);
 		wall_rendering(dst, rayNum, info);
 		rayAngle += FOV_ANGLE / (float)info.wx;
+		rayAngle = normA(rayAngle);
 		rayNum++;
 	}
 }

@@ -1,9 +1,10 @@
-R 1000 1000
+R 2000 1000
 
-NO ./textures/redbrick.XPM
+NO ./textures/greystone.XPM
 SO ./textures/mossy.XPM
 WE ./textures/eagle.XPM
-EA ./textures/ayoub.XPM
+EA ./textures/redbrick.XPM
+
 S ./textures/barrel.XPM
 
 C 77,80,140
