@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 14:28:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/09 16:41:31 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/13 16:13:48 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,7 @@ int		Awall(float x, float y)
 	info = ft_data(NULL);
 	i = floor(x / SQUARE_SIZE);
 	j = floor(y / SQUARE_SIZE);
-	if (info.the_map[j][i] == '1' || info.the_map[j][i] == '2')
-		return (1);
-	return (0);
-}
-
-int		wall_col(float x, float y)
-{
-	int		i;
-	int		j;
-	data	info;
-
-	info = ft_data(NULL);
-	i = floor(x / SQUARE_SIZE);
-	j = floor(y / SQUARE_SIZE);
+	g_which1 = info.the_map[j][i];
 	if (info.the_map[j][i] == '1' || info.the_map[j][i] == '2')
 		return (1);
 	return (0);
@@ -76,7 +63,7 @@ void	update_walk(int key, player *plr)
 	plr->mStep = plr->walkD * plr->moveS;
 	wanted_x = plr->x + cos(plr->rotationA * RADIN) * plr->mStep;
 	wanted_y = plr->y + sin(plr->rotationA * RADIN) * plr->mStep;
-	if (wall_col(wanted_x, wanted_y) == 0)
+	if (Awall(wanted_x, wanted_y) == 0)
 	{
 		plr->x = wanted_x;
 		plr->y = wanted_y;

@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:51:34 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/06 14:17:20 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/13 11:50:01 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,9 @@ void	frame_render(void)
 
 	f = ft_data(NULL);
 	plr = *myPlayer(0);
-	//map_render(f.the_map);
-	//player_render(plr);
-	draw_background(f);
-	rays(plr, f);
+	map_render(f.the_map);
+	player_render(plr);
+	//draw_background(f);
+	//rays(plr, f);
 	mlx_put_image_to_window(g_mlx_ptr, g_win_ptr, g_img_ptr, 0, 0);
 }

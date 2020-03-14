@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:32:11 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/09 16:37:36 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/13 16:51:24 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ crd		h_intersect(float rayAngle, player plr)
 	intersect.x = tan(rayAngle) ? (intersect.y - plr.y + tan(rayAngle) * plr.x) / tan(rayAngle) : 0;
 	next.y = SQUARE_SIZE * pnret(sin(rayAngle), 1, 0, -1);
 	next.x = tan(rayAngle) ? next.y / tan(rayAngle) : 0;
-	while (max_crd(intersect) &&  !Awall(intersect.x, intersect.y + of_y))
+	while (max_crd(intersect) && !Awall(intersect.x, intersect.y + of_y))
 	{
 		intersect.x += next.x;
 		intersect.y += next.y;
@@ -100,12 +100,16 @@ float	calc_distance(player plr, crd hi, crd vi, float rayAngle)
 		select_texture('h', rayAngle);
 		g_offset_x = (int)hi.x % SQUARE_SIZE; // we'll use this value for the texture thing
 		ret = res1 * cos((rayAngle - plr.rotationA) * RADIN);
+		sprt.x = g_which1 == '2' ? hi.x : 0;
+		sprt.y = g_which1 == '2' ? hi.y : 0;
 	}
 	else
 	{
 		select_texture('v', rayAngle);
 		g_offset_x = (int)vi.y % SQUARE_SIZE;
 		ret = res2 * cos((rayAngle - plr.rotationA) * RADIN);
+		sprt.x = g_which1 == '2' ? vi.x : 0;
+		sprt.y = g_which1 == '2' ? vi.y : 0;
 	}
 	return (ret);
 }
@@ -123,6 +127,8 @@ void	rays(player plr, data info)
 	{
 		dst = calc_distance(plr, h_intersect(rayAngle, plr), v_intersect(rayAngle, plr), rayAngle);
 		wall_rendering(dst, rayNum, info);
+		if (sprt.x != 0 && sprt.x != 0)
+			sprite_rendering(plr, rayAngle);
 		rayAngle += FOV_ANGLE / (float)info.wx;
 		rayAngle = normA(rayAngle);
 		rayNum++;
