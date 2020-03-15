@@ -38,7 +38,7 @@ void	store_path(char *s, data *ptr)
 	str = ft_split(s, ' ');
 	if (!(xpm_ptr = mlx_xpm_file_to_image(g_mlx_ptr, str[1], &res[0], &res[1])))
 	{
-		ft_putstr_fd("The Path Of The XPM File Doesn't Exist", 2);
+		ft_putstr_fd("The Path Of The XPM File Doesn't Exist\n", 2);
 		exit(1);
 	}
 	if (ft_memcmp(str[0], "NO", 2) == 0)
