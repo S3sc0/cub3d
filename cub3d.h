@@ -43,8 +43,7 @@ int		g_line;
 int		g_offset_x;
 int		g_offset_s;
 int		*g_texture;
-char	g_which1;
-int	g_sp_sign;
+int	g_vert;
 
 typedef struct
 {
@@ -122,6 +121,6 @@ int			max_crd(rycrd intersect);
 void		wall_rendering(float ray_d, int x, data info);
 void		select_texture(char c, float ray_angle);
 void		sprite_rendering(player plr, float ray_angle, data info, int x);
-int		sprite_dst(player plr, rycrd hi, rycrd vi, float ray_angle);
+void		sprite_dst(player plr, rycrd hi, rycrd vi, float ray_angle);
 
 #endif

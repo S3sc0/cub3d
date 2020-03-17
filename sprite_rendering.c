@@ -13,7 +13,7 @@
 #include "cub3d.h"
 
 // here we calc the distence between the player and sprite
-int	sprite_dst(player plr, rycrd hi, rycrd vi, float ray_angle)
+void	sprite_dst(player plr, rycrd hi, rycrd vi, float ray_angle)
 {
 	float	res1;
 	float	res2;
@@ -21,7 +21,7 @@ int	sprite_dst(player plr, rycrd hi, rycrd vi, float ray_angle)
 	sprt.x = 0;
 	sprt.y = 0;
 	if (hi.sx == 0 && hi.sy == 0 && vi.sx == 0 && vi.sy == 0)
-		return (0);
+		return ;
 	res1 = sqrt(pow(plr.x - hi.sx, 2) + pow(plr.y - hi.sy, 2));
 	res2 = sqrt(pow(plr.x - vi.sx, 2) + pow(plr.y - vi.sy, 2));
 	if (res1 < res2)
@@ -29,14 +29,15 @@ int	sprite_dst(player plr, rycrd hi, rycrd vi, float ray_angle)
 		sprt.x = hi.sx;
 		sprt.y = hi.sy;
 		g_offset_s = (int)hi.x % SQUARE_SIZE;
+		g_vert = 0;
 	}
 	else
 	{
 		sprt.x = vi.sx;
 		sprt.y = vi.sy;
 		g_offset_s = (int)vi.y % SQUARE_SIZE;
+		g_vert = 1;
 	}
-	return (1);
 }
 
 // just calc the distance between two points
@@ -45,7 +46,7 @@ float	mini_dst(player plr, float ray_angle, crd cntr)
 	float	res;
 
 	res = sqrt(pow(plr.x - cntr.x, 2) + pow(plr.y - cntr.y, 2));
-	res *= cos((ray_angle - plr.rotationA) * RADIN);
+	//res *= cos((ray_angle - plr.rotationA) * RADIN);
 	return (res);
 }
 
@@ -55,16 +56,20 @@ float	dst_to_sprite(player plr, float ray_angle)
 	crd	point;
 	float	r;
 	float	dst;
+	int	i1;
+	int	i2;
 
+	i1 = g_vert == 1 && ray_angle >= 90 && ray_angle <= 270 ? -1 : 1;
+	i2 = g_vert == 0 && ray_angle >= 180 && ray_angle <= 360 ? -1 : 1;
 	// calc sprite center
-	point.x = ((int)(sprt.x / SQUARE_SIZE) * SQUARE_SIZE) + (SQUARE_SIZE / 2);
-	point.y = ((int)(sprt.y / SQUARE_SIZE) * SQUARE_SIZE) + (SQUARE_SIZE / 2);
-	put_pixel_img(point.x, point.y, 0xFFFFFF);
+	point.x = ((int)(sprt.x / SQUARE_SIZE) * SQUARE_SIZE) + (SQUARE_SIZE / 2) * i1;
+	point.y = ((int)(sprt.y / SQUARE_SIZE) * SQUARE_SIZE) + (SQUARE_SIZE / 2) * i2;
 	// calc the destance between the player and the center
 	r = mini_dst(plr, ray_angle, point);
 	// calc the intersection points
-	point.x = plr.x - (cos(ray_angle * RADIN) * r);
+	point.x = plr.x + (cos(ray_angle * RADIN) * r);
 	point.y = plr.y + (sin(ray_angle * RADIN) * r);
+	put_pixel_img(point.x, point.y, 0xFFFFFF);
 	// calc the wanted destance, voala !!!
 	dst = mini_dst(plr, ray_angle, point);
 	return (dst);
@@ -92,7 +97,7 @@ void	sprite_rendering(player plr, float ray_angle, data info, int x)
 		s.dst_ftop = y + (tmp / 2) - (info.wy / 2);
 		s.offset_y = s.dst_ftop * (64.0 / tmp);
 		//if (info.S[64 * s.offset_y + g_offset_s] != 0)
-		//g_img_data[x + y * info.wx] = info.S[64 * s.offset_y + g_offset_s];
+		//	g_img_data[x + y * info.wx] = info.S[64 * s.offset_y + g_offset_s];
 		y++;
 		i++;
 	}

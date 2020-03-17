@@ -107,7 +107,7 @@ float	calc_distance(player plr, rycrd hi, rycrd vi, float rayAngle)
 	float	res2;
 	float	ret;
 
-	g_sp_sign = sprite_dst(plr, hi, vi, rayAngle);
+	sprite_dst(plr, hi, vi, rayAngle);
 	res1 = sqrt(pow(plr.x - hi.x, 2) + pow(plr.y - hi.y, 2));
 	res2 = sqrt(pow(plr.x - vi.x, 2) + pow(plr.y - vi.y, 2));
 	if (res1 < res2)
@@ -138,7 +138,7 @@ void	rays(player plr, data info)
 	{
 		dst = calc_distance(plr, h_intersect(rayAngle, plr), v_intersect(rayAngle, plr), rayAngle);
 		//wall_rendering(dst, rayNum, info);
-		if (g_sp_sign == 1)
+		if (sprt.x && sprt.y)
 			sprite_rendering(plr, rayAngle, info, rayNum);
 		rayAngle += FOV_ANGLE / (float)info.wx;
 		rayAngle = normA(rayAngle);
