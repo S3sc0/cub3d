@@ -75,11 +75,11 @@ int		check_map_order(char *data)
 	{
 		if (data[i] == '1' && sn == 0 && data[i - 1] == '\n')
 			sn = 1;
-		if (sn == 1 && ft_memcmp((data + i), "\n\n", 2) == 0)
+		if (sn == 1 && ft_memcmp((data + i), "\n\n\n", 3) == 0)
 			ret = 0;
 		i++;
 	}
-	if (data[i - 2] != '1') // so we arrived to the end and move to steps back \0 \n then check
+	if (data[i - 3] != '1') // so we arrived to the end and move to steps back \0 \n then check
 	{
 		ft_putstr_fd("The Map Isn't The Last Element\n", 2);
 		ret = 3;

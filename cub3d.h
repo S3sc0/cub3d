@@ -29,14 +29,22 @@
 # include <math.h>
 # include <limits.h>
 
+/* ##### KEYS ##### */
+#define UP_A 65362
+#define DOWN_A 65364
+#define LEFT_A 65361
+#define RIGHT_A 65363
+
 void	*g_mlx_ptr;
 void	*g_win_ptr;
 void	*g_img_ptr;
 int		*g_img_data;
 int		g_line;
 int		g_offset_x;
+int		g_offset_s;
 int		*g_texture;
 char	g_which1;
+int	g_sp_sign;
 
 typedef struct
 {
@@ -72,12 +80,21 @@ typedef struct
 
 crd		sprt;
 
+typedef struct
+{
+	float 	x;
+	float	y;
+	float	sx;
+	float	sy;
+}		rycrd;
+
 typedef	struct
 {
 	float	dpp;
 	float	bottom;
 	int		top;
 	int		offset_y;
+	int	dst_ftop;
 }			wall;
 
 int			get_next_line(int fd, char **line);
@@ -96,14 +113,15 @@ void		put_pixel_img(int x, int y, int color);
 player		*myPlayer(int state);
 void		turn_frame_black(void);
 void		update_player(int key);
-int			Awall(float x, float y);
+int			Awall(float x, float y, char *which1);
 void		rays(player plr, data info);
 char		*custom_strdup(char *str);
 int			map_complete(int i, int ret);
 float		normA(float angle);
-int			max_crd(crd intersect);
+int			max_crd(rycrd intersect);
 void		wall_rendering(float ray_d, int x, data info);
 void		select_texture(char c, float ray_angle);
-void		sprite_rendering(player plr, float rayAngle);
+void		sprite_rendering(player plr, float ray_angle, data info, int x);
+int		sprite_dst(player plr, rycrd hi, rycrd vi, float ray_angle);
 
 #endif

@@ -15,7 +15,7 @@
 // here we update the whole frame if the given key is valid
 int		update(int key)
 {
-	if (key == 126 || key == 124 || key == 125 || key == 123)
+	if (key == UP_A || key == DOWN_A || key == RIGHT_A || key == LEFT_A)
 	{
 		turn_frame_black();
 		update_player(key);
@@ -65,7 +65,7 @@ int		main(int argc, char *argv[])
 	if_fail(g_mlx_ptr = mlx_init());
 	ft_data(get_data(argv[1]));
 	init_frame();
-	mlx_hook(g_win_ptr, 2, 0, update, (void*)0);
+	mlx_hook(g_win_ptr, 2, 1, &update, (void*)0);
 	mlx_loop(g_mlx_ptr);
 	return (0);
 }

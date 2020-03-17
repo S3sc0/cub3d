@@ -65,9 +65,9 @@ player	*myPlayer(int state)
 		c = coor_xny(init);
 		init->walkD = 0;
 		init->turnD = 0;
-		init->moveS = 10;
+		init->moveS = 15;
 		init->rotationA = which_angle(c);
-		init->rotationS = 5;
+		init->rotationS = 8;
 		init->mStep = init->walkD * init->moveS;
 	}
 	return(init);

@@ -122,6 +122,6 @@ void	frame_render(void)
 	map_render(f.the_map);
 	player_render(plr);
 	//draw_background(f);
-	//rays(plr, f);
+	rays(plr, f);
 	mlx_put_image_to_window(g_mlx_ptr, g_win_ptr, g_img_ptr, 0, 0);
 }

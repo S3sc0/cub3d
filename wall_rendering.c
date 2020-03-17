@@ -33,7 +33,6 @@ void	wall_rendering(float ray_d, int x, data info)
 	wall	w;
 	int		i;
 	int		y;
-	int		d_from_top;
 	float	tmp;
 
 	w.dpp = (info.wx / 2) / tan((FOV_ANGLE * RADIN) / 2);
@@ -45,8 +44,8 @@ void	wall_rendering(float ray_d, int x, data info)
 	i = 0;
 	while (i < w.bottom)
 	{
-		d_from_top = y + (tmp / 2) - (info.wy / 2);
-		w.offset_y = d_from_top * (64.0 / tmp);
+		w.dst_ftop = y + (tmp / 2) - (info.wy / 2);
+		w.offset_y = w.dst_ftop * (64.0 / tmp);
 		g_img_data[x + y * info.wx] = g_texture[64 * w.offset_y + g_offset_x];
 		y++;
 		i++;
