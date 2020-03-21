@@ -44,6 +44,7 @@ int		g_offset_x;
 int		g_offset_s;
 int		*g_texture;
 int	g_vert;
+int	g_asprite;
 
 typedef struct
 {

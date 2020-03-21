@@ -20,11 +20,15 @@ void	sprite_dst(player plr, rycrd hi, rycrd vi, float ray_angle)
 
 	sprt.x = 0;
 	sprt.y = 0;
-	if (hi.x == 0 && hi.y == 0 && vi.x == 0 && vi.y == 0)
+	g_asprite = 1;
+	if (hi.sx == 0 && hi.sy == 0 && vi.sx == 0 && vi.sy == 0)
+	{
+		g_asprite = 0;
 		return ;
+	}
 	res1 = sqrt(pow(plr.x - hi.sx, 2) + pow(plr.y - hi.sy, 2));
 	res2 = sqrt(pow(plr.x - vi.sx, 2) + pow(plr.y - vi.sy, 2));
-	if (res1 < res2)
+	if (((vi.sx == 0 && vi.sy == 0) || res1 < res2) && hi.sx != 0 && hi.sy != 0)
 	{
 		sprt.x = hi.sx;
 		sprt.y = hi.sy;
@@ -44,7 +48,7 @@ float	mini_dst(player plr, float ray_angle, crd cntr)
 	float	res;
 
 	res = sqrt(pow(plr.x - cntr.x, 2) + pow(plr.y - cntr.y, 2));
-	res *= cos((ray_angle - plr.rotationA) * RADIN);
+	//res *= cos((ray_angle - plr.rotationA) * RADIN);
 	return (res);
 }
 
@@ -65,12 +69,12 @@ float	dst_to_sprite(player plr, float ray_angle)
 	// calc the destance between the player and the center
 	r = mini_dst(plr, ray_angle, point);
 	// calc the intersection points
-	point.x = plr.x + (cos(ray_angle * RADIN) * r);
-	point.y = plr.y + (sin(ray_angle * RADIN) * r);
+	point.x = plr.x + cos(ray_angle * RADIN) * r;
+	point.y = plr.y + sin(ray_angle * RADIN) * r;
 	sprt.x = point.x;
 	sprt.y = point.y;
 	g_offset_s = g_vert == 0 ? (int)point.x % SQUARE_SIZE : (int)point.y % SQUARE_SIZE;
-	// calc the wanted destance, voala !!!
+	// calc the wanted destance, voila !!!
 	dst = mini_dst(plr, ray_angle, point);
 	return (dst);
 }
