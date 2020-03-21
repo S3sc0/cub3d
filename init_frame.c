@@ -67,7 +67,7 @@ player	*myPlayer(int state)
 		init->turnD = 0;
 		init->moveS = 15;
 		init->rotationA = which_angle(c);
-		init->rotationS = 8;
+		init->rotationS = 10;
 		init->mStep = init->walkD * init->moveS;
 	}
 	return(init);

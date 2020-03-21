@@ -20,7 +20,7 @@ void	sprite_dst(player plr, rycrd hi, rycrd vi, float ray_angle)
 
 	sprt.x = 0;
 	sprt.y = 0;
-	if (hi.sx == 0 && hi.sy == 0 && vi.sx == 0 && vi.sy == 0)
+	if (hi.x == 0 && hi.y == 0 && vi.x == 0 && vi.y == 0)
 		return ;
 	res1 = sqrt(pow(plr.x - hi.sx, 2) + pow(plr.y - hi.sy, 2));
 	res2 = sqrt(pow(plr.x - vi.sx, 2) + pow(plr.y - vi.sy, 2));
@@ -28,14 +28,12 @@ void	sprite_dst(player plr, rycrd hi, rycrd vi, float ray_angle)
 	{
 		sprt.x = hi.sx;
 		sprt.y = hi.sy;
-		g_offset_s = (int)hi.x % SQUARE_SIZE;
 		g_vert = 0;
 	}
 	else
 	{
 		sprt.x = vi.sx;
 		sprt.y = vi.sy;
-		g_offset_s = (int)vi.y % SQUARE_SIZE;
 		g_vert = 1;
 	}
 }
@@ -46,7 +44,7 @@ float	mini_dst(player plr, float ray_angle, crd cntr)
 	float	res;
 
 	res = sqrt(pow(plr.x - cntr.x, 2) + pow(plr.y - cntr.y, 2));
-	//res *= cos((ray_angle - plr.rotationA) * RADIN);
+	res *= cos((ray_angle - plr.rotationA) * RADIN);
 	return (res);
 }
 
@@ -69,7 +67,9 @@ float	dst_to_sprite(player plr, float ray_angle)
 	// calc the intersection points
 	point.x = plr.x + (cos(ray_angle * RADIN) * r);
 	point.y = plr.y + (sin(ray_angle * RADIN) * r);
-	put_pixel_img(point.x, point.y, 0xFFFFFF);
+	sprt.x = point.x;
+	sprt.y = point.y;
+	g_offset_s = g_vert == 0 ? (int)point.x % SQUARE_SIZE : (int)point.y % SQUARE_SIZE;
 	// calc the wanted destance, voala !!!
 	dst = mini_dst(plr, ray_angle, point);
 	return (dst);
@@ -92,13 +92,16 @@ void	sprite_rendering(player plr, float ray_angle, data info, int x)
 	s.top = (info.wy - s.bottom) / 2;
 	y = s.top;
 	i = 0;
-	while (i < s.bottom)
+	if (info.the_map[(int)floor(sprt.y / SQUARE_SIZE)][(int)floor(sprt.x / SQUARE_SIZE)] == '2')
 	{
-		s.dst_ftop = y + (tmp / 2) - (info.wy / 2);
-		s.offset_y = s.dst_ftop * (64.0 / tmp);
-		//if (info.S[64 * s.offset_y + g_offset_s] != 0)
-		//	g_img_data[x + y * info.wx] = info.S[64 * s.offset_y + g_offset_s];
-		y++;
-		i++;
+		while (i < s.bottom)
+		{
+			s.dst_ftop = y + (tmp / 2) - (info.wy / 2);
+			s.offset_y = s.dst_ftop * (64.0 / tmp);
+			if (info.S[64 * s.offset_y + g_offset_s] != 0)
+				g_img_data[x + y * info.wx] = info.S[64 * s.offset_y + g_offset_s];
+			y++;
+			i++;
+		}
 	}
 }

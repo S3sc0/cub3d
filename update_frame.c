@@ -46,6 +46,8 @@ int		Awall(float x, float y, char *which1)
 	j = floor(y / SQUARE_SIZE);
 	if (which1)
 		*which1 = info.the_map[j][i];
+	else if (info.the_map[j][i] == '2')
+		return (1);
 	if (info.the_map[j][i] == '1')
 		return (1);
 	return (0);
@@ -79,7 +81,7 @@ void	update_turn(int key, player *plr)
 	else if (key == RIGHT_A)
 		plr->turnD = 1;
 	plr->rotationA += plr->turnD * plr->rotationS;
-	plr->rotationA = (int)floor(normA(plr->rotationA));
+	plr->rotationA = (int)normA(plr->rotationA);
 }
 
 // this function just redirects to the correct function depends on key

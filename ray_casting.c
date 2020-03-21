@@ -137,7 +137,7 @@ void	rays(player plr, data info)
 	while (rayNum < info.wx)
 	{
 		dst = calc_distance(plr, h_intersect(rayAngle, plr), v_intersect(rayAngle, plr), rayAngle);
-		//wall_rendering(dst, rayNum, info);
+		wall_rendering(dst, rayNum, info);
 		if (sprt.x && sprt.y)
 			sprite_rendering(plr, rayAngle, info, rayNum);
 		rayAngle += FOV_ANGLE / (float)info.wx;
