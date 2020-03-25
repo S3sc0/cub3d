@@ -45,7 +45,6 @@ float	dst_to_sprite(player plr, float ray_angle, data info)
 {
 	crd	point;
 	float	r;
-	float	dst;
 	int	i1;
 	int	i2;
 
@@ -59,10 +58,13 @@ float	dst_to_sprite(player plr, float ray_angle, data info)
 	// calc the intersection points
 	sprt.x = plr.x + cos(ray_angle * RADIN) * r;
 	sprt.y = plr.y + sin(ray_angle * RADIN) * r;
-	g_offset_s = (int)sprt.y % SQUARE_SIZE;
-	// calc the wanted destance, voila !!!
-	dst = sqrt(pow(plr.x - sprt.x, 2) + pow(plr.y - sprt.y, 2));
-
+	if ((g_vert == 1 && plr.rotationA > 0 && plr.rotationA < 180) || g_vert == 0)
+		g_offset_s = (int)sprt.x % SQUARE_SIZE;
+	else
+		g_offset_s = (int)sprt.y % SQUARE_SIZE;
+	// calc the wanted destance and return it, voila !!!
+	return (sqrt(pow(plr.x - sprt.x, 2) + pow(plr.y - sprt.y, 2)));
+}
 
 // this function will render my sprite
 void	sprite_rendering(player plr, float ray_angle, data info, int x)
