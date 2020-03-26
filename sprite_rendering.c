@@ -26,7 +26,7 @@ void	sprite_dst(player plr, rycrd hi, rycrd vi, float ray_angle)
 	}
 	res1 = sqrt(pow(plr.x - hi.sx, 2) + pow(plr.y - hi.sy, 2));
 	res2 = sqrt(pow(plr.x - vi.sx, 2) + pow(plr.y - vi.sy, 2));
-	if (res1 < res2)
+	if (((vi.sx == 0 && vi.sy == 0) || res1 < res2) && hi.sx != 0 && hi.sy != 0)
 	{
 		sprt.x = hi.sx;
 		sprt.y = hi.sy;
@@ -58,6 +58,7 @@ float	dst_to_sprite(player plr, float ray_angle, data info)
 	// calc the intersection points
 	sprt.x = plr.x + cos(ray_angle * RADIN) * r;
 	sprt.y = plr.y + sin(ray_angle * RADIN) * r;
+//	put_pixel_img(sprt.x, sprt.y, 0xFFFFFF);
 	if ((g_vert == 1 && plr.rotationA > 0 && plr.rotationA < 180) || g_vert == 0)
 		g_offset_s = (int)sprt.x % SQUARE_SIZE;
 	else
