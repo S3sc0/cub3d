@@ -1,97 +1,105 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sprite_rendering.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/10 12:21:29 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/13 16:50:25 by aamzouar         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cub3d.h"
 
-// here we calc the distence between the player and sprite
-void	sprite_dst(player plr, rycrd hi, rycrd vi, float ray_angle)
+void	store_sprite_position(crd *sprites, data info)
 {
-	float	res1;
-	float	res2;
+	int	x;
+	int	y;
 
-	g_asprite = 1;
-	if (hi.sx == 0 && hi.sy == 0 && vi.sx == 0 && vi.sy == 0)
+	x = 0;
+	g_sprite_num = 0;
+	while (info.the_map[x] != NULL)
 	{
-		g_asprite = 0;
-		return ;
-	}
-	res1 = sqrt(pow(plr.x - hi.sx, 2) + pow(plr.y - hi.sy, 2));
-	res2 = sqrt(pow(plr.x - vi.sx, 2) + pow(plr.y - vi.sy, 2));
-	if (((vi.sx == 0 && vi.sy == 0) || res1 < res2) && hi.sx != 0 && hi.sy != 0)
-	{
-		sprt.x = hi.sx;
-		sprt.y = hi.sy;
-		g_vert = 0;
-	}
-	else
-	{
-		sprt.x = vi.sx;
-		sprt.y = vi.sy;
-		g_vert = 1;
-	}
-}
-
-// it calcs the final destance of between the player and the sprite
-float	dst_to_sprite(player plr, float ray_angle, data info)
-{
-	crd	point;
-	float	r;
-	int	i1;
-	int	i2;
-
-	i1 = g_vert == 1 && ray_angle > 90 && ray_angle < 270 ? -1 : 1;
-	i2 = g_vert == 0 && ray_angle > 180 && ray_angle < 360 ? -1 : 1;
-	// calc sprite center
-	point.x = ((int)(sprt.x / SQUARE_SIZE) * SQUARE_SIZE) + (SQUARE_SIZE / 2) * i1;
-	point.y = ((int)(sprt.y / SQUARE_SIZE) * SQUARE_SIZE) + (SQUARE_SIZE / 2) * i2;
-	// calc the destance between the player and the center
-	r = sqrt(pow(plr.x - point.x, 2) + pow(plr.y - point.y, 2));
-	// calc the intersection points
-	sprt.x = plr.x + cos(ray_angle * RADIN) * r;
-	sprt.y = plr.y + sin(ray_angle * RADIN) * r;
-//	put_pixel_img(sprt.x, sprt.y, 0xFFFFFF);
-	if ((g_vert == 1 && plr.rotationA > 0 && plr.rotationA < 180) || g_vert == 0)
-		g_offset_s = (int)sprt.x % SQUARE_SIZE;
-	else
-		g_offset_s = (int)sprt.y % SQUARE_SIZE;
-	// calc the wanted destance and return it, voila !!!
-	return (sqrt(pow(plr.x - sprt.x, 2) + pow(plr.y - sprt.y, 2)));
-}
-
-// this function will render my sprite
-void	sprite_rendering(player plr, float ray_angle, data info, int x)
-{
-	float		dst;
-	wall		s;
-	float		tmp;
-	int		i;
-
-	dst = dst_to_sprite(plr, ray_angle, info);
-	s.dpp = (info.wx / 2) / tan((FOV_ANGLE * RADIN) / 2);
-	s.bottom = (SQUARE_SIZE / dst) * s.dpp;
-	tmp = s.bottom;
-	s.bottom = s.bottom > info.wy ? info.wy : s.bottom;
-	s.top = (info.wy - s.bottom) / 2;
-	i = 0;
-	if (info.the_map[(int)floor(sprt.y / SQUARE_SIZE)][(int)floor(sprt.x / SQUARE_SIZE)] == '2')
-	{
-		while (i < s.bottom)
+		y = 0;
+		while (info.the_map[x][y] != '\0')
 		{
-			s.dst_ftop = s.top + (tmp / 2) - (info.wy / 2);
-			s.offset_y = s.dst_ftop * (64.0 / tmp);
-			if (info.S[64 * s.offset_y + g_offset_s] != 0)
-				g_img_data[s.top * info.wx + x] = info.S[64 * s.offset_y + g_offset_s];
-			s.top++;
-			i++;
+			if (info.the_map[x][y] == '2')
+			{
+				sprites[g_sprite_num].x = x * SQUARE_SIZE;
+				sprites[g_sprite_num].y = y * SQUARE_SIZE;
+				g_sprite_num++;
+			}
+			y++;
 		}
+		x++;
+	}
+}
+
+void	initial_sprite_properties(crd *sprites, player plr)
+{
+	int	i;
+
+	i = 0;
+	g_sprite_distance = (float *)malloc(sizeof(float) * g_sprite_num);
+	while (i < g_sprite_num)
+	{
+		g_sprite_distance[i] = sqrt(pow(plr.x - sprites[i].x, 2) + pow(plr.y - sprites[i].y, 2));
+		i++;
+	}
+}
+
+void	sort_sprites(crd **sprites)
+{
+	int	i;
+	int	j;
+	float	tmp_distance;
+	float	tmp_sprites;
+
+	i = 0;
+	while (i < g_sprite_num)
+	{
+		j = i+1;
+		while (j < g_sprite_num)
+		{
+			if (g_sprite_distance[i] > g_sprite_distance[j])
+			{
+				tmp_distance = g_sprite_distance[i];
+				tmp_sprites = (*sprite)[i];
+				g_sprite_distance[i] = g_sprite_distance[j];
+				(*sprites)[i] = (*sprites)[j];
+				g_sprite_distance[j] = tmp_distance;
+				(*sprites)[j] = tmp_sprites;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	calc_sprite_info(sprite *sprt, player plr, data info, crd *sprites)
+{
+	int	sprite_height;
+	float	dpp;
+	
+	dpp = (info.wx / 2) * tan((FOV_ANGLE / 2) * RADIN);
+	sprite_height = (SQUARE_SIZE / g_sprite_distance[sprt->i]) * dpp;
+	// initialize Sprite X and Y
+	sprt->x = sprites[sprt->i].x - plr.x;
+	sprt->y = sprites[sprt->i].y - plr.y;
+	// calc where to start and end painting sprite in height
+	sprt->hi_s = -sprite_height / 2 + info.wy / 2;
+	sprt->hi_s = sprt->hi_s < 0 ? 0 : sprt->hi_s;
+	sprt->hi_e = sprite_height / 2 + info.wy / 2;
+	sprt->hi_e = sprt->hi_e > info.wy ? info.wy - 1 : sprt->hi_e;
+	// calc where to start and end painting sprite in width
+	sprt->wi_s = -sprite_height / 2 + info.wx / 2;
+	sprt->wi_s = sprt->wi_s < 0 ? 0 : sprt->wi_s;
+	sprt->wi_e = sprite_height / 2 + info.wx / 2;
+	sprt->wi_e = sprt->wi_e > info.wx ? info.wx - 1 : sprt->wi_e;
+}
+
+void	draw_sprite(player plr, data info)
+{
+	sprite	sprt;
+	crd	*sprites;
+
+	sprites = (crd *)malloc(sizeof(crd) * 5);
+	store_sprite_position(sprites, info);
+	initial_sprite_properties(sprites, plr);
+	sort_sprites(&sprites);
+	sprt.i = 0;
+	while (sprt.i < g_sprite_num)
+	{
+		calc_sprite_info(&sprt, plr, info, sprites);
+		sprt.i++;
 	}
 }

@@ -45,6 +45,9 @@ int		g_offset_s;
 int		*g_texture;
 int	g_vert;
 int	g_asprite;
+float	*g_wall_distance;
+int	g_sprite_num;
+float	*g_sprite_distance;
 
 typedef struct
 {
@@ -76,9 +79,22 @@ typedef struct
 {
 	float	x;
 	float	y;
+	int	hi_s;
+	int	hi_e;
+	int	wi_s;
+	int	wi_e;
+	int	i;
+}	sprite;
+
+typedef struct
+{
+	float	x;
+	float	y;
 }			crd;
 
 crd		sprt;
+crd	g_triangle_crnr1;
+crd	g_triangle_crnr2;
 
 typedef struct
 {
@@ -123,5 +139,7 @@ void		wall_rendering(float ray_d, int x, data info);
 void		select_texture(char c, float ray_angle);
 void		sprite_rendering(player plr, float ray_angle, data info, int x);
 void		sprite_dst(player plr, rycrd hi, rycrd vi, float ray_angle);
+void		initialize_triangle_points(player plr, data info);
+void		draw_sprite(player plr, data info);
 
 #endif

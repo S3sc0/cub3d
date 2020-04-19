@@ -123,5 +123,6 @@ void	frame_render(void)
 	//player_render(plr);
 	draw_background(f);
 	rays(plr, f);
+	draw_sprite(plr, f);
 	mlx_put_image_to_window(g_mlx_ptr, g_win_ptr, g_img_ptr, 0, 0);
 }
