@@ -5,22 +5,22 @@ void	store_sprite_position(crd *sprites, data info)
 	int	x;
 	int	y;
 
-	x = 0;
+	y = 0;
 	g_sprite_num = 0;
-	while (info.the_map[x] != NULL)
+	while (info.the_map[y] != NULL)
 	{
-		y = 0;
-		while (info.the_map[x][y] != '\0')
+		x = 0;
+		while (info.the_map[y][x] != '\0')
 		{
-			if (info.the_map[x][y] == '2')
+			if (info.the_map[y][x] == '2')
 			{
 				sprites[g_sprite_num].x = x * SQUARE_SIZE;
 				sprites[g_sprite_num].y = y * SQUARE_SIZE;
 				g_sprite_num++;
 			}
-			y++;
+			x++;
 		}
-		x++;
+		y++;
 	}
 }
 
@@ -42,7 +42,7 @@ void	sort_sprites(crd **sprites)
 	int	i;
 	int	j;
 	float	tmp_distance;
-	float	tmp_sprites;
+	crd	tmp_sprites;
 
 	i = 0;
 	while (i < g_sprite_num)
@@ -50,10 +50,10 @@ void	sort_sprites(crd **sprites)
 		j = i+1;
 		while (j < g_sprite_num)
 		{
-			if (g_sprite_distance[i] > g_sprite_distance[j])
+			if (g_sprite_distance[i] < g_sprite_distance[j])
 			{
 				tmp_distance = g_sprite_distance[i];
-				tmp_sprites = (*sprite)[i];
+				tmp_sprites = (*sprites)[i];
 				g_sprite_distance[i] = g_sprite_distance[j];
 				(*sprites)[i] = (*sprites)[j];
 				g_sprite_distance[j] = tmp_distance;
@@ -67,24 +67,16 @@ void	sort_sprites(crd **sprites)
 
 void	calc_sprite_info(sprite *sprt, player plr, data info, crd *sprites)
 {
-	int	sprite_height;
 	float	dpp;
-	
-	dpp = (info.wx / 2) * tan((FOV_ANGLE / 2) * RADIN);
-	sprite_height = (SQUARE_SIZE / g_sprite_distance[sprt->i]) * dpp;
-	// initialize Sprite X and Y
-	sprt->x = sprites[sprt->i].x - plr.x;
-	sprt->y = sprites[sprt->i].y - plr.y;
+
+	dpp = (info.wx / 2) / tan((FOV_ANGLE * RADIN) / 2);
+	sprt->height = (SQUARE_SIZE / g_sprite_distance[sprt->i]) * dpp;
 	// calc where to start and end painting sprite in height
-	sprt->hi_s = -sprite_height / 2 + info.wy / 2;
-	sprt->hi_s = sprt->hi_s < 0 ? 0 : sprt->hi_s;
-	sprt->hi_e = sprite_height / 2 + info.wy / 2;
-	sprt->hi_e = sprt->hi_e > info.wy ? info.wy - 1 : sprt->hi_e;
+	sprt->hi_s = -sprt->height / 2 + info.wy / 2;
+	sprt->hi_e = sprt->height / 2 + info.wy / 2;
 	// calc where to start and end painting sprite in width
-	sprt->wi_s = -sprite_height / 2 + info.wx / 2;
-	sprt->wi_s = sprt->wi_s < 0 ? 0 : sprt->wi_s;
-	sprt->wi_e = sprite_height / 2 + info.wx / 2;
-	sprt->wi_e = sprt->wi_e > info.wx ? info.wx - 1 : sprt->wi_e;
+	sprt->wi_s = calc_sp_x_start(&sprt, plr, info, sprites[sprt->i]);
+	sprt->wi_e = sprt->wi_s + sprt->height;
 }
 
 void	draw_sprite(player plr, data info)
@@ -100,6 +92,10 @@ void	draw_sprite(player plr, data info)
 	while (sprt.i < g_sprite_num)
 	{
 		calc_sprite_info(&sprt, plr, info, sprites);
+		draw_sprite_texture(sprt, info, sprt.i);
 		sprt.i++;
 	}
+	free(g_sprite_distance);
+	free(g_wall_distance);
+	free(sprites);
 }

@@ -135,7 +135,6 @@ void	rays(player plr, data info)
 	rayAngle = plr.rotationA - (FOV_ANGLE / 2);
 	rayNum = 0;
 	g_wall_distance = (float*)malloc(sizeof(float) * info.wx);
-	initialize_triangle_points(plr, info);
 	while (rayNum < info.wx)
 	{
 		dst = calc_distance(plr, h_intersect(rayAngle, plr), v_intersect(rayAngle, plr), rayAngle);
