@@ -14,7 +14,7 @@ void	store_sprite_position(crd *sprites, data info)
 		{
 			if (info.the_map[y][x] == '2')
 			{
-				sprites[g_sprite_num].x = x * SQUARE_SIZE;
+				sprites[g_sprite_num].x = x * SQUARE_SIZE + 32;
 				sprites[g_sprite_num].y = y * SQUARE_SIZE;
 				g_sprite_num++;
 			}
@@ -73,7 +73,9 @@ void	calc_sprite_info(sprite *sprt, player plr, data info, crd *sprites)
 	sprt->height = (SQUARE_SIZE / g_sprite_distance[sprt->i]) * dpp;
 	// calc where to start and end painting sprite in height
 	sprt->hi_s = -sprt->height / 2 + info.wy / 2;
+	sprt->hi_s = sprt->hi_s < 0 ? 0 : sprt->hi_s;
 	sprt->hi_e = sprt->height / 2 + info.wy / 2;
+	sprt->hi_e = sprt->hi_e > info.wy ? info.wy - 1 : sprt->hi_e;
 	// calc where to start and end painting sprite in width
 	sprt->wi_s = calc_sp_x_start(&sprt, plr, info, sprites[sprt->i]);
 	sprt->wi_e = sprt->wi_s + sprt->height;
@@ -95,6 +97,7 @@ void	draw_sprite(player plr, data info)
 		draw_sprite_texture(sprt, info, sprt.i);
 		sprt.i++;
 	}
+	printf("\n **** \n");
 	free(g_sprite_distance);
 	free(g_wall_distance);
 	free(sprites);

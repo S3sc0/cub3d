@@ -81,6 +81,7 @@ void	update_turn(int key, player *plr)
 	else if (key == RIGHT_A)
 		plr->turnD = 1;
 	plr->rotationA += plr->turnD * plr->rotationS;
+	g_player_angle += plr->turnD * plr->rotationS;
 	plr->rotationA = (int)normA(plr->rotationA);
 }
 
