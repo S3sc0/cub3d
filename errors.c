@@ -63,14 +63,11 @@ int		check_name(char *s)
 // this function check if the path contains only two parts
 int		check_path(char *s)
 {
-	int		ret;
 	char	**str;
 
-	ret = 1;
 	str = ft_split(s, ' ');
 	if (count_items(str) != 2)
 	{
-		ret = 0;
 		ft_putstr_fd("Something Wrong With The Path Elements", 2);
 	}
 	free_2D(str);

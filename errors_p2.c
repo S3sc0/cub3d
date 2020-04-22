@@ -94,7 +94,7 @@ int		check_map(char **s, char *d)
 	int		i;
 	int		max;
 	int		sn;
-	int		len;
+	unsigned int	len;
 
 	sn = 0;
 	max = count_items(s);

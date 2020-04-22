@@ -36,7 +36,8 @@ void	store_path(char *s, data *ptr)
 	int		res[2];
 
 	str = ft_split(s, ' ');
-	if (!(xpm_ptr = mlx_xpm_file_to_image(g_mlx_ptr, str[1], &res[0], &res[1])))
+	xpm_ptr = mlx_xpm_file_to_image(g_mlx_ptr, str[1], &res[0], &res[1]);
+	if (xpm_ptr == NULL)
 	{
 		ft_putstr_fd("The Path Of The XPM File Doesn't Exist\n", 2);
 		exit(1);
@@ -82,7 +83,7 @@ void	store_map(char **s, data *ptr)
 	i = 0;
 	while (s[i] != NULL)
 		i++;
-	if_fail(ptr->the_map = (char**)malloc(sizeof(char*) * i + 1));
+	if_fail(ptr->the_map = (char**)malloc(sizeof(char*) * (i + 1)));
 	while (j < i)
 	{
 		ptr->the_map[j]	= custom_strdup(s[j]);
@@ -100,7 +101,7 @@ data	ft_data(char *data_file)
 
 	s = ft_split(data_file, '\n');
 	i = 0;
-	if (s != NULL)
+	if (data_file != NULL)
 	{
 		while (i < 9)
 		{

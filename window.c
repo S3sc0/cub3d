@@ -13,7 +13,7 @@
 #include "cub3d.h"
 
 // close whenever I've touched the red dot close button
-int		red_dot(int key)
+int		red_dot(void)
 {
 	mlx_destroy_window(g_mlx_ptr, g_win_ptr);
 	exit(0);

@@ -13,7 +13,7 @@
 #include "cub3d.h"
 
 // here we calc the distence between the player and sprite
-void	sprite_dst(player plr, rycrd hi, rycrd vi, float ray_angle)
+void	sprite_dst(player plr, rycrd hi, rycrd vi)
 {
 	float	res1;
 	float	res2;
@@ -41,7 +41,7 @@ void	sprite_dst(player plr, rycrd hi, rycrd vi, float ray_angle)
 }
 
 // it calcs the final destance of between the player and the sprite
-float	dst_to_sprite(player plr, float ray_angle, data info)
+float	dst_to_sprite(player plr, float ray_angle)
 {
 	crd	point;
 	float	r;
@@ -75,7 +75,7 @@ void	sprite_rendering(player plr, float ray_angle, data info, int x)
 	float		tmp;
 	int		i;
 
-	dst = dst_to_sprite(plr, ray_angle, info);
+	dst = dst_to_sprite(plr, ray_angle);
 	s.dpp = (info.wx / 2) / tan((FOV_ANGLE * RADIN) / 2);
 	s.bottom = (SQUARE_SIZE / dst) * s.dpp;
 	tmp = s.bottom;

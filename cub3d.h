@@ -136,9 +136,9 @@ int			max_crd(rycrd intersect);
 void		wall_rendering(float ray_d, int x, data info);
 void		select_texture(char c, float ray_angle);
 void		sprite_rendering(player plr, float ray_angle, data info, int x);
-void		sprite_dst(player plr, rycrd hi, rycrd vi, float ray_angle);
+void		sprite_dst(player plr, rycrd hi, rycrd vi);
 void		draw_sprite(player plr, data info);
-float		calc_sp_x_start(sprite **sprt, player plr, data info, crd sprite);
+float		calc_sp_x_start(player plr, data info, crd sprite);
 void		draw_sprite_texture(sprite sprt, data info, int i);
 
 #endif

@@ -55,15 +55,18 @@ char	*get_data(char *data_file)
 
 int		main(int argc, char *argv[])
 {
+	char	*data;
+
 	if (argc < 2 || argc > 3)
 	{
 		ft_putstr_fd("Wrong Number Of Arguments\n", 2); // error if there is more or less then required number of arguments
 		return (-1);
 	}
-	if(!(check_errors(get_data(argv[1])))) // if there an error just exit
+	data = get_data(argv[1]);
+	if(!(check_errors(data))) // if there an error just exit
 		exit(1);
 	if_fail(g_mlx_ptr = mlx_init());
-	ft_data(get_data(argv[1]));
+	ft_data(data);
 	init_frame();
 	mlx_hook(g_win_ptr, 2, 1, &update, (void*)0);
 	mlx_loop(g_mlx_ptr);

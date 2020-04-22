@@ -74,6 +74,27 @@ player	*myPlayer(int state)
 	return(init);
 }
 
+
+void	count_sprites(data info)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	g_sprite_num = 0;
+	while (info.the_map[y] != NULL)
+	{
+		x = 0;
+		while (info.the_map[y][x] != '\0')
+		{
+			if (info.the_map[y][x] == '2')
+				g_sprite_num++;
+			x++;
+		}
+		y++;
+	}
+}
+
 // initializing all the essential elements of cub3d frame
 void	init_frame(void)
 {
@@ -82,6 +103,7 @@ void	init_frame(void)
 
 	open_window();
 	info = ft_data(NULL);
+	count_sprites(info);
 	g_img_ptr = mlx_new_image(g_mlx_ptr, info.wx, info.wy);
 	g_img_data = (int*)mlx_get_data_addr(g_img_ptr, &a[0], &g_line, &a[1]);
 	myPlayer(1);
