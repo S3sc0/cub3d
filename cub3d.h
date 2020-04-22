@@ -48,7 +48,6 @@ int	g_asprite;
 float	*g_wall_distance;
 int	g_sprite_num;
 float	*g_sprite_distance;
-int	g_player_angle;
 
 typedef struct
 {
