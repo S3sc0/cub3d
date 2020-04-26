@@ -59,9 +59,9 @@ void	update_walk(int key, player *plr)
 	float	wanted_x;
 	float	wanted_y;
 
-	if (key == UP_A)
+	if (key == UP_A || key == W_KEY)
 		plr->walkD = 1;
-	else if (key == DOWN_A)
+	else if (key == DOWN_A || key == S_KEY)
 		plr->walkD = -1;
 	plr->mStep = plr->walkD * plr->moveS;
 	wanted_x = plr->x + cos(plr->rotationA * RADIN) * plr->mStep;
@@ -76,9 +76,9 @@ void	update_walk(int key, player *plr)
 // here we update the player's view angle
 void	update_turn(int key, player *plr)
 {
-	if (key == LEFT_A)
+	if (key == LEFT_A || key == A_KEY)
 		plr->turnD = -1;
-	else if (key == RIGHT_A)
+	else if (key == RIGHT_A || key == D_KEY)
 		plr->turnD = 1;
 	plr->rotationA += plr->turnD * plr->rotationS;
 	plr->rotationA = (int)normA(plr->rotationA);
@@ -90,8 +90,8 @@ void	update_player(int key)
 	player *plr;
 
 	plr = myPlayer(0);
-	if (key == UP_A || key == DOWN_A)
+	if (key == UP_A || key == DOWN_A || key == W_KEY || key == S_KEY)
 		update_walk(key, plr);
-	else if (key == RIGHT_A || key == LEFT_A)
+	else if (key == RIGHT_A || key == LEFT_A || key == A_KEY || key == D_KEY)
 		update_turn(key, plr);
 }

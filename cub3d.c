@@ -15,7 +15,8 @@
 // here we update the whole frame if the given key is valid
 int		update(int key)
 {
-	if (key == UP_A || key == DOWN_A || key == RIGHT_A || key == LEFT_A)
+	if (key == UP_A || key == DOWN_A || key == RIGHT_A || key == LEFT_A ||
+	key == A_KEY || key == W_KEY || key == S_KEY || key == D_KEY)
 	{
 		turn_frame_black();
 		update_player(key);

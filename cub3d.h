@@ -34,6 +34,10 @@
 #define DOWN_A 65364
 #define LEFT_A 65361
 #define RIGHT_A 65363
+#define W_KEY 119
+#define A_KEY 97
+#define S_KEY 115
+#define D_KEY 100
 
 void	*g_mlx_ptr;
 void	*g_win_ptr;
