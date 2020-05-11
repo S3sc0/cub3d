@@ -112,7 +112,7 @@ void	draw_background(data info)
 }
 
 // this which draws the whole frame in the screen
-void	frame_render(void)
+void	frame_render(int argc, char *argv)
 {
 	data	f;
 	player	plr;
@@ -124,5 +124,8 @@ void	frame_render(void)
 	draw_background(f);
 	rays(plr, f);
 	draw_sprite(plr, f);
-	mlx_put_image_to_window(g_mlx_ptr, g_win_ptr, g_img_ptr, 0, 0);
+	if (argc == 3)
+		export_bmp(argv, argc, f.wx, f.wy);
+	else
+		mlx_put_image_to_window(g_mlx_ptr, g_win_ptr, g_img_ptr, 0, 0);
 }

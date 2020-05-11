@@ -20,7 +20,7 @@ int		update(int key)
 	{
 		turn_frame_black();
 		update_player(key);
-		frame_render();
+		frame_render(2, NULL);
 	}
 	return (0);
 }

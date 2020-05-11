@@ -124,7 +124,7 @@ int			file_existence(int fd);
 void		if_fail(void *state);
 data		ft_data(char *data_file);
 void		open_window(void);
-void		frame_render(void);
+void		frame_render(int argc, char *argv);
 void		init_frame(int argc, char *argv);
 void		put_pixel_img(int x, int y, int color);
 player		*myPlayer(int state);

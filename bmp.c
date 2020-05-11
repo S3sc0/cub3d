@@ -70,7 +70,7 @@ void	export_bmp(char *flag, int argc, int width, int height)
 
 	if (argc == 3)
 	{
-		fd = open("image.bmp", O_TRUNC | O_WRONLY | O_CREAT, 0777);
+		fd = open("Scene.bmp", O_TRUNC | O_WRONLY | O_CREAT, 0777);
 		check_bmp_errors(fd, flag);
 		write_header(fd, width, height);
 		write_info_header(fd, width, height);
