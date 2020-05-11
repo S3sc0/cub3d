@@ -125,7 +125,7 @@ void		if_fail(void *state);
 data		ft_data(char *data_file);
 void		open_window(void);
 void		frame_render(void);
-void		init_frame(void);
+void		init_frame(int argc, char *argv);
 void		put_pixel_img(int x, int y, int color);
 player		*myPlayer(int state);
 void		turn_frame_black(void);
@@ -143,5 +143,6 @@ void		sprite_dst(player plr, rycrd hi, rycrd vi);
 void		draw_sprite(player plr, data info);
 float		calc_sp_x_start(player plr, data info, crd sprite);
 void		draw_sprite_texture(sprite sprt, data info, int i);
+void		export_bmp(char *flag, int argc, int width, int height);
 
 #endif

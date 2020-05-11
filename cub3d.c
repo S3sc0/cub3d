@@ -63,12 +63,12 @@ int		main(int argc, char *argv[])
 		ft_putstr_fd("Wrong Number Of Arguments\n", 2); // error if there is more or less then required number of arguments
 		return (-1);
 	}
-	data = get_data(argv[1]);
+	data = argc == 3 ? get_data(argv[2]) : get_data(argv[1]);
 	if(!(check_errors(data))) // if there an error just exit
 		exit(1);
 	if_fail(g_mlx_ptr = mlx_init());
 	ft_data(data);
-	init_frame();
+	init_frame(argc, argv[1]);
 	mlx_hook(g_win_ptr, 2, 1, &update, (void*)0);
 	mlx_loop(g_mlx_ptr);
 	return (0);

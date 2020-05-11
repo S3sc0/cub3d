@@ -95,7 +95,7 @@ void	count_sprites(data info)
 }
 
 // initializing all the essential elements of cub3d frame
-void	init_frame(void)
+void	init_frame(int argc, char *argv)
 {
 	data	info;
 	int		a[2];
@@ -107,4 +107,5 @@ void	init_frame(void)
 	g_img_data = (int*)mlx_get_data_addr(g_img_ptr, &a[0], &g_line, &a[1]);
 	myPlayer(1);
 	frame_render();
+	export_bmp(argv, argc, info.wx, info.wy);
 }
