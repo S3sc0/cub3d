@@ -117,10 +117,11 @@ int		check_errors(char *stored_data)
 			ret = check_path(data[i]);
 		else if (check_name(data[i]) == 2)
 			ret = check_rgb(data[i]);
-		else if (data[i][0] == '1')
+		else if (data[i][0] == '1' || data[i][0] == ' ')
+		{
 			ret = check_map((data + i), stored_data);
-		else
 			break ;
+		}
 		i++;
 	}
 	ret = map_complete(i, ret);

@@ -86,7 +86,7 @@ void	store_map(char **s, data *ptr)
 	if_fail(ptr->the_map = (char**)malloc(sizeof(char*) * (i + 1)));
 	while (j < i)
 	{
-		ptr->the_map[j]	= custom_strdup(s[j]);
+		ptr->the_map[j]	= ft_strdup(s[j]);
 		j++;
 	}
 	ptr->the_map[j] = NULL;
@@ -111,7 +111,7 @@ data	ft_data(char *data_file)
 				store_path(s[i], &info);
 			else if (s[i][0] == 'F' || s[i][0] == 'C')
 				store_color(s[i], &info);
-			else if (s[i][0] == '1')
+			else if (s[i][0] == '1' || s[i][0] == ' ')
 				store_map(s + i, &info);
 			i++;
 		}

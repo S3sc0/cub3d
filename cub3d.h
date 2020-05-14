@@ -52,6 +52,7 @@ int	g_asprite;
 float	*g_wall_distance;
 int	g_sprite_num;
 float	*g_sprite_distance;
+int	*g_x_len;
 
 typedef struct
 {
@@ -144,5 +145,9 @@ void		draw_sprite(player plr, data info);
 float		calc_sp_x_start(player plr, data info, crd sprite);
 void		draw_sprite_texture(sprite sprt, data info, int i);
 void		export_bmp(char *flag, int argc, int width, int height);
+int		check_start_line(char **lines, int id, int max);
+int		check_end_line(char **lines, int id, int max, int ret);
+int		horizontal_check(char *line, int id, int max, int ret);
+int		vertical_check(char **lines, int max_y, int ret);
 
 #endif

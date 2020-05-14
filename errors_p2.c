@@ -34,32 +34,25 @@ int		count_items(char **str)
 	return (i);
 }
 
-// here we check if it's surrounded by 1 and it contains only
-// 1, 2 or 0 and one of N, S, W, E
-int		map_check_tail(char *s, int i, int max, int *sn)
+// check content of the map
+int	check_map_content(char **str, int max)
 {
-	int		j;
-	int		len;
+	int	i;
+	int	ret;
 
-	len = ft_strlen(s);
-	j = 0;
-	while (j < len)
+	i = 0;
+	ret = 1;
+	while (i < max && ret)
 	{
-		if (i == 0 || i == max || j == 0 || s[j + 1] == '\0')
-		{
-			if (s[j] != '1' && (s[j + 1] != ' ' || s[j + 1] != '\0'))
-				return (0);
-		}
-		else if ((s[j] == 'N' || s[j] == 'S' || s[j] == 'W' ||
-					s[j] == 'E') && s[j + 1] == ' ')
-			(*sn)++;
-		else if (s[j] != '1' && s[j] != '2' && s[j] != '0' &&
-				(s[j + 1] != ' ' || s[j + 1] != '\0'))
-			return (0);
-		j += 2;
+		ret = check_start_line(str, i, max);
+		ret = check_end_line(str, i, max, ret);
+		ret = horizontal_check(str[i], i, max, ret);
+		i++;
 	}
-	return (2);
+	ret = vertical_check(str, max, ret);
+	return (ret);
 }
+
 
 // here we check the map's order and it's content if there an empty line
 int		check_map_order(char *data)
@@ -91,24 +84,15 @@ int		check_map_order(char *data)
 int		check_map(char **s, char *d)
 {
 	int		ret;
-	int		i;
 	int		max;
-	int		sn;
-	unsigned int	len;
 
-	sn = 0;
 	max = count_items(s);
-	i = 0;
 	ret = check_map_order(d);
-	len = ft_strlen(*s);
-	while (s[i] != NULL && ret == 2)
+	if (ret == 2)
 	{
-		ret = map_check_tail(s[i], i, max - 1, &sn);
-		if (s[i] != NULL && len != ft_strlen(s[i]))
-			ret = 0;
-		i++;
+		ret = check_map_content(s, max);
 	}
-	if ((ret == 0 || sn != 1) && ret != 3)
+	if (ret == 0 && ret != 3)
 		ft_putstr_fd("Something Wrong With The Map's Content\n", 2);
 	if (ret == 3)
 		ret = 0;

@@ -43,6 +43,7 @@ int		Awall(float x, float y, char *which1)
 
 	info = ft_data(NULL);
 	i = floor(x / SQUARE_SIZE);
+	y = y < 0 ? 0 : y;
 	j = floor(y / SQUARE_SIZE);
 	if (which1)
 		*which1 = info.the_map[j][i];

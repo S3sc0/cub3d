@@ -26,20 +26,22 @@ float	pnret(float x, float a, float b, float c)
 int		max_crd(rycrd intersect)
 {
 	data		info;
-	static int	i;
-	static int	j;
+	static int	*x;
+	static int	y;
+	int		i;
 
-	if (i == 0 || j == 0)
+	if (x == NULL || y == 0)
 	{
+		i = -1;
 		info = ft_data(NULL);
-		while (info.the_map[j] != NULL)
-			j++;
-		while (info.the_map[0][i] != '\0')
-			i++;
-		j *= SQUARE_SIZE;
-		i *= SQUARE_SIZE;
+		y = count_items(info.the_map);
+		x = (int *)malloc(sizeof(int) * y);
+		while (++i < y)
+			x[i] =  ft_strlen(info.the_map[i]) * SQUARE_SIZE;
+		y *= SQUARE_SIZE;
 	}
-	if (intersect.x > i || intersect.y > j || intersect.x < 0 || intersect.y < 0)
+	i = (int)(intersect.y / SQUARE_SIZE);
+	if (intersect.y > y || intersect.y < 0 || intersect.x > x[i] || intersect.x < 0)
 		return (0);
 	return (1);
 }
