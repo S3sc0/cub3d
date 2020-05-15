@@ -38,6 +38,7 @@
 #define A_KEY 97
 #define S_KEY 115
 #define D_KEY 100
+#define ESC_KEY 65307
 
 void	*g_mlx_ptr;
 void	*g_win_ptr;
@@ -149,5 +150,7 @@ int		check_start_line(char **lines, int id, int max);
 int		check_end_line(char **lines, int id, int max, int ret);
 int		horizontal_check(char *line, int id, int max, int ret);
 int		vertical_check(char **lines, int max_y, int ret);
+int		check_empty_line(char *map_data, int ret);
+int		only_nbr(char **rgb);
 
 #endif

@@ -88,6 +88,8 @@ int		check_rgb(char *s)
 	ret = 1;
 	if (count_items(str) != 2 || count_items(rgb) != 3)
 		ret = 0;
+	else if (only_nbr(rgb) == 0)
+		ret = 0;
 	else
 		while (++i < 3)
 			if ((ft_atoi(rgb[i]) < 0 || ft_atoi(rgb[i]) > 255) && (ret = 0))
@@ -124,6 +126,7 @@ int		check_errors(char *stored_data)
 		}
 		i++;
 	}
+	ret = check_empty_line(stored_data, ret);
 	ret = map_complete(i, ret);
 	free_2D(data);
 	return (ret);

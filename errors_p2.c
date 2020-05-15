@@ -58,20 +58,12 @@ int	check_map_content(char **str, int max)
 int		check_map_order(char *data)
 {
 	int		i;
-	int		sn;
 	int		ret;
 
 	ret = 2;
 	i = 0;
-	sn = 0;
 	while (data[i] != '\0')
-	{
-		if (data[i] == '1' && sn == 0 && data[i - 1] == '\n')
-			sn = 1;
-		if (sn == 1 && ft_memcmp((data + i), "\n\n\n", 3) == 0)
-			ret = 0;
 		i++;
-	}
 	if (data[i - 3] != '1') // so we arrived to the end and move to steps back \0 \n then check
 	{
 		ft_putstr_fd("The Map Isn't The Last Element\n", 2);
