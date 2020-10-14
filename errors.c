@@ -63,14 +63,11 @@ int		check_name(char *s)
 // this function check if the path contains only two parts
 int		check_path(char *s)
 {
-	int		ret;
 	char	**str;
 
-	ret = 1;
 	str = ft_split(s, ' ');
 	if (count_items(str) != 2)
 	{
-		ret = 0;
 		ft_putstr_fd("Something Wrong With The Path Elements", 2);
 	}
 	free_2D(str);
@@ -90,6 +87,8 @@ int		check_rgb(char *s)
 	rgb = ft_split(str[1], ',');
 	ret = 1;
 	if (count_items(str) != 2 || count_items(rgb) != 3)
+		ret = 0;
+	else if (only_nbr(rgb) == 0)
 		ret = 0;
 	else
 		while (++i < 3)
@@ -120,12 +119,14 @@ int		check_errors(char *stored_data)
 			ret = check_path(data[i]);
 		else if (check_name(data[i]) == 2)
 			ret = check_rgb(data[i]);
-		else if (data[i][0] == '1')
+		else if (data[i][0] == '1' || data[i][0] == ' ')
+		{
 			ret = check_map((data + i), stored_data);
-		else
 			break ;
+		}
 		i++;
 	}
+	ret = check_empty_line(stored_data, ret);
 	ret = map_complete(i, ret);
 	free_2D(data);
 	return (ret);

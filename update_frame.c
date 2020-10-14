@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 14:28:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/09 16:41:31 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/13 16:13:48 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	turn_frame_black(void)
 }
 
 // checks if the current x and y are a well
-int		Awall(float x, float y)
+int		Awall(float x, float y, char *which1)
 {
 	int		i;
 	int		j;
@@ -43,22 +43,13 @@ int		Awall(float x, float y)
 
 	info = ft_data(NULL);
 	i = floor(x / SQUARE_SIZE);
+	y = y < 0 ? 0 : y;
 	j = floor(y / SQUARE_SIZE);
-	if (info.the_map[j][i] == '1' || info.the_map[j][i] == '2')
+	if (which1)
+		*which1 = info.the_map[j][i];
+	else if (info.the_map[j][i] == '2')
 		return (1);
-	return (0);
-}
-
-int		wall_col(float x, float y)
-{
-	int		i;
-	int		j;
-	data	info;
-
-	info = ft_data(NULL);
-	i = floor(x / SQUARE_SIZE);
-	j = floor(y / SQUARE_SIZE);
-	if (info.the_map[j][i] == '1' || info.the_map[j][i] == '2')
+	if (info.the_map[j][i] == '1')
 		return (1);
 	return (0);
 }
@@ -69,14 +60,14 @@ void	update_walk(int key, player *plr)
 	float	wanted_x;
 	float	wanted_y;
 
-	if (key == 126)
+	if (key == UP_A || key == W_KEY)
 		plr->walkD = 1;
-	else if (key == 125)
+	else if (key == DOWN_A || key == S_KEY)
 		plr->walkD = -1;
 	plr->mStep = plr->walkD * plr->moveS;
 	wanted_x = plr->x + cos(plr->rotationA * RADIN) * plr->mStep;
 	wanted_y = plr->y + sin(plr->rotationA * RADIN) * plr->mStep;
-	if (wall_col(wanted_x, wanted_y) == 0)
+	if (Awall(wanted_x, wanted_y, NULL) == 0)
 	{
 		plr->x = wanted_x;
 		plr->y = wanted_y;
@@ -86,12 +77,12 @@ void	update_walk(int key, player *plr)
 // here we update the player's view angle
 void	update_turn(int key, player *plr)
 {
-	if (key == 123)
+	if (key == LEFT_A || key == A_KEY)
 		plr->turnD = -1;
-	else if (key == 124)
+	else if (key == RIGHT_A || key == D_KEY)
 		plr->turnD = 1;
 	plr->rotationA += plr->turnD * plr->rotationS;
-	plr->rotationA = (int)floor(normA(plr->rotationA));
+	plr->rotationA = (int)normA(plr->rotationA);
 }
 
 // this function just redirects to the correct function depends on key
@@ -100,8 +91,8 @@ void	update_player(int key)
 	player *plr;
 
 	plr = myPlayer(0);
-	if (key == 126 || key == 125)
+	if (key == UP_A || key == DOWN_A || key == W_KEY || key == S_KEY)
 		update_walk(key, plr);
-	else if (key == 124 || key == 123)
+	else if (key == RIGHT_A || key == LEFT_A || key == A_KEY || key == D_KEY)
 		update_turn(key, plr);
 }

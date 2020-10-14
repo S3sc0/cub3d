@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:54:49 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/06 21:28:54 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/10 12:17:16 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 // here we update the whole frame if the given key is valid
 int		update(int key)
 {
-	if (key == 126 || key == 124 || key == 125 || key == 123)
+	if (key == UP_A || key == DOWN_A || key == RIGHT_A || key == LEFT_A ||
+	key == A_KEY || key == W_KEY || key == S_KEY || key == D_KEY)
 	{
 		turn_frame_black();
 		update_player(key);
-		frame_render();
+		frame_render(2, NULL);
 	}
 	return (0);
 }
@@ -55,17 +56,20 @@ char	*get_data(char *data_file)
 
 int		main(int argc, char *argv[])
 {
+	char	*data;
+
 	if (argc < 2 || argc > 3)
 	{
 		ft_putstr_fd("Wrong Number Of Arguments\n", 2); // error if there is more or less then required number of arguments
 		return (-1);
 	}
-	if(!(check_errors(get_data(argv[1])))) // if there an error just exit
+	data = argc == 3 ? get_data(argv[2]) : get_data(argv[1]);
+	if(!(check_errors(data))) // if there an error just exit
 		exit(1);
 	if_fail(g_mlx_ptr = mlx_init());
-	ft_data(get_data(argv[1]));
-	init_frame();
-	mlx_hook(g_win_ptr, 2, 0, update, (void*)0);
+	ft_data(data);
+	init_frame(argc, argv[1]);
+	mlx_hook(g_win_ptr, 2, 1, &update, (void*)0);
 	mlx_loop(g_mlx_ptr);
 	return (0);
 }

@@ -13,7 +13,7 @@
 #include "cub3d.h"
 
 // close whenever I've touched the red dot close button
-int		red_dot(int key)
+int		red_dot(void)
 {
 	mlx_destroy_window(g_mlx_ptr, g_win_ptr);
 	exit(0);
@@ -22,7 +22,7 @@ int		red_dot(int key)
 // close the window whenever i press esc 
 int		e_s_c(int key)
 {
-	if (key == 53)
+	if (key == ESC_KEY)
 	{
 		mlx_destroy_window(g_mlx_ptr, g_win_ptr);
 		exit(0);

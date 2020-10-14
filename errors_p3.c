@@ -62,11 +62,11 @@ void	if_fail(void *state)
 // here we check either if the map isn't complete or it's more than complete hah
 int		map_complete(int i, int ret)
 {
-	if (i != 9 && ret != 0)
+	if (i != 8 && ret != 0)
 	{
-		if (i < 9)
+		if (i < 8)
 			ft_putstr_fd("The Map's Elements Are Not Complete\n", 2);
-		else if (i > 9)
+		else if (i > 8)
 			ft_putstr_fd("There's More Than Required Number Of Elements\n", 2);
 		return (0);
 	}

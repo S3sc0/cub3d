@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:05:29 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/07 23:08:05 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/03/11 14:06:20 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,24 +65,47 @@ player	*myPlayer(int state)
 		c = coor_xny(init);
 		init->walkD = 0;
 		init->turnD = 0;
-		init->moveS = 10;
+		init->moveS = 15;
 		init->rotationA = which_angle(c);
-		init->rotationS = 5;
+		init->rotationS = 10;
 		init->mStep = init->walkD * init->moveS;
 	}
 	return(init);
 }
 
+
+void	count_sprites(data info)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	g_sprite_num = 0;
+	while (info.the_map[y] != NULL)
+	{
+		x = 0;
+		while (info.the_map[y][x] != '\0')
+		{
+			if (info.the_map[y][x] == '2')
+				g_sprite_num++;
+			x++;
+		}
+		y++;
+	}
+}
+
 // initializing all the essential elements of cub3d frame
-void	init_frame(void)
+void	init_frame(int argc, char *argv)
 {
 	data	info;
 	int		a[2];
 
-	open_window();
+	if (argc == 2)
+		open_window();
 	info = ft_data(NULL);
+	count_sprites(info);
 	g_img_ptr = mlx_new_image(g_mlx_ptr, info.wx, info.wy);
 	g_img_data = (int*)mlx_get_data_addr(g_img_ptr, &a[0], &g_line, &a[1]);
 	myPlayer(1);
-	frame_render();
+	frame_render(argc, argv);
 }
