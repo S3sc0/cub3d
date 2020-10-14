@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/13 16:30:00 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/14 12:53:25 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #define Ystep -SQUARE_SIZE
 
 # include <mlx.h>
-# include "libft.h"
+# include "./libft/libft.h"
 # include <errno.h>
 # include <unistd.h>
 # include <string.h>
@@ -30,15 +30,15 @@
 # include <limits.h>
 
 /* ##### KEYS ##### */
-#define UP_A 65362
-#define DOWN_A 65364
-#define LEFT_A 65361
-#define RIGHT_A 65363
-#define W_KEY 119
-#define A_KEY 97
-#define S_KEY 115
-#define D_KEY 100
-#define ESC_KEY 65307
+#define UP_A 126 
+#define DOWN_A 125 
+#define LEFT_A 123 
+#define RIGHT_A 124
+#define W_KEY 13 
+#define A_KEY 0
+#define S_KEY 1
+#define D_KEY 2
+#define ESC_KEY 53
 
 void	*g_mlx_ptr;
 void	*g_win_ptr;

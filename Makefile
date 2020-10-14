@@ -6,12 +6,23 @@
 #    By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/15 15:56:56 by aamzouar          #+#    #+#              #
-#    Updated: 2020/02/18 12:26:11 by aamzouar         ###   ########.fr        #
+#    Updated: 2020/10/14 12:57:02 by aamzouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-all:
-	@clang -g -I /usr/local/include *.c libft.a -L /usr/local/lib -lmlx -framework OpenGl -framework Appkit
+FLAG = -Wextra -Werror -Wall
 
-cpm:
-	@gcc -g -I /usr/local/include/ *.c libft.a -L /usr/local/lib/ -Werror -Wall -Wextra -lbsd -lm -lmlx -lXext -lX11
+all:
+	@cd libft && make
+	@clang $(FLAG) -I /usr/local/include *.c ./libft/libft.a -L /usr/local/lib -lmlx -framework OpenGl -framework Appkit -o cub3D
+
+clean:
+	@cd libft && make clean
+	@rm *.bmp
+
+fclean: clean
+	rm -f Cub3d
+	
+re: fclean all
+
+.PHONY: all clean fclean re
