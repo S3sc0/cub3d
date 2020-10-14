@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bmp.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/14 14:08:23 by aamzouar          #+#    #+#             */
+/*   Updated: 2020/10/14 14:09:47 by aamzouar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	check_bmp_errors(int fd, char *flag)
 {
 	int	length;
 
-	length = ft_strlen(flag);	
+	length = ft_strlen(flag);
 	if (fd < 0 || ft_memcmp(flag, "--save", length) != 0)
 	{
 		ft_putstr_fd("Something wrong can't export the bmp image\n", 1);

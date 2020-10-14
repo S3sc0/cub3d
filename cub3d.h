@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/15 15:24:05 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/14 12:53:25 by aamzouar         ###   ########.fr       */
+/*   Created: 2020/10/14 14:12:08 by aamzouar          #+#    #+#             */
+/*   Updated: 2020/10/14 14:35:31 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 # include <math.h>
 # include <limits.h>
 
-/* ##### KEYS ##### */
 #define UP_A 126 
 #define DOWN_A 125 
 #define LEFT_A 123 
@@ -48,14 +47,14 @@ int		g_line;
 int		g_offset_x;
 int		g_offset_s;
 int		*g_texture;
-int	g_vert;
-int	g_asprite;
+int		g_vert;
+int		g_asprite;
 float	*g_wall_distance;
-int	g_sprite_num;
+int		g_sprite_num;
 float	*g_sprite_distance;
-int	*g_x_len;
+int		*g_x_len;
 
-typedef struct
+typedef		struct
 {
 	int		wx;
 	int		wy;
@@ -69,7 +68,7 @@ typedef struct
 	char	**the_map;
 }			data;
 
-typedef struct
+typedef		struct
 {
 	float	x;
 	float	y;
@@ -81,17 +80,17 @@ typedef struct
 	int		mStep;
 }			player;
 
-typedef struct
+typedef		struct
 {
-	int	height;
-	int	hi_s;
-	int	hi_e;
-	int	wi_s;
-	int	wi_e;
-	int	i;
-}	sprite;
+	int		height;
+	int		hi_s;
+	int		hi_e;
+	int		wi_s;
+	int		wi_e;
+	int		i;
+}			sprite;
 
-typedef struct
+typedef		struct
 {
 	float	x;
 	float	y;
@@ -99,21 +98,21 @@ typedef struct
 
 crd		sprt;
 
-typedef struct
+typedef		struct
 {
 	float 	x;
 	float	y;
 	float	sx;
 	float	sy;
-}		rycrd;
+}			rycrd;
 
-typedef	struct
+typedef		struct
 {
 	float	dpp;
 	float	bottom;
 	int		top;
 	int		offset_y;
-	int	dst_ftop;
+	int		dst_ftop;
 }			wall;
 
 int			get_next_line(int fd, char **line);
@@ -146,11 +145,11 @@ void		draw_sprite(player plr, data info);
 float		calc_sp_x_start(player plr, data info, crd sprite);
 void		draw_sprite_texture(sprite sprt, data info, int i);
 void		export_bmp(char *flag, int argc, int width, int height);
-int		check_start_line(char **lines, int id, int max);
-int		check_end_line(char **lines, int id, int max, int ret);
-int		horizontal_check(char *line, int id, int max, int ret);
-int		vertical_check(char **lines, int max_y, int ret);
-int		check_empty_line(char *map_data, int ret);
-int		only_nbr(char **rgb);
+int			check_start_line(char **lines, int id, int max);
+int			check_end_line(char **lines, int id, int max, int ret);
+int			horizontal_check(char *line, int id, int max, int ret);
+int			vertical_check(char **lines, int max_y, int ret);
+int			check_empty_line(char *map_data, int ret);
+int			only_nbr(char **rgb);
 
 #endif
