@@ -6,13 +6,16 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 12:21:29 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 09:51:04 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 17:33:05 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// here we calc the distence between the t_player and t_sprite
+/*
+** here we calc the distence between the player and the sprite
+*/
+
 void	sprite_dst(t_player plr, t_rycrd hi, t_rycrd vi)
 {
 	float	res1;
@@ -40,40 +43,48 @@ void	sprite_dst(t_player plr, t_rycrd hi, t_rycrd vi)
 	}
 }
 
-// it calcs the final destance of between the t_player and the t_sprite
+/*
+** it calcs the final destance of between the t_player and the t_sprite
+** 1) calc sprit center
+** 2) calc thee destance between the player and the center
+** 3) calc the intersection points
+** 4) calc the wanted destance and return it
+*/
+
 float	dst_to_sprite(t_player plr, float ray_angle)
 {
 	t_crd	point;
 	float	r;
-	int	i1;
-	int	i2;
+	int		i1;
+	int		i2;
 
 	i1 = g_vert == 1 && ray_angle > 90 && ray_angle < 270 ? -1 : 1;
 	i2 = g_vert == 0 && ray_angle > 180 && ray_angle < 360 ? -1 : 1;
-	// calc t_sprite center
-	point.x = ((int)(g_sprt.x / SQUARE_SIZE) * SQUARE_SIZE) + (SQUARE_SIZE / 2) * i1;
-	point.y = ((int)(g_sprt.y / SQUARE_SIZE) * SQUARE_SIZE) + (SQUARE_SIZE / 2) * i2;
-	// calc the destance between the t_player and the center
+	point.x = ((int)(g_sprt.x / SQUARE_SIZE) *
+			SQUARE_SIZE) + (SQUARE_SIZE / 2) * i1;
+	point.y = ((int)(g_sprt.y / SQUARE_SIZE) *
+			SQUARE_SIZE) + (SQUARE_SIZE / 2) * i2;
 	r = sqrt(pow(plr.x - point.x, 2) + pow(plr.y - point.y, 2));
-	// calc the intersection points
 	g_sprt.x = plr.x + cos(ray_angle * RADIN) * r;
 	g_sprt.y = plr.y + sin(ray_angle * RADIN) * r;
-//	put_pixel_img(g_sprt.x, g_sprt.y, 0xFFFFFF);
-	if ((g_vert == 1 && plr.rotation_a > 0 && plr.rotation_a < 180) || g_vert == 0)
+	if ((g_vert == 1 && plr.rotation_a > 0 && plr.rotation_a < 180) ||
+		g_vert == 0)
 		g_offset_s = (int)g_sprt.x % SQUARE_SIZE;
 	else
 		g_offset_s = (int)g_sprt.y % SQUARE_SIZE;
-	// calc the wanted destance and return it, voila !!!
 	return (sqrt(pow(plr.x - g_sprt.x, 2) + pow(plr.y - g_sprt.y, 2)));
 }
 
-// this function will render my t_sprite
+/*
+** this function will render my sprite
+*/
+
 void	sprite_rendering(t_player plr, float ray_angle, t_data info, int x)
 {
 	float		dst;
 	t_wall		s;
 	float		tmp;
-	int		i;
+	int			i;
 
 	dst = dst_to_sprite(plr, ray_angle);
 	s.dpp = (info.wx / 2) / tan((FOV_ANGLE * RADIN) / 2);
@@ -81,17 +92,18 @@ void	sprite_rendering(t_player plr, float ray_angle, t_data info, int x)
 	tmp = s.bottom;
 	s.bottom = s.bottom > info.wy ? info.wy : s.bottom;
 	s.top = (info.wy - s.bottom) / 2;
-	i = 0;
-	if (info.the_map[(int)floor(g_sprt.y / SQUARE_SIZE)][(int)floor(g_sprt.x / SQUARE_SIZE)] == '2')
+	i = -1;
+	if (info.the_map[(int)floor(g_sprt.y / SQUARE_SIZE)]
+			[(int)floor(g_sprt.x / SQUARE_SIZE)] == '2')
 	{
-		while (i < s.bottom)
+		while (++i < s.bottom)
 		{
 			s.dst_ftop = s.top + (tmp / 2) - (info.wy / 2);
 			s.offset_y = s.dst_ftop * (64.0 / tmp);
 			if (info.s[64 * s.offset_y + g_offset_s] != 0)
-				g_img_data[s.top * info.wx + x] = info.s[64 * s.offset_y + g_offset_s];
+				g_img_data[s.top * info.wx + x] =
+					info.s[64 * s.offset_y + g_offset_s];
 			s.top++;
-			i++;
 		}
 	}
 }

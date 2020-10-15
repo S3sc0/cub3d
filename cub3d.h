@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 14:12:08 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 11:47:45 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 16:42:24 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,8 @@ int			horizontal_check(char *line, int id, int max, int ret);
 int			vertical_check(char **lines, int max_y, int ret);
 int			check_empty_line(char *map_data, int ret);
 int			only_nbr(char **rgb);
+int			space_validating(char **lines, int x, int *y, int max_y);
+int			vertical_check(char **lines, int max_y, int ret);
+int			longest_x(char **lines, int max);
 
 #	endif

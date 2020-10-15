@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprite_rendering.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 17:06:51 by aamzouar          #+#    #+#             */
+/*   Updated: 2020/10/15 17:20:02 by aamzouar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	store_sprite_position(t_crd *sprites, t_data info)
 {
-	int	x;
-	int	y;
-	int	counter;
+	int		x;
+	int		y;
+	int		counter;
 
 	counter = 0;
 	y = 0;
@@ -27,28 +39,29 @@ void	store_sprite_position(t_crd *sprites, t_data info)
 
 void	initial_sprite_properties(t_crd *sprites, t_player plr)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	g_sprite_distance = (float *)malloc(sizeof(float) * g_sprite_num);
 	while (i < g_sprite_num)
 	{
-		g_sprite_distance[i] = sqrt(pow(plr.x - sprites[i].x, 2) + pow(plr.y - sprites[i].y, 2));
+		g_sprite_distance[i] = sqrt(pow(plr.x - sprites[i].x, 2) +
+				pow(plr.y - sprites[i].y, 2));
 		i++;
 	}
 }
 
 void	sort_sprites(t_crd **sprites)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	float	tmp_distance;
 	t_crd	tmp_sprites;
 
 	i = 0;
 	while (i < g_sprite_num)
 	{
-		j = i+1;
+		j = i + 1;
 		while (j < g_sprite_num)
 		{
 			if (g_sprite_distance[i] < g_sprite_distance[j])
@@ -66,26 +79,30 @@ void	sort_sprites(t_crd **sprites)
 	}
 }
 
-void	calc_sprite_info(t_sprite *g_sprt, t_player plr, t_data info, t_crd *sprites)
+/*
+** here we calc start and end of the sprite both in height & width
+*/
+
+void	calc_sprite_info(t_sprite *g_sprt, t_player plr,
+		t_data info, t_crd *sprites)
 {
 	float	dpp;
 
 	dpp = (info.wx / 2) / tan((FOV_ANGLE * RADIN) / 2);
 	g_sprt->height = (SQUARE_SIZE / g_sprite_distance[g_sprt->i]) * dpp;
-	// calc where to start and end painting t_sprite in height
 	g_sprt->hi_s = -g_sprt->height / 2 + info.wy / 2;
 	g_sprt->hi_s = g_sprt->hi_s < 0 ? 0 : g_sprt->hi_s;
 	g_sprt->hi_e = g_sprt->height / 2 + info.wy / 2;
 	g_sprt->hi_e = g_sprt->hi_e > info.wy ? info.wy - 1 : g_sprt->hi_e;
-	// calc where to start and end painting t_sprite in width
-	g_sprt->wi_s = calc_sp_x_start(plr, info, sprites[g_sprt->i]) - (g_sprt->height / 2);
+	g_sprt->wi_s = calc_sp_x_start(plr, info, sprites[g_sprt->i]) -
+				(g_sprt->height / 2);
 	g_sprt->wi_e = g_sprt->wi_s + g_sprt->height;
 }
 
 void	draw_sprite(t_player plr, t_data info)
 {
 	t_sprite	g_sprt;
-	t_crd	*sprites;
+	t_crd		*sprites;
 
 	sprites = (t_crd *)malloc(sizeof(t_crd) * g_sprite_num);
 	store_sprite_position(sprites, info);
