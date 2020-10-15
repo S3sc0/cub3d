@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 14:12:08 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 18:50:38 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 20:35:09 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #define RADIN (M_PI / 180)
 #define FOV_ANGLE 60
 #define WALL_WIDTH 1
-#define YSTEP -SQUARE_SIZE
+#define YSTEP -SQ_SZ
 
 #include <mlx.h>
 #include "./libft/libft.h"
