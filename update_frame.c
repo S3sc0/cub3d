@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 14:28:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/13 16:13:48 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 10:00:03 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // turn the color of the screen to black to refill it with a new frame
 void	turn_frame_black(void)
 {
-	data	info;
+	t_data	info;
 	int		x;
 	int		y;
 
@@ -35,11 +35,11 @@ void	turn_frame_black(void)
 }
 
 // checks if the current x and y are a well
-int		Awall(float x, float y, char *which1)
+int		a_wall(float x, float y, char *which1)
 {
 	int		i;
 	int		j;
-	data	info;
+	t_data	info;
 
 	info = ft_data(NULL);
 	i = floor(x / SQUARE_SIZE);
@@ -54,43 +54,43 @@ int		Awall(float x, float y, char *which1)
 	return (0);
 }
 
-// here we update x and y of the player
-void	update_walk(int key, player *plr)
+// here we update x and y of the t_player
+void	update_walk(int key, t_player *plr)
 {
 	float	wanted_x;
 	float	wanted_y;
 
 	if (key == UP_A || key == W_KEY)
-		plr->walkD = 1;
+		plr->walk_d = 1;
 	else if (key == DOWN_A || key == S_KEY)
-		plr->walkD = -1;
-	plr->mStep = plr->walkD * plr->moveS;
-	wanted_x = plr->x + cos(plr->rotationA * RADIN) * plr->mStep;
-	wanted_y = plr->y + sin(plr->rotationA * RADIN) * plr->mStep;
-	if (Awall(wanted_x, wanted_y, NULL) == 0)
+		plr->walk_d = -1;
+	plr->m_step = plr->walk_d * plr->move_s;
+	wanted_x = plr->x + cos(plr->rotation_a * RADIN) * plr->m_step;
+	wanted_y = plr->y + sin(plr->rotation_a * RADIN) * plr->m_step;
+	if (a_wall(wanted_x, wanted_y, NULL) == 0)
 	{
 		plr->x = wanted_x;
 		plr->y = wanted_y;
 	}
 }
 
-// here we update the player's view angle
-void	update_turn(int key, player *plr)
+// here we update the t_player's view angle
+void	update_turn(int key, t_player *plr)
 {
 	if (key == LEFT_A || key == A_KEY)
-		plr->turnD = -1;
+		plr->turn_d = -1;
 	else if (key == RIGHT_A || key == D_KEY)
-		plr->turnD = 1;
-	plr->rotationA += plr->turnD * plr->rotationS;
-	plr->rotationA = (int)normA(plr->rotationA);
+		plr->turn_d = 1;
+	plr->rotation_a += plr->turn_d * plr->rotation_s;
+	plr->rotation_a = (int)norm_a(plr->rotation_a);
 }
 
 // this function just redirects to the correct function depends on key
 void	update_player(int key)
 {
-	player *plr;
+	t_player *plr;
 
-	plr = myPlayer(0);
+	plr = my_player(0);
 	if (key == UP_A || key == DOWN_A || key == W_KEY || key == S_KEY)
 		update_walk(key, plr);
 	else if (key == RIGHT_A || key == LEFT_A || key == A_KEY || key == D_KEY)

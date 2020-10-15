@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:32:11 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/13 16:51:24 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 09:55:38 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ float	pnret(float x, float a, float b, float c)
 }
 
 // when checking x and y coordinates don't go out of the map
-int		max_crd(rycrd intersect)
+int		max_crd(t_rycrd intersect)
 {
-	data		info;
+	t_data		info;
 	static int	*x;
 	static int	y;
 	int		i;
@@ -47,10 +47,10 @@ int		max_crd(rycrd intersect)
 }
 
 // calculate horizantal_intersection
-rycrd		h_intersect(float rayAngle, player plr)
+t_rycrd		h_intersect(float rayAngle, t_player plr)
 {
-	rycrd		intersect;
-	crd		next;
+	t_rycrd		intersect;
+	t_crd		next;
 	float	of_y;
 	char	which1;
 	int	s;
@@ -64,7 +64,7 @@ rycrd		h_intersect(float rayAngle, player plr)
 	intersect.sy = 0;
 	next.y = SQUARE_SIZE * pnret(sin(rayAngle), 1, 0, -1);
 	next.x = tan(rayAngle) ? next.y / tan(rayAngle) : 0;
-	while (max_crd(intersect) && !Awall(intersect.x, intersect.y + of_y, &which1))
+	while (max_crd(intersect) && !a_wall(intersect.x, intersect.y + of_y, &which1))
 	{
 		intersect.sx = which1 == '2' && s == 0 ? intersect.x : intersect.sx;
 		intersect.sy = which1 == '2' && s == 0 && ++s ? intersect.y : intersect.sy;
@@ -75,10 +75,10 @@ rycrd		h_intersect(float rayAngle, player plr)
 }
 
 // calculate vertical_intersection
-rycrd		v_intersect(float rayAngle, player plr)
+t_rycrd		v_intersect(float rayAngle, t_player plr)
 {
-	rycrd		intersect;
-	crd		next;
+	t_rycrd		intersect;
+	t_crd		next;
 	float	of_x;
 	char	which1;
 	int	s;
@@ -92,7 +92,7 @@ rycrd		v_intersect(float rayAngle, player plr)
 	intersect.sy = 0;
 	next.x = SQUARE_SIZE * pnret(cos(rayAngle), 1, 0, -1);
 	next.y = next.x * tan(rayAngle);
-	while (max_crd(intersect) && !Awall(intersect.x + of_x, intersect.y, &which1))
+	while (max_crd(intersect) && !a_wall(intersect.x + of_x, intersect.y, &which1))
 	{
 		intersect.sx = which1 == '2' && s == 0 ? intersect.x : intersect.sx;
 		intersect.sy = which1 == '2' && s == 0 && ++s ? intersect.y : intersect.sy;
@@ -102,8 +102,8 @@ rycrd		v_intersect(float rayAngle, player plr)
 	return (intersect);
 }
 
-// calc the distance between the ray intersect and the player position
-float	calc_distance(player plr, rycrd hi, rycrd vi, float rayAngle)
+// calc the distance between the ray intersect and the t_player position
+float	calc_distance(t_player plr, t_rycrd hi, t_rycrd vi, float rayAngle)
 {
 	float	res1;
 	float	res2;
@@ -116,26 +116,26 @@ float	calc_distance(player plr, rycrd hi, rycrd vi, float rayAngle)
 	{
 		select_texture('h', rayAngle);
 		g_offset_x = (int)hi.x % SQUARE_SIZE; // we'll use this value for the texture thing
-		ret = res1 * cos((rayAngle - plr.rotationA) * RADIN);
+		ret = res1 * cos((rayAngle - plr.rotation_a) * RADIN);
 	}
 	else
 	{
 		select_texture('v', rayAngle);
 		g_offset_x = (int)vi.y % SQUARE_SIZE;
-		ret = res2 * cos((rayAngle - plr.rotationA) * RADIN);
+		ret = res2 * cos((rayAngle - plr.rotation_a) * RADIN);
 	}
 	return (ret);
 }
 
 // initial each ray then it goes in a while for a check
-void	rays(player plr, data info)
+void	rays(t_player plr, t_data info)
 {
 	int		rayNum;
 	float	rayAngle;
 	float	dst;
 
-	rayAngle = plr.rotationA - (FOV_ANGLE / 2);
-	rayAngle = normA(rayAngle);
+	rayAngle = plr.rotation_a - (FOV_ANGLE / 2);
+	rayAngle = norm_a(rayAngle);
 	rayNum = 0;
 	g_wall_distance = (float*)malloc(sizeof(float) * info.wx);
 	while (rayNum < info.wx)
@@ -144,7 +144,7 @@ void	rays(player plr, data info)
 		g_wall_distance[rayNum] = dst;
 		wall_rendering(dst, rayNum, info);
 		rayAngle += FOV_ANGLE / (float)info.wx;
-		rayAngle = normA(rayAngle);
+		rayAngle = norm_a(rayAngle);
 		rayNum++;
 	}
 }

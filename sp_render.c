@@ -6,14 +6,14 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 12:21:29 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/13 16:50:25 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 09:51:04 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// here we calc the distence between the player and sprite
-void	sprite_dst(player plr, rycrd hi, rycrd vi)
+// here we calc the distence between the t_player and t_sprite
+void	sprite_dst(t_player plr, t_rycrd hi, t_rycrd vi)
 {
 	float	res1;
 	float	res2;
@@ -28,50 +28,50 @@ void	sprite_dst(player plr, rycrd hi, rycrd vi)
 	res2 = sqrt(pow(plr.x - vi.sx, 2) + pow(plr.y - vi.sy, 2));
 	if (((vi.sx == 0 && vi.sy == 0) || res1 < res2) && hi.sx != 0 && hi.sy != 0)
 	{
-		sprt.x = hi.sx;
-		sprt.y = hi.sy;
+		g_sprt.x = hi.sx;
+		g_sprt.y = hi.sy;
 		g_vert = 0;
 	}
 	else
 	{
-		sprt.x = vi.sx;
-		sprt.y = vi.sy;
+		g_sprt.x = vi.sx;
+		g_sprt.y = vi.sy;
 		g_vert = 1;
 	}
 }
 
-// it calcs the final destance of between the player and the sprite
-float	dst_to_sprite(player plr, float ray_angle)
+// it calcs the final destance of between the t_player and the t_sprite
+float	dst_to_sprite(t_player plr, float ray_angle)
 {
-	crd	point;
+	t_crd	point;
 	float	r;
 	int	i1;
 	int	i2;
 
 	i1 = g_vert == 1 && ray_angle > 90 && ray_angle < 270 ? -1 : 1;
 	i2 = g_vert == 0 && ray_angle > 180 && ray_angle < 360 ? -1 : 1;
-	// calc sprite center
-	point.x = ((int)(sprt.x / SQUARE_SIZE) * SQUARE_SIZE) + (SQUARE_SIZE / 2) * i1;
-	point.y = ((int)(sprt.y / SQUARE_SIZE) * SQUARE_SIZE) + (SQUARE_SIZE / 2) * i2;
-	// calc the destance between the player and the center
+	// calc t_sprite center
+	point.x = ((int)(g_sprt.x / SQUARE_SIZE) * SQUARE_SIZE) + (SQUARE_SIZE / 2) * i1;
+	point.y = ((int)(g_sprt.y / SQUARE_SIZE) * SQUARE_SIZE) + (SQUARE_SIZE / 2) * i2;
+	// calc the destance between the t_player and the center
 	r = sqrt(pow(plr.x - point.x, 2) + pow(plr.y - point.y, 2));
 	// calc the intersection points
-	sprt.x = plr.x + cos(ray_angle * RADIN) * r;
-	sprt.y = plr.y + sin(ray_angle * RADIN) * r;
-//	put_pixel_img(sprt.x, sprt.y, 0xFFFFFF);
-	if ((g_vert == 1 && plr.rotationA > 0 && plr.rotationA < 180) || g_vert == 0)
-		g_offset_s = (int)sprt.x % SQUARE_SIZE;
+	g_sprt.x = plr.x + cos(ray_angle * RADIN) * r;
+	g_sprt.y = plr.y + sin(ray_angle * RADIN) * r;
+//	put_pixel_img(g_sprt.x, g_sprt.y, 0xFFFFFF);
+	if ((g_vert == 1 && plr.rotation_a > 0 && plr.rotation_a < 180) || g_vert == 0)
+		g_offset_s = (int)g_sprt.x % SQUARE_SIZE;
 	else
-		g_offset_s = (int)sprt.y % SQUARE_SIZE;
+		g_offset_s = (int)g_sprt.y % SQUARE_SIZE;
 	// calc the wanted destance and return it, voila !!!
-	return (sqrt(pow(plr.x - sprt.x, 2) + pow(plr.y - sprt.y, 2)));
+	return (sqrt(pow(plr.x - g_sprt.x, 2) + pow(plr.y - g_sprt.y, 2)));
 }
 
-// this function will render my sprite
-void	sprite_rendering(player plr, float ray_angle, data info, int x)
+// this function will render my t_sprite
+void	sprite_rendering(t_player plr, float ray_angle, t_data info, int x)
 {
 	float		dst;
-	wall		s;
+	t_wall		s;
 	float		tmp;
 	int		i;
 
@@ -82,14 +82,14 @@ void	sprite_rendering(player plr, float ray_angle, data info, int x)
 	s.bottom = s.bottom > info.wy ? info.wy : s.bottom;
 	s.top = (info.wy - s.bottom) / 2;
 	i = 0;
-	if (info.the_map[(int)floor(sprt.y / SQUARE_SIZE)][(int)floor(sprt.x / SQUARE_SIZE)] == '2')
+	if (info.the_map[(int)floor(g_sprt.y / SQUARE_SIZE)][(int)floor(g_sprt.x / SQUARE_SIZE)] == '2')
 	{
 		while (i < s.bottom)
 		{
 			s.dst_ftop = s.top + (tmp / 2) - (info.wy / 2);
 			s.offset_y = s.dst_ftop * (64.0 / tmp);
-			if (info.S[64 * s.offset_y + g_offset_s] != 0)
-				g_img_data[s.top * info.wx + x] = info.S[64 * s.offset_y + g_offset_s];
+			if (info.s[64 * s.offset_y + g_offset_s] != 0)
+				g_img_data[s.top * info.wx + x] = info.s[64 * s.offset_y + g_offset_s];
 			s.top++;
 			i++;
 		}

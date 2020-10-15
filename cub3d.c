@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:54:49 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/14 12:53:49 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 09:11:12 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,49 +25,49 @@ int		update(int key)
 	return (0);
 }
 
-// In this function we'll store data in a variable called "data" so we can use it later
+// In this function we'll store t_data in a variable called "t_data" so we can use it later
 char	*get_data(char *data_file)
 {
 	int		fd;
 	char	*line;
-	char	*data;
+	char	*t_data;
 	char	*tmp;
 	int		state;
 
 	fd = open(data_file, O_RDONLY);
 	if (!file_existence(fd) || !extension_check(data_file))
 		exit(1);
-	data = ft_strdup("");
+	t_data = ft_strdup("");
 	while ((state = get_next_line(fd, &line)) >= 0)
 	{
-		tmp = data;
-		data = ft_strjoin(data, line);
+		tmp = t_data;
+		t_data = ft_strjoin(t_data, line);
 		free(tmp);
-		tmp = data;
-		data = ft_strjoin(data, "\n");
+		tmp = t_data;
+		t_data = ft_strjoin(t_data, "\n");
 		free(tmp);
 		free(line);
 		if (state == 0)
 			break ;
 	}
 	close(fd);
-	return (data);
+	return (t_data);
 }
 
 int		main(int argc, char *argv[])
 {
-	char	*data;
+	char	*t_data;
 
 	if (argc < 2 || argc > 3)
 	{
 		ft_putstr_fd("Wrong Number Of Arguments\n", 2); // error if there is more or less then required number of arguments
 		return (-1);
 	}
-	data = argc == 3 ? get_data(argv[2]) : get_data(argv[1]);
-	if(!(check_errors(data))) // if there an error just exit
+	t_data = argc == 3 ? get_data(argv[2]) : get_data(argv[1]);
+	if(!(check_errors(t_data))) // if there an error just exit
 		exit(1);
 	if_fail(g_mlx_ptr = mlx_init());
-	ft_data(data);
+	ft_data(t_data);
 	init_frame(argc, argv[1]);
 	mlx_hook(g_win_ptr, 2, 1, &update, (void*)0);
 	mlx_loop(g_mlx_ptr);

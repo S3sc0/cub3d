@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 11:00:19 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/06 12:19:50 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 10:00:06 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		e_s_c(int key)
 // this function opens a window but before checks the wx and wy just to fit the full size
 void	open_window(void)
 {
-	data info;
+	t_data info;
 
 	info = ft_data(NULL);
 	if_fail(g_win_ptr = mlx_new_window(g_mlx_ptr, info.wx, info.wy, "Cub3D"));

@@ -6,13 +6,13 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 08:59:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/01 16:22:25 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 09:57:28 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// this function will check that the resolution data if it's correct
+// this function will check that the resolution t_data if it's correct
 int		check_resolution(char *s)
 {
 	char	**str;
@@ -36,22 +36,22 @@ int		check_resolution(char *s)
 	}
 	if (ret == 0)
 		ft_putstr_fd("Something Wrong With The Resolution Element\n", 2);
-	free_2D(str);
+	free_2d(str);
 	return (ret);
 }
 
 // this functino checks if this string starts with the right identifier
 int		check_name(char *s)
 {
-	if (ft_memcmp(s, "NO", 2) == 0)
+	if (ft_memcmp(s, "no", 2) == 0)
 		return (1);
-	else if (ft_memcmp(s, "EA", 2) == 0)
+	else if (ft_memcmp(s, "ea", 2) == 0)
 		return (1);
-	else if (ft_memcmp(s, "SO", 2) == 0)
+	else if (ft_memcmp(s, "so", 2) == 0)
 		return (1);
-	else if (ft_memcmp(s, "WE", 2) == 0)
+	else if (ft_memcmp(s, "we", 2) == 0)
 		return (1);
-	else if (ft_memcmp(s, "S ", 2) == 0)
+	else if (ft_memcmp(s, "s ", 2) == 0)
 		return (1);
 	else if (ft_memcmp(s, "F ", 2) == 0)
 		return (2);
@@ -70,7 +70,7 @@ int		check_path(char *s)
 	{
 		ft_putstr_fd("Something Wrong With The Path Elements", 2);
 	}
-	free_2D(str);
+	free_2d(str);
 	return (1);
 }
 
@@ -96,38 +96,38 @@ int		check_rgb(char *s)
 				break ;
 	if (ret == 0)
 		ft_putstr_fd("Something Wrong With The Cell Or Floor Element\n", 2);
-	free_2D(rgb);
-	free_2D(str);
+	free_2d(rgb);
+	free_2d(str);
 	return (ret);
 }
 
 // this function will redirect the specified information to their functions to be checked
 int		check_errors(char *stored_data)
 {
-	char	**data;
+	char	**t_data;
 	int		i;
 	int		ret;
 
 	i = 0;
 	ret = 1;
-	data = ft_split(stored_data, '\n');
-	while (data[i] != NULL && ret == 1)
+	t_data = ft_split(stored_data, '\n');
+	while (t_data[i] != NULL && ret == 1)
 	{
-		if (data[i][0] == 'R' && data[i][1] == ' ')
-			ret = check_resolution(data[i]);
-		else if (check_name(data[i]) == 1)
-			ret = check_path(data[i]);
-		else if (check_name(data[i]) == 2)
-			ret = check_rgb(data[i]);
-		else if (data[i][0] == '1' || data[i][0] == ' ')
+		if (t_data[i][0] == 'R' && t_data[i][1] == ' ')
+			ret = check_resolution(t_data[i]);
+		else if (check_name(t_data[i]) == 1)
+			ret = check_path(t_data[i]);
+		else if (check_name(t_data[i]) == 2)
+			ret = check_rgb(t_data[i]);
+		else if (t_data[i][0] == '1' || t_data[i][0] == ' ')
 		{
-			ret = check_map((data + i), stored_data);
+			ret = check_map((t_data + i), stored_data);
 			break ;
 		}
 		i++;
 	}
 	ret = check_empty_line(stored_data, ret);
 	ret = map_complete(i, ret);
-	free_2D(data);
+	free_2d(t_data);
 	return (ret);
 }

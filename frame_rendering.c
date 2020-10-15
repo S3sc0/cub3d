@@ -6,14 +6,14 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:51:34 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/13 11:50:01 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 10:00:03 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// draw a line which show our player point of view
-void	line(player plr, int color)
+// draw a line which show our t_player point of view
+void	line(t_player plr, int color)
 {
 	int i;
 	double x;
@@ -24,8 +24,8 @@ void	line(player plr, int color)
 	i = 0;
 	while (i < 25)
 	{
-		x += cos(plr.rotationA * RADIN);
-		y += sin(plr.rotationA * RADIN);
+		x += cos(plr.rotation_a * RADIN);
+		y += sin(plr.rotation_a * RADIN);
 		put_pixel_img(x, y, color);
 		i++;
 	}
@@ -76,14 +76,14 @@ void	map_render(char **map)
 	}
 }
 
-// draw the player
-void	player_render(player plr)
+// draw the t_player
+void	player_render(t_player plr)
 {
 	line(plr, 0xF20505);
 }
 
 // draw the cell and floor
-void	draw_background(data info)
+void	draw_background(t_data info)
 {
 	int		x;
 	int		y;
@@ -114,11 +114,11 @@ void	draw_background(data info)
 // this which draws the whole frame in the screen
 void	frame_render(int argc, char *argv)
 {
-	data	f;
-	player	plr;
+	t_data	f;
+	t_player	plr;
 
 	f = ft_data(NULL);
-	plr = *myPlayer(0);
+	plr = *my_player(0);
 	//map_render(f.the_map);
 	//player_render(plr);
 	draw_background(f);

@@ -64,7 +64,7 @@ int	check_line_horizontally(char *line, int id, int max, int ret)
 
 	while (*line != '\0' && ret)
 	{
-		if (*line == 'E' || *line == 'S' || *line == 'N' || *line == 'W')
+		if (*line == 'E' || *line == 's' || *line == 'N' || *line == 'W')
 			players++;
 		if (*line == ' ')
 		{
@@ -107,7 +107,7 @@ int	horizontal_check(char *line, int id, int max, int ret)
 	{
 		while (line[++j] != '\0' && ret)
 			if (line[j] != ' ' && line[j] != '1' && line[j] != '2'
-			&& line[j] != '0' && line[j] != 'E' && line[j] != 'S'
+			&& line[j] != '0' && line[j] != 'E' && line[j] != 's'
 			&& line[j] != 'W' && line[j] != 'N')
 				ret = 0;
 		ret = check_line_horizontally((line + i), id, max, ret);

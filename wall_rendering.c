@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 20:04:58 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/09 17:04:22 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 10:25:52 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 void	select_texture(char c, float ray_angle)
 {
-	data	info;
+	t_data	info;
 
 	info = ft_data(NULL);
 	if (ray_angle >= 180 && c == 'h')
-		g_texture = info.NO;
+		g_texture = info.no;
 	else if (ray_angle >= 0 && ray_angle <= 180 && c == 'h')
-		g_texture = info.SO;
+		g_texture = info.so;
 	else if (ray_angle >= 90 && ray_angle <= 270 && c == 'v')
-		g_texture = info.WE;
+		g_texture = info.we;
 	else if ((ray_angle > 270 || ray_angle < 90) && c == 'v')
-		g_texture = info.EA;
+		g_texture = info.ea;
 }
 
 // here we render our walls
-void	wall_rendering(float ray_d, int x, data info)
+void	wall_rendering(float ray_d, int x, t_data info)
 {
-	wall	w;
+	t_wall	w;
 	int		i;
 	int		y;
 	float	tmp;
 
 	w.dpp = (info.wx / 2) / tan((FOV_ANGLE * RADIN) / 2);
-	w.bottom  = (SQUARE_SIZE / ray_d) * w.dpp; // this is my wall height 
+	w.bottom  = (SQUARE_SIZE / ray_d) * w.dpp; // this is my t_wall height 
 	tmp = w.bottom; // keeping this value before resizing it to fix texture bug
 	w.bottom = w.bottom > info.wy ? info.wy: w.bottom;
 	w.top = (info.wy - w.bottom) / 2;

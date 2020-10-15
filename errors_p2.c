@@ -6,14 +6,14 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 16:11:48 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/05 18:44:33 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 09:57:28 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // this function frees all 2D arrays
-void	free_2D(char **splited)
+void	free_2d(char **splited)
 {
 	int i;
 
@@ -55,16 +55,16 @@ int	check_map_content(char **str, int max)
 
 
 // here we check the map's order and it's content if there an empty line
-int		check_map_order(char *data)
+int		check_map_order(char *t_data)
 {
 	int		i;
 	int		ret;
 
 	ret = 2;
 	i = 0;
-	while (data[i] != '\0')
+	while (t_data[i] != '\0')
 		i++;
-	if (data[i - 3] != '1') // so we arrived to the end and move to steps back \0 \n then check
+	if (t_data[i - 3] != '1') // so we arrived to the end and move to steps back \0 \n then check
 	{
 		ft_putstr_fd("The Map Isn't The Last Element\n", 2);
 		ret = 3;
