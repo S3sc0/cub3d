@@ -6,13 +6,16 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 08:09:35 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 10:56:04 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 19:04:29 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// easy just store the resolution x and y in a structure
+/*
+** easy just store the resolution x and y in a structure
+*/
+
 void	store_resolution(char *s, t_data *ptr)
 {
 	char	**str;
@@ -27,7 +30,10 @@ void	store_resolution(char *s, t_data *ptr)
 	free_2d(str);
 }
 
-// allocate and store the t_data to the proper structure
+/*
+** allocate and store the t_data to the proper structure
+*/
+
 void	store_path(char *s, t_data *ptr)
 {
 	char	**str;
@@ -55,7 +61,10 @@ void	store_path(char *s, t_data *ptr)
 	free_2d(str);
 }
 
-// here we store what we call rgb cell and floor colors
+/*
+** here we store what we call RGB cell and floor colors
+*/
+
 void	store_color(char *s, t_data *ptr)
 {
 	char	**str;
@@ -64,7 +73,8 @@ void	store_color(char *s, t_data *ptr)
 
 	str = ft_split(s, ' ');
 	rgb = ft_split(str[1], ',');
-	rgb_color = ft_atoi(rgb[0]) * 65536 + ft_atoi(rgb[1]) * 256 + ft_atoi(rgb[2]);
+	rgb_color = ft_atoi(rgb[0]) * 65536 +
+			ft_atoi(rgb[1]) * 256 + ft_atoi(rgb[2]);
 	if (str[0][0] == 'F')
 		ptr->floor = rgb_color;
 	else if (str[0][0] == 'C')
@@ -73,7 +83,10 @@ void	store_color(char *s, t_data *ptr)
 	free_2d(str);
 }
 
-// and finally we stored the t_data about the map
+/*
+** and finally we stored the t_data about the map
+*/
+
 void	store_map(char **s, t_data *ptr)
 {
 	int		i;
@@ -86,18 +99,22 @@ void	store_map(char **s, t_data *ptr)
 	if_fail(ptr->the_map = (char**)malloc(sizeof(char*) * (i + 1)));
 	while (j < i)
 	{
-		ptr->the_map[j]	= ft_strdup(s[j]);
+		ptr->the_map[j] = ft_strdup(s[j]);
 		j++;
 	}
 	ptr->the_map[j] = NULL;
 }
 
-// here this function redirects each element to its function and return a structure
+/*
+** here this function redirects each element
+** to its function and return a structure
+*/
+
 t_data	ft_data(char *data_file)
 {
-	static t_data info;
-	int			i;
-	char		**s;
+	static	t_data	info;
+	int				i;
+	char			**s;
 
 	s = ft_split(data_file, '\n');
 	i = 0;
@@ -107,7 +124,8 @@ t_data	ft_data(char *data_file)
 		{
 			if (s[i][0] == 'R')
 				store_resolution(s[i], &info);
-			else if (s[i][1] == 'O' || s[i][0] == 'E' || s[i][0] == 'S' || s[i][0] == 'W')
+			else if (s[i][1] == 'O' || s[i][0] == 'E' ||
+					s[i][0] == 'S' || s[i][0] == 'W')
 				store_path(s[i], &info);
 			else if (s[i][0] == 'F' || s[i][0] == 'C')
 				store_color(s[i], &info);
