@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 14:12:08 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 10:36:14 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 11:47:45 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,20 @@
 #define D_KEY 2
 #define ESC_KEY 53
 
-void	*g_mlx_ptr;
-void	*g_win_ptr;
-void	*g_img_ptr;
-int		*g_img_data;
-int		g_line;
-int		g_offset_x;
-int		g_offset_s;
-int		*g_texture;
-int		g_vert;
-int		g_asprite;
-float	*g_wall_distance;
-int		g_sprite_num;
-float	*g_sprite_distance;
-int		*g_x_len;
+void		*g_mlx_ptr;
+void		*g_win_ptr;
+void		*g_img_ptr;
+int			*g_img_data;
+int			g_line;
+int			g_offset_x;
+int			g_offset_s;
+int			*g_texture;
+int			g_vert;
+int			g_asprite;
+float		*g_wall_distance;
+int			g_sprite_num;
+float		*g_sprite_distance;
+int			*g_x_len;
 
 typedef	struct
 {
@@ -128,7 +128,7 @@ void		open_window(void);
 void		frame_render(int argc, char *argv);
 void		init_frame(int argc, char *argv);
 void		put_pixel_img(int x, int y, int color);
-t_player		*my_player(int state);
+t_player	*my_player(int state);
 void		turn_frame_black(void);
 void		update_player(int key);
 int			a_wall(float x, float y, char *which1);

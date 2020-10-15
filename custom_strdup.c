@@ -6,13 +6,16 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 14:28:44 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/01 15:54:31 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 13:12:09 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// this function is ft_strdup but custom for the map content
+/*
+** this function is ft_strdup but custom for the map content
+*/
+
 char	*custom_strdup(char *str)
 {
 	int		i;

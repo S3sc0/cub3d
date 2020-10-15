@@ -6,13 +6,12 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 07:30:15 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/03/01 16:29:59 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 13:44:14 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// and here we'll check the map file has the correct extension
 int		extension_check(char *file_name)
 {
 	int		i;
@@ -37,7 +36,6 @@ int		extension_check(char *file_name)
 	return (1);
 }
 
-// this checks if the given file is exist with the help of the return value of open function
 int		file_existence(int fd)
 {
 	if (fd < 0)
@@ -48,7 +46,10 @@ int		file_existence(int fd)
 	return (1);
 }
 
-// if the allocation fails then exit and return an erron message
+/*
+** if the allocation fails then exit and return an erron message
+*/
+
 void	if_fail(void *state)
 {
 	if (state == NULL)
@@ -59,7 +60,11 @@ void	if_fail(void *state)
 	}
 }
 
-// here we check either if the map isn't complete or it's more than complete hah
+/*
+** here we are checking either if the map is not complete
+** or it is more than complete duuuh
+*/
+
 int		map_complete(int i, int ret)
 {
 	if (i != 8 && ret != 0)

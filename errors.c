@@ -6,13 +6,12 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 08:59:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 09:57:28 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 13:49:12 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// this function will check that the resolution t_data if it's correct
 int		check_resolution(char *s)
 {
 	char	**str;
@@ -22,11 +21,11 @@ int		check_resolution(char *s)
 	ret = 1;
 	i = -1;
 	str = ft_split(s, ' ');
-	if (count_items(str) != 3) // should only be 3 arguments
+	if (count_items(str) != 3)
 		ret = 0;
 	if (ret != 0)
 	{
-		while (str[1][++i] != '\0') // if it's not number return 0
+		while (str[1][++i] != '\0')
 			if ((str[1][i] < '0' || str[1][i] > '9') && (ret = 0))
 				break ;
 		i = -1;
@@ -40,7 +39,10 @@ int		check_resolution(char *s)
 	return (ret);
 }
 
-// this functino checks if this string starts with the right identifier
+/*
+** this functino checks if the string starts with the right identifier
+*/
+
 int		check_name(char *s)
 {
 	if (ft_memcmp(s, "no", 2) == 0)
@@ -60,7 +62,10 @@ int		check_name(char *s)
 	return (0);
 }
 
-// this function check if the path contains only two parts
+/*
+** this function check if the path contains only two parts
+*/
+
 int		check_path(char *s)
 {
 	char	**str;
@@ -74,13 +79,17 @@ int		check_path(char *s)
 	return (1);
 }
 
-// this function checks that the rgb color content is perfectly correct like cell and floor
+/*
+** this function checks if the RGB color content
+** is perfectly correct like cell and floor
+*/
+
 int		check_rgb(char *s)
 {
 	int		ret;
 	char	**str;
 	char	**rgb;
-	int 	i;
+	int		i;
 
 	i = -1;
 	str = ft_split(s, ' ');
@@ -101,33 +110,36 @@ int		check_rgb(char *s)
 	return (ret);
 }
 
-// this function will redirect the specified information to their functions to be checked
+/*
+** this function will redirect the specified
+** information to their functions to be checked
+*/
+
 int		check_errors(char *stored_data)
 {
-	char	**t_data;
+	char	**data;
 	int		i;
 	int		ret;
 
-	i = 0;
+	i = -1;
 	ret = 1;
-	t_data = ft_split(stored_data, '\n');
-	while (t_data[i] != NULL && ret == 1)
+	data = ft_split(stored_data, '\n');
+	while (data[++i] != NULL && ret == 1)
 	{
-		if (t_data[i][0] == 'R' && t_data[i][1] == ' ')
-			ret = check_resolution(t_data[i]);
-		else if (check_name(t_data[i]) == 1)
-			ret = check_path(t_data[i]);
-		else if (check_name(t_data[i]) == 2)
-			ret = check_rgb(t_data[i]);
-		else if (t_data[i][0] == '1' || t_data[i][0] == ' ')
+		if (data[i][0] == 'R' && data[i][1] == ' ')
+			ret = check_resolution(data[i]);
+		else if (check_name(data[i]) == 1)
+			ret = check_path(data[i]);
+		else if (check_name(data[i]) == 2)
+			ret = check_rgb(data[i]);
+		else if (data[i][0] == '1' || data[i][0] == ' ')
 		{
-			ret = check_map((t_data + i), stored_data);
+			ret = check_map((data + i), stored_data);
 			break ;
 		}
-		i++;
 	}
 	ret = check_empty_line(stored_data, ret);
 	ret = map_complete(i, ret);
-	free_2d(t_data);
+	free_2d(data);
 	return (ret);
 }

@@ -6,13 +6,12 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 16:11:48 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 09:57:28 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 13:10:30 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// this function frees all 2D arrays
 void	free_2d(char **splited)
 {
 	int i;
@@ -23,7 +22,10 @@ void	free_2d(char **splited)
 	free(splited);
 }
 
-// here you'll count how many items in a 2D array
+/*
+** here you'll count how many items in a 2D array
+*/
+
 int		count_items(char **str)
 {
 	int i;
@@ -34,8 +36,7 @@ int		count_items(char **str)
 	return (i);
 }
 
-// check content of the map
-int	check_map_content(char **str, int max)
+int		check_map_content(char **str, int max)
 {
 	int	i;
 	int	ret;
@@ -53,8 +54,10 @@ int	check_map_content(char **str, int max)
 	return (ret);
 }
 
+/*
+** here we check the map's order and it's content if there an empty line
+*/
 
-// here we check the map's order and it's content if there an empty line
 int		check_map_order(char *t_data)
 {
 	int		i;
@@ -64,7 +67,7 @@ int		check_map_order(char *t_data)
 	i = 0;
 	while (t_data[i] != '\0')
 		i++;
-	if (t_data[i - 3] != '1') // so we arrived to the end and move to steps back \0 \n then check
+	if (t_data[i - 3] != '1')
 	{
 		ft_putstr_fd("The Map Isn't The Last Element\n", 2);
 		ret = 3;
@@ -72,7 +75,10 @@ int		check_map_order(char *t_data)
 	return (ret);
 }
 
-// this function redirects the map to be checked
+/*
+** this function redirects the map to be checked
+*/
+
 int		check_map(char **s, char *d)
 {
 	int		ret;
