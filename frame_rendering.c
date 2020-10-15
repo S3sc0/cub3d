@@ -6,11 +6,20 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:51:34 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 16:46:43 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 18:50:32 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+float		pnret(float x, float a, float b, float c)
+{
+	if (x > 0)
+		return (a);
+	else if (x == 0)
+		return (b);
+	return (c);
+}
 
 /*
 ** draw the cell and the floor

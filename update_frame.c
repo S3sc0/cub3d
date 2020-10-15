@@ -6,35 +6,16 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 14:28:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 10:00:03 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 18:44:14 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// turn the color of the screen to black to refill it with a new frame
-void	turn_frame_black(void)
-{
-	t_data	info;
-	int		x;
-	int		y;
+/*
+** checks if the current x and y are a well
+*/
 
-	info = ft_data(NULL);
-	y = 0;
-	while (y < info.wy)
-	{
-		x = 0;
-		while (x < info.wx)
-		{
-			put_pixel_img(x, y, 0x000000);
-			x++;
-		}
-		y++;
-	}
-	mlx_put_image_to_window(g_mlx_ptr, g_win_ptr, g_img_ptr, 0 , 0);
-}
-
-// checks if the current x and y are a well
 int		a_wall(float x, float y, char *which1)
 {
 	int		i;
@@ -42,9 +23,9 @@ int		a_wall(float x, float y, char *which1)
 	t_data	info;
 
 	info = ft_data(NULL);
-	i = floor(x / SQUARE_SIZE);
+	i = floor(x / SQ_SZ);
 	y = y < 0 ? 0 : y;
-	j = floor(y / SQUARE_SIZE);
+	j = floor(y / SQ_SZ);
 	if (which1)
 		*which1 = info.the_map[j][i];
 	else if (info.the_map[j][i] == '2')
@@ -54,7 +35,10 @@ int		a_wall(float x, float y, char *which1)
 	return (0);
 }
 
-// here we update x and y of the t_player
+/*
+** here we update x and y of the player
+*/
+
 void	update_walk(int key, t_player *plr)
 {
 	float	wanted_x;
@@ -74,7 +58,10 @@ void	update_walk(int key, t_player *plr)
 	}
 }
 
-// here we update the t_player's view angle
+/*
+** here we update the player's view angle
+*/
+
 void	update_turn(int key, t_player *plr)
 {
 	if (key == LEFT_A || key == A_KEY)
@@ -85,7 +72,10 @@ void	update_turn(int key, t_player *plr)
 	plr->rotation_a = (int)norm_a(plr->rotation_a);
 }
 
-// this function just redirects to the correct function depends on key
+/*
+** this function just redirects to the correct function depends on key
+*/
+
 void	update_player(int key)
 {
 	t_player *plr;

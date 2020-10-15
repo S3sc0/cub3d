@@ -6,29 +6,22 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:32:11 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 09:55:38 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 18:50:47 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// ????
-float	pnret(float x, float a, float b, float c)
-{
-	if (x > 0)
-		return (a);
-	else if (x == 0)
-		return (b);
-	return (c);
-}
+/*
+** when checking x and y coordinates don't go out of the map
+*/
 
-// when checking x and y coordinates don't go out of the map
-int		max_crd(t_rycrd intersect)
+int			max_crd(t_rycrd intsct)
 {
 	t_data		info;
 	static int	*x;
 	static int	y;
-	int		i;
+	int			i;
 
 	if (x == NULL || y == 0)
 	{
@@ -37,73 +30,87 @@ int		max_crd(t_rycrd intersect)
 		y = count_items(info.the_map);
 		x = (int *)malloc(sizeof(int) * y);
 		while (++i < y)
-			x[i] =  ft_strlen(info.the_map[i]) * SQUARE_SIZE;
-		y *= SQUARE_SIZE;
+			x[i] = ft_strlen(info.the_map[i]) * SQ_SZ;
+		y *= SQ_SZ;
 	}
-	i = (int)(intersect.y / SQUARE_SIZE);
-	if (intersect.y > y || intersect.y < 0 || intersect.x > x[i] || intersect.x < 0)
+	i = (int)(intsct.y / SQ_SZ);
+	if (intsct.y > y || intsct.y < 0
+		|| intsct.x > x[i] || intsct.x < 0)
 		return (0);
 	return (1);
 }
 
-// calculate horizantal_intersection
-t_rycrd		h_intersect(float rayAngle, t_player plr)
+/*
+** calculate horizantal_intsction
+*/
+
+t_rycrd		h_intsct(float ray_angle, t_player plr)
 {
-	t_rycrd		intersect;
+	t_rycrd		intsct;
 	t_crd		next;
-	float	of_y;
-	char	which1;
-	int	s;
+	float		of_y;
+	char		which1;
+	int			s;
 
 	s = 0;
-	rayAngle *= RADIN;
-	of_y = sin(rayAngle) > 0 ? 0.1 : -0.1;
-	intersect.y = floor(plr.y / SQUARE_SIZE + (sin(rayAngle) > 0 ? 1 : 0)) * SQUARE_SIZE;
-	intersect.x = tan(rayAngle) ? (intersect.y - plr.y + tan(rayAngle) * plr.x) / tan(rayAngle) : 0;
-	intersect.sx = 0;
-	intersect.sy = 0;
-	next.y = SQUARE_SIZE * pnret(sin(rayAngle), 1, 0, -1);
-	next.x = tan(rayAngle) ? next.y / tan(rayAngle) : 0;
-	while (max_crd(intersect) && !a_wall(intersect.x, intersect.y + of_y, &which1))
+	ray_angle *= RADIN;
+	of_y = sin(ray_angle) > 0 ? 0.1 : -0.1;
+	intsct.y = floor(plr.y / SQ_SZ + (sin(ray_angle) > 0 ? 1 : 0)) * SQ_SZ;
+	intsct.x = tan(ray_angle) ? (intsct.y - plr.y +
+			tan(ray_angle) * plr.x) / tan(ray_angle) : 0;
+	intsct.sx = 0;
+	intsct.sy = 0;
+	next.y = SQ_SZ * pnret(sin(ray_angle), 1, 0, -1);
+	next.x = tan(ray_angle) ? next.y / tan(ray_angle) : 0;
+	while (max_crd(intsct) &&
+		!a_wall(intsct.x, intsct.y + of_y, &which1))
 	{
-		intersect.sx = which1 == '2' && s == 0 ? intersect.x : intersect.sx;
-		intersect.sy = which1 == '2' && s == 0 && ++s ? intersect.y : intersect.sy;
-		intersect.x += next.x;
-		intersect.y += next.y;
+		intsct.sx = which1 == '2' && s == 0 ? intsct.x : intsct.sx;
+		intsct.sy = which1 == '2' && s == 0 && ++s ? intsct.y : intsct.sy;
+		intsct.x += next.x;
+		intsct.y += next.y;
 	}
-	return(intersect);
+	return (intsct);
 }
 
-// calculate vertical_intersection
-t_rycrd		v_intersect(float rayAngle, t_player plr)
+/*
+** calculate vertical_intsction
+*/
+
+t_rycrd		v_intsct(float ray_angle, t_player plr)
 {
-	t_rycrd		intersect;
+	t_rycrd		intsct;
 	t_crd		next;
-	float	of_x;
-	char	which1;
-	int	s;
+	float		of_x;
+	char		which1;
+	int			s;
 
 	s = 0;
-	rayAngle *= RADIN;
-	of_x = cos(rayAngle) > 0 ? 0.1 : -0.1;
-	intersect.x = floor(plr.x / SQUARE_SIZE + (cos(rayAngle) > 0 ? 1 : 0)) * SQUARE_SIZE;
-	intersect.y = tan(rayAngle) * (intersect.x - plr.x) + plr.y;
-	intersect.sx = 0;
-	intersect.sy = 0;
-	next.x = SQUARE_SIZE * pnret(cos(rayAngle), 1, 0, -1);
-	next.y = next.x * tan(rayAngle);
-	while (max_crd(intersect) && !a_wall(intersect.x + of_x, intersect.y, &which1))
+	ray_angle *= RADIN;
+	of_x = cos(ray_angle) > 0 ? 0.1 : -0.1;
+	intsct.x = floor(plr.x / SQ_SZ + (cos(ray_angle) > 0 ? 1 : 0)) * SQ_SZ;
+	intsct.y = tan(ray_angle) * (intsct.x - plr.x) + plr.y;
+	intsct.sx = 0;
+	intsct.sy = 0;
+	next.x = SQ_SZ * pnret(cos(ray_angle), 1, 0, -1);
+	next.y = next.x * tan(ray_angle);
+	while (max_crd(intsct) &&
+		!a_wall(intsct.x + of_x, intsct.y, &which1))
 	{
-		intersect.sx = which1 == '2' && s == 0 ? intersect.x : intersect.sx;
-		intersect.sy = which1 == '2' && s == 0 && ++s ? intersect.y : intersect.sy;
-		intersect.x += next.x;
-		intersect.y += next.y;
+		intsct.sx = which1 == '2' && s == 0 ? intsct.x : intsct.sx;
+		intsct.sy = which1 == '2' && s == 0 && ++s ?
+					intsct.y : intsct.sy;
+		intsct.x += next.x;
+		intsct.y += next.y;
 	}
-	return (intersect);
+	return (intsct);
 }
 
-// calc the distance between the ray intersect and the t_player position
-float	calc_distance(t_player plr, t_rycrd hi, t_rycrd vi, float rayAngle)
+/*
+** calc the distance between the ray intsct and the player position
+*/
+
+float		calc_distance(t_player plr, t_rycrd hi, t_rycrd vi, float ray_angle)
 {
 	float	res1;
 	float	res2;
@@ -114,37 +121,41 @@ float	calc_distance(t_player plr, t_rycrd hi, t_rycrd vi, float rayAngle)
 	res2 = sqrt(pow(plr.x - vi.x, 2) + pow(plr.y - vi.y, 2));
 	if (res1 < res2)
 	{
-		select_texture('h', rayAngle);
-		g_offset_x = (int)hi.x % SQUARE_SIZE; // we'll use this value for the texture thing
-		ret = res1 * cos((rayAngle - plr.rotation_a) * RADIN);
+		select_texture('h', ray_angle);
+		g_offset_x = (int)hi.x % SQ_SZ;
+		ret = res1 * cos((ray_angle - plr.rotation_a) * RADIN);
 	}
 	else
 	{
-		select_texture('v', rayAngle);
-		g_offset_x = (int)vi.y % SQUARE_SIZE;
-		ret = res2 * cos((rayAngle - plr.rotation_a) * RADIN);
+		select_texture('v', ray_angle);
+		g_offset_x = (int)vi.y % SQ_SZ;
+		ret = res2 * cos((ray_angle - plr.rotation_a) * RADIN);
 	}
 	return (ret);
 }
 
-// initial each ray then it goes in a while for a check
-void	rays(t_player plr, t_data info)
+/*
+** initial each ray then it goes in a while for a check
+*/
+
+void		rays(t_player plr, t_data info)
 {
-	int		rayNum;
-	float	rayAngle;
+	int		ray_num;
+	float	ray_angle;
 	float	dst;
 
-	rayAngle = plr.rotation_a - (FOV_ANGLE / 2);
-	rayAngle = norm_a(rayAngle);
-	rayNum = 0;
+	ray_angle = plr.rotation_a - (FOV_ANGLE / 2);
+	ray_angle = norm_a(ray_angle);
+	ray_num = 0;
 	g_wall_distance = (float*)malloc(sizeof(float) * info.wx);
-	while (rayNum < info.wx)
+	while (ray_num < info.wx)
 	{
-		dst = calc_distance(plr, h_intersect(rayAngle, plr), v_intersect(rayAngle, plr), rayAngle);
-		g_wall_distance[rayNum] = dst;
-		wall_rendering(dst, rayNum, info);
-		rayAngle += FOV_ANGLE / (float)info.wx;
-		rayAngle = norm_a(rayAngle);
-		rayNum++;
+		dst = calc_distance(plr, h_intsct(ray_angle, plr),
+			v_intsct(ray_angle, plr), ray_angle);
+		g_wall_distance[ray_num] = dst;
+		wall_rendering(dst, ray_num, info);
+		ray_angle += FOV_ANGLE / (float)info.wx;
+		ray_angle = norm_a(ray_angle);
+		ray_num++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 12:21:29 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 17:33:05 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 18:44:14 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,18 @@ float	dst_to_sprite(t_player plr, float ray_angle)
 
 	i1 = g_vert == 1 && ray_angle > 90 && ray_angle < 270 ? -1 : 1;
 	i2 = g_vert == 0 && ray_angle > 180 && ray_angle < 360 ? -1 : 1;
-	point.x = ((int)(g_sprt.x / SQUARE_SIZE) *
-			SQUARE_SIZE) + (SQUARE_SIZE / 2) * i1;
-	point.y = ((int)(g_sprt.y / SQUARE_SIZE) *
-			SQUARE_SIZE) + (SQUARE_SIZE / 2) * i2;
+	point.x = ((int)(g_sprt.x / SQ_SZ) *
+			SQ_SZ) + (SQ_SZ / 2) * i1;
+	point.y = ((int)(g_sprt.y / SQ_SZ) *
+			SQ_SZ) + (SQ_SZ / 2) * i2;
 	r = sqrt(pow(plr.x - point.x, 2) + pow(plr.y - point.y, 2));
 	g_sprt.x = plr.x + cos(ray_angle * RADIN) * r;
 	g_sprt.y = plr.y + sin(ray_angle * RADIN) * r;
 	if ((g_vert == 1 && plr.rotation_a > 0 && plr.rotation_a < 180) ||
 		g_vert == 0)
-		g_offset_s = (int)g_sprt.x % SQUARE_SIZE;
+		g_offset_s = (int)g_sprt.x % SQ_SZ;
 	else
-		g_offset_s = (int)g_sprt.y % SQUARE_SIZE;
+		g_offset_s = (int)g_sprt.y % SQ_SZ;
 	return (sqrt(pow(plr.x - g_sprt.x, 2) + pow(plr.y - g_sprt.y, 2)));
 }
 
@@ -88,13 +88,13 @@ void	sprite_rendering(t_player plr, float ray_angle, t_data info, int x)
 
 	dst = dst_to_sprite(plr, ray_angle);
 	s.dpp = (info.wx / 2) / tan((FOV_ANGLE * RADIN) / 2);
-	s.bottom = (SQUARE_SIZE / dst) * s.dpp;
+	s.bottom = (SQ_SZ / dst) * s.dpp;
 	tmp = s.bottom;
 	s.bottom = s.bottom > info.wy ? info.wy : s.bottom;
 	s.top = (info.wy - s.bottom) / 2;
 	i = -1;
-	if (info.the_map[(int)floor(g_sprt.y / SQUARE_SIZE)]
-			[(int)floor(g_sprt.x / SQUARE_SIZE)] == '2')
+	if (info.the_map[(int)floor(g_sprt.y / SQ_SZ)]
+			[(int)floor(g_sprt.x / SQ_SZ)] == '2')
 	{
 		while (++i < s.bottom)
 		{

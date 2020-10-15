@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 17:06:51 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 17:20:02 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 18:44:14 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	store_sprite_position(t_crd *sprites, t_data info)
 		{
 			if (info.the_map[y][x] == '2')
 			{
-				sprites[counter].x = x * SQUARE_SIZE + 32;
-				sprites[counter].y = y * SQUARE_SIZE + 32;
+				sprites[counter].x = x * SQ_SZ + 32;
+				sprites[counter].y = y * SQ_SZ + 32;
 				counter++;
 			}
 			x++;
@@ -89,7 +89,7 @@ void	calc_sprite_info(t_sprite *g_sprt, t_player plr,
 	float	dpp;
 
 	dpp = (info.wx / 2) / tan((FOV_ANGLE * RADIN) / 2);
-	g_sprt->height = (SQUARE_SIZE / g_sprite_distance[g_sprt->i]) * dpp;
+	g_sprt->height = (SQ_SZ / g_sprite_distance[g_sprt->i]) * dpp;
 	g_sprt->hi_s = -g_sprt->height / 2 + info.wy / 2;
 	g_sprt->hi_s = g_sprt->hi_s < 0 ? 0 : g_sprt->hi_s;
 	g_sprt->hi_e = g_sprt->height / 2 + info.wy / 2;

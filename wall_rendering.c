@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 20:04:58 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 10:25:52 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 18:44:14 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ void	select_texture(char c, float ray_angle)
 		g_texture = info.ea;
 }
 
-// here we render our walls
+/*
+** here we are rendering our walls
+** 1) w.bottom is the wall's height
+** 2) i'm keeping the value of w.bottom since i'll change it later
+*/
+
 void	wall_rendering(float ray_d, int x, t_data info)
 {
 	t_wall	w;
@@ -36,9 +41,9 @@ void	wall_rendering(float ray_d, int x, t_data info)
 	float	tmp;
 
 	w.dpp = (info.wx / 2) / tan((FOV_ANGLE * RADIN) / 2);
-	w.bottom  = (SQUARE_SIZE / ray_d) * w.dpp; // this is my t_wall height 
-	tmp = w.bottom; // keeping this value before resizing it to fix texture bug
-	w.bottom = w.bottom > info.wy ? info.wy: w.bottom;
+	w.bottom = (SQ_SZ / ray_d) * w.dpp;
+	tmp = w.bottom;
+	w.bottom = w.bottom > info.wy ? info.wy : w.bottom;
 	w.top = (info.wy - w.bottom) / 2;
 	y = w.top;
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 16:48:03 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 17:05:28 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 18:44:14 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	draw_sprite_texture(t_sprite sprt, t_data info, int i)
 	trp = sprt.wi_s;
 	while (trp < sprt.wi_e && sprt.wi_s < info.wx)
 	{
-		tex_x = (256 * (trp - sprt.wi_s) * SQUARE_SIZE / sprt.height) / 256;
+		tex_x = (256 * (trp - sprt.wi_s) * SQ_SZ / sprt.height) / 256;
 		y = sprt.hi_s;
 		if (trp >= 0 && trp <= info.wx &&
 			g_sprite_distance[i] < g_wall_distance[trp])

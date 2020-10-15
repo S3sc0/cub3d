@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:54:49 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 13:19:41 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 17:36:54 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int		update(int key)
 	if (key == UP_A || key == DOWN_A || key == RIGHT_A || key == LEFT_A ||
 	key == A_KEY || key == W_KEY || key == S_KEY || key == D_KEY)
 	{
-		turn_frame_black();
 		update_player(key);
 		frame_render(2, NULL);
 	}

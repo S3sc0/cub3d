@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 14:12:08 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 16:42:24 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 18:50:38 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define CUB3D_H
 #define BUFFER_SIZE 10000
-#define SQUARE_SIZE 64
+#define SQ_SZ 64
 #define RADIN (M_PI / 180)
 #define FOV_ANGLE 60
 #define WALL_WIDTH 1
@@ -129,7 +129,6 @@ void		frame_render(int argc, char *argv);
 void		init_frame(int argc, char *argv);
 void		put_pixel_img(int x, int y, int color);
 t_player	*my_player(int state);
-void		turn_frame_black(void);
 void		update_player(int key);
 int			a_wall(float x, float y, char *which1);
 void		rays(t_player plr, t_data info);
@@ -154,5 +153,6 @@ int			only_nbr(char **rgb);
 int			space_validating(char **lines, int x, int *y, int max_y);
 int			vertical_check(char **lines, int max_y, int ret);
 int			longest_x(char **lines, int max);
+float		pnret(float x, float a, float b, float c);
 
 #	endif
