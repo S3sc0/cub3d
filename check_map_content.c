@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map_content.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 14:09:41 by aamzouar          #+#    #+#             */
+/*   Updated: 2020/10/15 14:34:36 by aamzouar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int	check_start_line(char **lines, int id, int max)
+int		check_start_line(char **lines, int id, int max)
 {
-	int		i;
-	int		ret;
+	int			i;
+	int			ret;
 	static int	sign;
-	int		j;
-	int		rounds;
+	int			j;
+	int			rounds;
 
 	rounds = 1;
 	i = 0;
@@ -29,36 +41,36 @@ int	check_start_line(char **lines, int id, int max)
 	return (ret);
 }
 
-int	check_end_line(char **lines, int id, int max, int ret)
+int		check_end_line(char **lines, int id, int max, int ret)
 {
-	int		i;
+	int			i;
 	static int	sign;
-	int		j;
-	int		rounds;
-	int		second_line_len;
+	int			j;
+	int			rounds;
+	int			line_len;
 
 	rounds = 1;
 	i = ft_strlen(lines[id]) - 1;
-	second_line_len = max != id + 1 ? ft_strlen(lines[id + 1]) : ft_strlen(lines[id]);
-	second_line_len--;
+	line_len = max != id + 1 ? ft_strlen(lines[id + 1]) : ft_strlen(lines[id]);
+	line_len--;
 	if (sign == id && id != 0)
 		rounds++;
-	if (max != id + 1 && i > second_line_len)
+	if (max != id + 1 && i > line_len)
 		sign = id + 1;
 	while (rounds-- && ret && max != id + 1 && (j = i))
 	{
 		id += 1;
-		while (j <= second_line_len && lines[id][j] != '\0' && ret)
+		while (j <= line_len && lines[id][j] != '\0' && ret)
 			if (lines[id][j++] != '1')
 				ret = 0;
 		if (rounds == 1)
-			second_line_len = ft_strlen(lines[id - 2]);
+			line_len = ft_strlen(lines[id - 2]);
 		id -= 3;
 	}
 	return (ret);
 }
 
-int	check_line_horizontally(char *line, int id, int max, int ret)
+int		check_line_horizontally(char *line, int id, int max, int ret)
 {
 	static	int	players;
 
@@ -85,10 +97,10 @@ int	check_line_horizontally(char *line, int id, int max, int ret)
 	return (ret);
 }
 
-int	horizontal_check(char *line, int id, int max, int ret)
+int		horizontal_check(char *line, int id, int max, int ret)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (line[i] == ' ')
@@ -99,7 +111,7 @@ int	horizontal_check(char *line, int id, int max, int ret)
 		while (line[i] != '\0' && ret)
 		{
 			if (line[i] != '1' && line[i] != ' ')
-				ret = 0;
+				return (0);
 			i++;
 		}
 	}
@@ -109,18 +121,16 @@ int	horizontal_check(char *line, int id, int max, int ret)
 			if (line[j] != ' ' && line[j] != '1' && line[j] != '2'
 			&& line[j] != '0' && line[j] != 'E' && line[j] != 's'
 			&& line[j] != 'W' && line[j] != 'N')
-				ret = 0;
-		ret = check_line_horizontally((line + i), id, max, ret);
+				return (0);
 	}
-	return (ret);
+	return (check_line_horizontally((line + i), id, max, ret));
 }
 
-int	longest_x(char **lines, int max)
+int		longest_x(char **lines, int max)
 {
-	int	y;
-	int	x;
-	int 	tmp;
-
+	int		y;
+	int		x;
+	int		tmp;
 
 	y = 1;
 	x = ft_strlen(lines[0]);
@@ -138,10 +148,10 @@ int	longest_x(char **lines, int max)
 	return (x);
 }
 
-int	space_validating(char **lines, int x, int *y, int max_y)
+int		space_validating(char **lines, int x, int *y, int max_y)
 {
-	int	ret;
-	int	tmp;
+	int		ret;
+	int		tmp;
 
 	tmp = *y;
 	ret = 1;
@@ -160,15 +170,15 @@ int	space_validating(char **lines, int x, int *y, int max_y)
 	return (ret);
 }
 
-int	vertical_check(char **lines, int max_y, int ret)
+int		vertical_check(char **lines, int max_y, int ret)
 {
-	int	x;
-	int	y;
-	int	max_x;
-	
+	int		x;
+	int		y;
+	int		max_x;
+
 	x = 0;
 	max_x = longest_x(lines, max_y);
-	max_y--; // i think it goes over the scope so i minimized it
+	max_y--;
 	while (x < max_x && ret)
 	{
 		y = 0;

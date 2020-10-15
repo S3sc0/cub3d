@@ -6,14 +6,17 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:05:29 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 10:00:03 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/15 14:07:35 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// this function detemines which angle our t_player will face 
-int		which_angle(char c)
+/*
+** this function detemines which angle our player will face
+*/
+
+int			which_angle(char c)
 {
 	if (c == 'N')
 		return (270);
@@ -24,8 +27,11 @@ int		which_angle(char c)
 	return (180);
 }
 
-// initial x and y coordinates of the t_player
-char	coor_xny(t_player *init)
+/*
+** initializing the  x and y coordinates of the player
+*/
+
+char		coor_xny(t_player *init)
 {
 	int		i;
 	int		j;
@@ -43,7 +49,7 @@ char	coor_xny(t_player *init)
 		{
 			c = info.the_map[j][i];
 			if (c == 'N' || c == 's' || c == 'E' || c == 'W')
-				return(c);
+				return (c);
 			init->x += SQUARE_SIZE;
 			i++;
 		}
@@ -53,11 +59,15 @@ char	coor_xny(t_player *init)
 	return (c);
 }
 
-// initial or get the t_player variable
+/*
+** initialize the t_player members then we can
+** get the structrue anytime
+*/
+
 t_player	*my_player(int state)
 {
-	static t_player	*init;
-	char			c;
+	static	t_player	*init;
+	char				c;
 
 	if (state == 1)
 	{
@@ -70,14 +80,13 @@ t_player	*my_player(int state)
 		init->rotation_s = 10;
 		init->m_step = init->walk_d * init->move_s;
 	}
-	return(init);
+	return (init);
 }
 
-
-void	count_sprites(t_data info)
+void		count_sprites(t_data info)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 
 	y = 0;
 	g_sprite_num = 0;
@@ -94,8 +103,11 @@ void	count_sprites(t_data info)
 	}
 }
 
-// initializing all the essential elements of cub3d frame
-void	init_frame(int argc, char *argv)
+/*
+** initializing all the essential elements of cub3d frame
+*/
+
+void		init_frame(int argc, char *argv)
 {
 	t_data	info;
 	int		a[2];
