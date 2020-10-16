@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:32:11 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/16 18:11:45 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/16 18:18:08 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ int			max_crd(t_rycrd intsct)
 		i = -1;
 		info = ft_data(NULL);
 		y = count_items(info.the_map);
-		x = (int *)malloc(sizeof(int) * y);
+		x = (int *)malloc(sizeof(int) * (y + 1));
 		while (++i < y)
 			x[i] = ft_strlen(info.the_map[i]) * SQ_SZ;
 		y *= SQ_SZ;
 	}
 	i = (int)(intsct.y / SQ_SZ);
-	if (intsct.y > y || intsct.y < 0 || intsct.x > x[i] || intsct.x < 0)
+	if ((int)intsct.y >= y || intsct.y < 0 ||
+			(int)intsct.x >= x[i] || intsct.x < 0)
 		return (0);
 	return (1);
 }

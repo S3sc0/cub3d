@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 16:11:48 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 13:10:30 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/16 19:07:18 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		check_map_order(char *t_data)
 		i++;
 	if (t_data[i - 3] != '1')
 	{
-		ft_putstr_fd("The Map Isn't The Last Element\n", 2);
+		ft_putstr_fd("Error: The Map Isn't The Last Element\n", 2);
 		ret = 3;
 	}
 	return (ret);
@@ -91,7 +91,7 @@ int		check_map(char **s, char *d)
 		ret = check_map_content(s, max);
 	}
 	if (ret == 0 && ret != 3)
-		ft_putstr_fd("Something Wrong With The Map's Content\n", 2);
+		ft_putstr_fd("Error: Something Wrong With The Map's Content\n", 2);
 	if (ret == 3)
 		ret = 0;
 	return (ret);
