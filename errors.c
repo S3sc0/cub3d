@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 08:59:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/16 19:06:12 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/16 20:19:47 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int		check_rgb(char *s)
 			if ((ft_atoi(rgb[i]) < 0 || ft_atoi(rgb[i]) > 255) && (ret = 0))
 				break ;
 	if (ret == 0)
-		ft_putstr_fd("Error: Something Wrong With The Cell Or Floor Element\n", 2);
+		ft_putstr_fd("Error: Something Wrong In The Cell Or Floor Elmnts\n", 2);
 	free_2d(rgb);
 	free_2d(str);
 	return (ret);

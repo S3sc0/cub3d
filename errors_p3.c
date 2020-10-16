@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 07:30:15 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/16 19:07:45 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/16 20:16:05 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		map_complete(int i, int ret)
 		if (i < 8)
 			ft_putstr_fd("Error: The Map's Elements Are Not Complete\n", 2);
 		else if (i > 8)
-			ft_putstr_fd("Error: There's More Than Required Number Of Elements\n", 2);
+			ft_putstr_fd("Error: There's Much More Elements\n", 2);
 		return (0);
 	}
 	return (ret);
