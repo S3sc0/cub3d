@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:32:11 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 18:50:47 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/16 18:11:45 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ int			max_crd(t_rycrd intsct)
 		y *= SQ_SZ;
 	}
 	i = (int)(intsct.y / SQ_SZ);
-	if (intsct.y > y || intsct.y < 0
-		|| intsct.x > x[i] || intsct.x < 0)
+	if (intsct.y > y || intsct.y < 0 || intsct.x > x[i] || intsct.x < 0)
 		return (0);
 	return (1);
 }
@@ -62,13 +61,12 @@ t_rycrd		h_intsct(float ray_angle, t_player plr)
 	intsct.sy = 0;
 	next.y = SQ_SZ * pnret(sin(ray_angle), 1, 0, -1);
 	next.x = tan(ray_angle) ? next.y / tan(ray_angle) : 0;
-	while (max_crd(intsct) &&
-		!a_wall(intsct.x, intsct.y + of_y, &which1))
+	while (max_crd(intsct) && !a_wall(intsct.x, intsct.y + of_y, &which1))
 	{
 		intsct.sx = which1 == '2' && s == 0 ? intsct.x : intsct.sx;
 		intsct.sy = which1 == '2' && s == 0 && ++s ? intsct.y : intsct.sy;
-		intsct.x += next.x;
-		intsct.y += next.y;
+		intsct.x += next.x == 0 ? 1 : next.x;
+		intsct.y += next.y == 0 ? 1 : next.y;
 	}
 	return (intsct);
 }
@@ -94,14 +92,13 @@ t_rycrd		v_intsct(float ray_angle, t_player plr)
 	intsct.sy = 0;
 	next.x = SQ_SZ * pnret(cos(ray_angle), 1, 0, -1);
 	next.y = next.x * tan(ray_angle);
-	while (max_crd(intsct) &&
-		!a_wall(intsct.x + of_x, intsct.y, &which1))
+	while (max_crd(intsct) && !a_wall(intsct.x + of_x, intsct.y, &which1))
 	{
 		intsct.sx = which1 == '2' && s == 0 ? intsct.x : intsct.sx;
 		intsct.sy = which1 == '2' && s == 0 && ++s ?
 					intsct.y : intsct.sy;
-		intsct.x += next.x;
-		intsct.y += next.y;
+		intsct.x += next.x == 0 ? 1 : next.x;
+		intsct.y += next.y == 0 ? 1 : next.y;
 	}
 	return (intsct);
 }

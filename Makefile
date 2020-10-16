@@ -6,7 +6,7 @@
 #    By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/16 17:00:07 by aamzouar          #+#    #+#              #
-#    Updated: 2020/10/16 17:00:12 by aamzouar         ###   ########.fr        #
+#    Updated: 2020/10/16 18:12:21 by aamzouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ FLAG = -Wextra -Werror -Wall
 
 all:
 	@cd libft && make
-	@clang $(FLAG) -I /usr/local/include *.c ./libft/libft.a -L /usr/local/lib -lmlx -framework OpenGl -framework Appkit -o cub3D
+	@clang $(FLAG) -g -I /usr/local/include *.c ./libft/libft.a -L /usr/local/lib -lmlx -framework OpenGl -framework Appkit -o cub3D #-fsanitize=address
 
 
 clean:

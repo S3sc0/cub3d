@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 14:28:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 18:44:14 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/16 17:10:53 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int		a_wall(float x, float y, char *which1)
 	j = floor(y / SQ_SZ);
 	if (which1)
 		*which1 = info.the_map[j][i];
-	else if (info.the_map[j][i] == '2')
-		return (1);
 	if (info.the_map[j][i] == '1')
 		return (1);
 	return (0);
