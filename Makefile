@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/02/15 15:56:56 by aamzouar          #+#    #+#              #
-#    Updated: 2020/10/15 19:11:49 by aamzouar         ###   ########.fr        #
+#    Created: 2020/10/16 17:00:07 by aamzouar          #+#    #+#              #
+#    Updated: 2020/10/16 17:00:12 by aamzouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ clean:
 fclean: clean
 	@cd libft && make fclean
 	rm -f cub3D
-	
+
 re: fclean all
 
 .PHONY: all clean fclean re
