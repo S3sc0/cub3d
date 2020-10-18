@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 14:28:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/16 17:10:53 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/18 20:29:55 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,19 @@ void	update_walk(int key, t_player *plr)
 {
 	float	wanted_x;
 	float	wanted_y;
+	int		move_angle;
 
-	if (key == UP_A || key == W_KEY)
+	if (key == UP_A || key == W_KEY || key == D_KEY)
 		plr->walk_d = 1;
-	else if (key == DOWN_A || key == S_KEY)
+	else if (key == DOWN_A || key == S_KEY || key == A_KEY)
 		plr->walk_d = -1;
 	plr->m_step = plr->walk_d * plr->move_s;
-	wanted_x = plr->x + cos(plr->rotation_a * RADIN) * plr->m_step;
-	wanted_y = plr->y + sin(plr->rotation_a * RADIN) * plr->m_step;
+	if (key == A_KEY || key == D_KEY)
+		move_angle = norm_a(plr->rotation_a + 90);
+	else
+		move_angle = plr->rotation_a;
+	wanted_x = plr->x + cos(move_angle * RADIN) * plr->m_step;
+	wanted_y = plr->y + sin(move_angle * RADIN) * plr->m_step;
 	if (a_wall(wanted_x, wanted_y, NULL) == 0)
 	{
 		plr->x = wanted_x;
@@ -62,9 +67,9 @@ void	update_walk(int key, t_player *plr)
 
 void	update_turn(int key, t_player *plr)
 {
-	if (key == LEFT_A || key == A_KEY)
+	if (key == LEFT_A)
 		plr->turn_d = -1;
-	else if (key == RIGHT_A || key == D_KEY)
+	else if (key == RIGHT_A)
 		plr->turn_d = 1;
 	plr->rotation_a += plr->turn_d * plr->rotation_s;
 	plr->rotation_a = (int)norm_a(plr->rotation_a);
@@ -79,8 +84,9 @@ void	update_player(int key)
 	t_player *plr;
 
 	plr = my_player(0);
-	if (key == UP_A || key == DOWN_A || key == W_KEY || key == S_KEY)
+	if (key == UP_A || key == DOWN_A || key == W_KEY || key == S_KEY ||
+		key == A_KEY || key == D_KEY)
 		update_walk(key, plr);
-	else if (key == RIGHT_A || key == LEFT_A || key == A_KEY || key == D_KEY)
+	else if (key == RIGHT_A || key == LEFT_A)
 		update_turn(key, plr);
 }
