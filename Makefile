@@ -6,7 +6,7 @@
 #    By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/16 17:00:07 by aamzouar          #+#    #+#              #
-#    Updated: 2020/10/18 16:56:46 by aamzouar         ###   ########.fr        #
+#    Updated: 2020/10/18 17:04:17 by aamzouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,9 @@ $(NAME):
 clean:
 	@cd libft && make clean
 
-fclean: clean
+fclean:
 	@cd libft && make fclean
-	rm -f cub3D
+	rm -f $(NAME) 
 
 re: fclean all
 
