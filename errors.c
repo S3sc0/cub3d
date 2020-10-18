@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 08:59:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/18 18:20:00 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/18 20:33:09 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		check_name(char *s)
 		ret = 3;
 	if (ret == 0 && *s != ' ' && *s != '1' && *s != '\t')
 	{
-		printf("Error\nWrong Identifier Name\n");
+		ft_putstr_fd("Error\nWrong Identifier Name\n", 2);
 		exit(0);
 	}
 	return (ret);
