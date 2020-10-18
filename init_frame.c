@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:05:29 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 18:44:14 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/18 18:50:57 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			which_angle(char c)
 		return (270);
 	else if (c == 'E')
 		return (0);
-	else if (c == 's')
+	else if (c == 'S')
 		return (90);
 	return (180);
 }
@@ -48,7 +48,7 @@ char		coor_xny(t_player *init)
 		while (info.the_map[j][i] != '\0')
 		{
 			c = info.the_map[j][i];
-			if (c == 'N' || c == 's' || c == 'E' || c == 'W')
+			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 				return (c);
 			init->x += SQ_SZ;
 			i++;
