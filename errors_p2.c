@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 16:11:48 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/18 18:21:38 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/18 20:48:50 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,16 @@ int		check_map_content(char **str, int max)
 ** here we check the map's order and it's content if there an empty line
 */
 
-int		check_map_order(char *t_data)
+int		check_map_order(char *data)
 {
 	int		i;
 	int		ret;
 
 	ret = 2;
 	i = 0;
-	while (t_data[i] != '\0')
+	while (data[i] != '\0')
 		i++;
-	if (t_data[i - 3] != '1')
+	if (data[i - 3] != '1')
 	{
 		ft_putstr_fd("Error\nThe Map Isn't The Last Element\n", 2);
 		ret = 3;
