@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:54:49 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/16 19:08:23 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/18 18:21:02 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		main(int argc, char *argv[])
 
 	if (argc < 2 || argc > 3)
 	{
-		ft_putstr_fd("Error: Wrong Number Of Arguments\n", 2);
+		ft_putstr_fd("Error\nWrong Number Of Arguments\n", 2);
 		return (-1);
 	}
 	t_data = argc == 3 ? get_data(argv[2]) : get_data(argv[1]);

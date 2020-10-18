@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 08:09:35 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/16 19:09:18 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/18 18:23:13 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	store_path(char *s, t_data *ptr)
 	xpm_ptr = mlx_xpm_file_to_image(g_mlx_ptr, str[1], &res[0], &res[1]);
 	if (xpm_ptr == NULL)
 	{
-		ft_putstr_fd("Error: The Path Of The XPM File Doesn't Exist\n", 2);
+		ft_putstr_fd("Error\nThe Path Of The XPM File Doesn't Exist\n", 2);
 		exit(1);
 	}
 	if (ft_memcmp(str[0], "NO", 2) == 0)

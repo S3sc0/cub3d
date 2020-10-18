@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:24:28 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/17 10:32:02 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/18 18:23:00 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_empty_line(char *map_data, int ret)
 			if (i + 2 <= (map_len - 2) && map_data[i] == '1'
 				&& map_data[i + 1] == '\n' && map_data[i + 2] == '\n')
 			{
-				ft_putstr_fd("Error: Map's Content Is Wrong !\n", 2);
+				ft_putstr_fd("Error\nMap's Content Is Wrong !\n", 2);
 				return (0);
 			}
 		}

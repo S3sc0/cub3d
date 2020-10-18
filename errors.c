@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 08:59:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/18 18:17:32 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/18 18:20:00 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		check_resolution(char *s)
 				break ;
 	}
 	if (ret == 0)
-		ft_putstr_fd("Error: Something Wrong With The Resolution Element\n", 2);
+		ft_putstr_fd("Error\nSomething Wrong With The Resolution Element\n", 2);
 	free_2d(str);
 	return (ret);
 }
@@ -66,7 +66,7 @@ int		check_name(char *s)
 		ret = 3;
 	if (ret == 0 && *s != ' ' && *s != '1' && *s != '\t')
 	{
-		printf("Error: Wrong Identifier Name\n");
+		printf("Error\nWrong Identifier Name\n");
 		exit(0);
 	}
 	return (ret);
@@ -83,7 +83,7 @@ int		check_path(char *s)
 	str = ft_split(s, ' ');
 	if (count_items(str) != 2)
 	{
-		ft_putstr_fd("Error: Something Wrong With The Path Elements", 2);
+		ft_putstr_fd("Error\nSomething Wrong With The Path Elements", 2);
 	}
 	free_2d(str);
 	return (1);
@@ -114,7 +114,7 @@ int		check_rgb(char *s)
 			if ((ft_atoi(rgb[i]) < 0 || ft_atoi(rgb[i]) > 255) && (ret = 0))
 				break ;
 	if (ret == 0)
-		ft_putstr_fd("Error: Something Wrong In The Cell Or Floor Elmnts\n", 2);
+		ft_putstr_fd("Error\nSomething Wrong In The Cell Or Floor Elmnts\n", 2);
 	free_2d(rgb);
 	free_2d(str);
 	return (ret);

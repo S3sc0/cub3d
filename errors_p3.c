@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 07:30:15 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/16 20:16:05 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/18 18:25:41 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		extension_check(char *file_name)
 	{
 		if (file_name[i] != set[j])
 		{
-			ft_putstr_fd("Error: Wrong File Extension\n", 2);
+			ft_putstr_fd("Error\nWrong File Extension\n", 2);
 			return (0);
 		}
 		j++;
@@ -40,7 +40,7 @@ int		file_existence(int fd)
 {
 	if (fd < 0)
 	{
-		perror("Error ");
+		ft_putstr_fd("Error\nNo Such File Or Directory\n", 2);
 		return (0);
 	}
 	return (1);
@@ -54,7 +54,7 @@ void	if_fail(void *state)
 {
 	if (state == NULL)
 	{
-		perror("Error ");
+		ft_putstr_fd("Error\nThe Allocation Failed\n", 2);
 		mlx_destroy_window(g_mlx_ptr, g_win_ptr);
 		exit(1);
 	}
@@ -70,9 +70,9 @@ int		map_complete(int i, int ret)
 	if (i != 8 && ret != 0)
 	{
 		if (i < 8)
-			ft_putstr_fd("Error: The Map's Elements Are Not Complete\n", 2);
+			ft_putstr_fd("Error\nThe Map's Elements Are Not Complete\n", 2);
 		else if (i > 8)
-			ft_putstr_fd("Error: There's Much More Elements\n", 2);
+			ft_putstr_fd("Error\nThere's Much More Elements\n", 2);
 		return (0);
 	}
 	return (ret);
