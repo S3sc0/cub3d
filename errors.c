@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 08:59:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/16 20:19:47 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/18 18:17:32 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,31 @@ int		check_resolution(char *s)
 
 int		check_name(char *s)
 {
-	if (ft_memcmp(s, "no", 2) == 0)
-		return (1);
-	else if (ft_memcmp(s, "ea", 2) == 0)
-		return (1);
-	else if (ft_memcmp(s, "so", 2) == 0)
-		return (1);
-	else if (ft_memcmp(s, "we", 2) == 0)
-		return (1);
-	else if (ft_memcmp(s, "s ", 2) == 0)
-		return (1);
+	int		ret;
+
+	ret = 0;
+	if (ft_memcmp(s, "R ", 2) == 0)
+		ret = 1;
+	else if (ft_memcmp(s, "NO ", 3) == 0)
+		ret = 2;
+	else if (ft_memcmp(s, "EA ", 3) == 0)
+		ret = 2;
+	else if (ft_memcmp(s, "SO ", 3) == 0)
+		ret = 2;
+	else if (ft_memcmp(s, "WE ", 3) == 0)
+		ret = 2;
+	else if (ft_memcmp(s, "S ", 2) == 0)
+		ret = 2;
 	else if (ft_memcmp(s, "F ", 2) == 0)
-		return (2);
+		ret = 3;
 	else if (ft_memcmp(s, "C ", 2) == 0)
-		return (2);
-	return (0);
+		ret = 3;
+	if (ret == 0 && *s != ' ' && *s != '1' && *s != '\t')
+	{
+		printf("Error: Wrong Identifier Name\n");
+		exit(0);
+	}
+	return (ret);
 }
 
 /*
@@ -126,11 +136,11 @@ int		check_errors(char *stored_data)
 	data = ft_split(stored_data, '\n');
 	while (data[++i] != NULL && ret == 1)
 	{
-		if (data[i][0] == 'R' && data[i][1] == ' ')
+		if (check_name(data[i]) == 1)
 			ret = check_resolution(data[i]);
-		else if (check_name(data[i]) == 1)
-			ret = check_path(data[i]);
 		else if (check_name(data[i]) == 2)
+			ret = check_path(data[i]);
+		else if (check_name(data[i]) == 3)
 			ret = check_rgb(data[i]);
 		else if (data[i][0] == '1' || data[i][0] == ' ')
 		{
