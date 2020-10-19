@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 16:11:48 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/18 20:48:50 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/19 11:16:29 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		check_map_order(char *data)
 	i = 0;
 	while (data[i] != '\0')
 		i++;
-	if (data[i - 3] != '1')
+	if (data[i - 2] != '1')
 	{
 		ft_putstr_fd("Error\nThe Map Isn't The Last Element\n", 2);
 		ret = 3;
