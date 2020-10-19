@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 14:09:41 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/18 18:50:22 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/19 14:48:38 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		check_start_line(char **lines, int id, int max)
 	rounds = 1;
 	i = 0;
 	ret = 1;
-	while (lines[id][i] != '1')
+	while (lines[id][i] != '1' && ret)
 		if (lines[id][i++] != ' ')
 			ret = 0;
 	if (sign == id && id != 0)
@@ -60,6 +60,7 @@ int		check_end_line(char **lines, int id, int max, int ret)
 	while (rounds-- && ret && max != id + 1 && (j = i))
 	{
 		id += 1;
+		ret = check_up_and_down(j, line_len, lines, id);
 		while (j <= line_len && lines[id][j] != '\0' && ret)
 			if (lines[id][j++] != '1')
 				ret = 0;
