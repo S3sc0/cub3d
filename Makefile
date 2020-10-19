@@ -6,7 +6,7 @@
 #    By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/16 17:00:07 by aamzouar          #+#    #+#              #
-#    Updated: 2020/10/18 17:04:17 by aamzouar         ###   ########.fr        #
+#    Updated: 2020/10/19 17:35:03 by aamzouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ FLAG = -Wextra -Werror -Wall
 
 SRC = bmp.c check_map_content.c check_map_content_2.c cub3d.c custom_strdup.c errors.c errors_p2.c errors_p3.c errors_p4.c frame_rendering.c get_next_line.c \
 	  init_frame.c normalize_angle.c put_pixel_img.c ray_casting.c sp_render.c sprite_rendering.c sprite_tools.c store_data.c update_frame.c wall_rendering.c \
-	  window.c
+	  window.c check_map_content_3.c
 
 NAME = cub3D
 

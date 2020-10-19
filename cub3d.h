@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 14:12:08 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 20:35:09 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/19 17:33:32 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,5 +154,5 @@ int			space_validating(char **lines, int x, int *y, int max_y);
 int			vertical_check(char **lines, int max_y, int ret);
 int			longest_x(char **lines, int max);
 float		pnret(float x, float a, float b, float c);
-
+int			check_the_rest(int origin, int line_len, char **lines, int id);
 #	endif
