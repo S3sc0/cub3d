@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 16:36:03 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 16:37:23 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/19 20:47:48 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		space_validating(char **lines, int x, int *y, int max_y)
 	}
 	if (x > g_x_len[*y] && lines[--(*y)][x] == ' ')
 		ret = 0;
-	if (ret && tmp == 0 && *y == max_y && lines[*y][x] != 1)
+	if (ret && tmp == 0 && *y == max_y && lines[*y][x] != '1')
 		ret = 0;
 	return (ret);
 }
