@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 08:59:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/20 14:31:13 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/20 14:53:32 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int		check_rgb(char *s)
 	str = ft_split(s, ' ');
 	rgb = ft_split(str[1], ',');
 	ret = 1;
-	if (count_items(str) != 2 || count_items(rgb) != 3)
+	if (count_items(str) != 2 || count_items(rgb) != 3 || commas(str[1]) > 2)
 		ret = 0;
 	else if (only_nbr(rgb) == 0)
 		ret = 0;
