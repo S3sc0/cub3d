@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:24:28 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/20 14:40:46 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/20 17:07:45 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int		check_repetative_paths(char *map, int i, int ret)
 		else if (map[i] == 'S')
 			path_counter[4] += 1;
 	}
-	while (j < 5)
+	while (j < 5 && path_counter[j] <= 1)
 		res += path_counter[j++];
 	return (res);
 }
