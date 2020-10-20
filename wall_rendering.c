@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 20:04:58 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 18:44:14 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/20 17:18:14 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	wall_rendering(float ray_d, int x, t_data info)
 	while (i < w.bottom)
 	{
 		w.dst_ftop = y + (tmp / 2) - (info.wy / 2);
-		w.offset_y = w.dst_ftop * (64.0 / tmp);
-		g_img_data[x + y * info.wx] = g_texture[64 * w.offset_y + g_offset_x];
+		w.offset_y = w.dst_ftop * ((SQ_SZ * 1.0) / tmp);
+		g_img_data[x + y * info.wx] = g_texture[SQ_SZ * w.offset_y + g_offset_x];
 		y++;
 		i++;
 	}

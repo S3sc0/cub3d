@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 12:21:29 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 18:44:14 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/20 17:17:40 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ void	sprite_rendering(t_player plr, float ray_angle, t_data info, int x)
 		while (++i < s.bottom)
 		{
 			s.dst_ftop = s.top + (tmp / 2) - (info.wy / 2);
-			s.offset_y = s.dst_ftop * (64.0 / tmp);
-			if (info.s[64 * s.offset_y + g_offset_s] != 0)
+			s.offset_y = s.dst_ftop * ((SQ_SZ * 1.0) / tmp);
+			if (info.s[SQ_SZ * s.offset_y + g_offset_s] != 0)
 				g_img_data[s.top * info.wx + x] =
-					info.s[64 * s.offset_y + g_offset_s];
+					info.s[SQ_SZ * s.offset_y + g_offset_s];
 			s.top++;
 		}
 	}

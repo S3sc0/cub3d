@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 16:48:03 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 18:44:14 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/20 17:18:41 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	draw_sprite_texture(t_sprite sprt, t_data info, int i)
 			while (y < sprt.hi_e)
 			{
 				d = y + (sprt.height / 2) - (info.wy / 2);
-				tex_y = d * (64.0 / sprt.height);
-				if (info.s[64 * tex_y + tex_x] != 0)
-					g_img_data[y * info.wx + trp] = info.s[64 * tex_y + tex_x];
+				tex_y = d * ((SQ_SZ * 1.0) / sprt.height);
+				if (info.s[SQ_SZ * tex_y + tex_x] != 0)
+					g_img_data[y * info.wx + trp] = info.s[SQ_SZ * tex_y + tex_x];
 				y++;
 			}
 		}
