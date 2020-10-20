@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 16:36:03 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/19 20:47:48 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/20 08:50:41 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,23 @@ int		vertical_check(char **lines, int max_y, int ret)
 		x++;
 	}
 	free(g_x_len);
+	return (ret);
+}
+
+int		check_the_rest(int origin, int line_len, char **lines, int id)
+{
+	int		ret;
+	int		j;
+
+	j = origin;
+	ret = 1;
+	while (j <= line_len && lines[id][j] != '\0' && ret)
+	{
+		if (j < line_len && j == origin)
+			j += 1;
+		if (lines[id][j] != '1')
+			ret = 0;
+		j++;
+	}
 	return (ret);
 }
