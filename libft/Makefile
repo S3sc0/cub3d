@@ -6,7 +6,7 @@
 #    By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/29 15:40:37 by aamzouar          #+#    #+#              #
-#    Updated: 2020/10/16 17:09:06 by aamzouar         ###   ########.fr        #
+#    Updated: 2020/10/20 18:41:41 by aamzouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ NAME = libft.a
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(SRC)
 	@clang -Wextra -Werror -Wall -c $(SRC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
@@ -42,5 +42,3 @@ bonus:
 	@clang -Wextra -Werror -Wall -c $(SRC_B)
 	@ar rc $(NAME) $(OBJ_B)
 	@ranlib $(NAME)
-
-.PHONY: clean all fclean re $(NAME) bonus
