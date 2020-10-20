@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 08:59:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/18 20:33:09 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/20 14:31:13 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		check_path(char *s)
 	str = ft_split(s, ' ');
 	if (count_items(str) != 2)
 	{
-		ft_putstr_fd("Error\nSomething Wrong With The Path Elements", 2);
+		ft_putstr_fd("Error\nSomething Wrong With The Path Element\n", 2);
 	}
 	free_2d(str);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 16:36:03 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/20 08:50:41 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/20 14:09:28 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int		space_validating(char **lines, int x, int *y, int max_y)
 	}
 	if (x > g_x_len[*y] && lines[--(*y)][x] == ' ')
 		ret = 0;
-	if (ret && tmp == 0 && *y == max_y && lines[*y][x] != '1')
-		ret = 0;
+	/*if (ret && tmp == 0 && *y == max_y && lines[*y][x] != '1')
+		ret = 0;*/
 	return (ret);
 }
 
@@ -75,6 +75,24 @@ int		check_the_rest(int origin, int line_len, char **lines, int id)
 		if (lines[id][j] != '1')
 			ret = 0;
 		j++;
+	}
+	return (ret);
+}
+
+int		printf_error_message(int ret, int number_of_paths)
+{
+	if (ret != 1)
+	{
+		if (ret == 2)
+			ft_putstr_fd("Error\nNon Allowed Element Is In The Map File\n", 2);
+		else if (ret == 3)
+			ft_putstr_fd("Error\nThere Is a Line With a Space\n", 2);
+		ret = 0;
+	}
+	else if (number_of_paths > 5 || number_of_paths < 5)
+	{
+			ft_putstr_fd("Error\nSomething Wrong With The Path Element\n", 2);
+			ret = 0;
 	}
 	return (ret);
 }
