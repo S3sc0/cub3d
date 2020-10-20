@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:24:28 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/20 17:46:07 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/20 17:49:37 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,6 @@ int		unallowd_elements_check(char *map)
 		i++;
 	while (map[i] != '\0' && ret == 1)
 		ret = check_after_newline(map, &i, ret);
-	ret = printf_error_message(ret, check_repetative_paths(map, i, 0));
+	ret = print_error_message(ret, check_repetative_paths(map, i, 0));
 	return (ret);
 }
