@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:24:28 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/20 17:07:45 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/20 17:46:07 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,10 @@ int		check_empty_line(char *map_data, int ret)
 	i = 0;
 	if (ret)
 	{
-		while ((map_data[i] != '\n' && map_data[i] != '\0') || 
+		while ((map_data[i] != '\n' && map_data[i] != '\0') ||
 			(map_data[i + 1] != '1' && map_data[i + 1] != ' '))
 			i++;
-		if (map_data[i] == '\0')
-		{
-			ft_putstr_fd("Error\nThe Map Doesn't Exist\n", 2);
-			ret = 0;
-		}
+		ret = map_not_found(map_data, i, ret);
 		while (map_data[i++] != '\0')
 		{
 			if (i + 2 <= (map_len - 2) && map_data[i] == '1'

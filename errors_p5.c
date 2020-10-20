@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 14:50:37 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/20 14:52:06 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/20 17:45:28 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,14 @@ int		commas(char *s)
 		i++;
 	}
 	return (res);
+}
+
+int		map_not_found(char *map_data, int i, int ret)
+{
+	if (map_data[i] == '\0')
+	{
+		ft_putstr_fd("Error\nThe Map Doesn't Exist\n", 2);
+		ret = 0;
+	}
+	return (ret);
 }
