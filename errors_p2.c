@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 16:11:48 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/21 14:36:16 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/21 16:34:45 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int		check_map_content(char **str, int max)
 		ret = check_start_line(str, i, max);
 		ret = check_end_line(str, i, max, ret);
 		ret = horizontal_check(str[i], i, max, ret);
-		ret = check_line_of_zeros(str[i], ret);
 		i++;
 	}
 	ret = vertical_check(str, max, ret);

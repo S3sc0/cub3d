@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 14:09:41 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/21 13:04:12 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/21 16:32:00 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,9 @@ int		check_line_horizontally(char *line, int id, int max, int ret)
 		else
 			line++;
 	}
-	if ((id == max - 2 && players == 0) || players > 1)
+	if (*line == '\0' && *(line - 1) != '1')
+		ret = 0;
+	else if ((id == max - 2 && players == 0) || players > 1)
 		ret = 0;
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 14:50:37 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/21 13:25:16 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/21 16:34:34 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,6 @@ int		map_not_found(char *map_data, int i, int ret)
 	{
 		ft_putstr_fd("Error\nThe Map Doesn't Exist\n", 2);
 		ret = 0;
-	}
-	return (ret);
-}
-
-int		check_line_of_zeros(char *line, int ret)
-{
-	int		i;
-
-	i = 0;
-	while (line[i] != '\0' && ret)
-	{
-		if (line[i] == '0')
-		{
-			if (i == 0 || line[i - 1] == ' ')
-				ret = 0;
-			while ((line[i] == '0' || line[i] == '\0') && ret)
-			{
-				if (line[i] == ' ' || line[i] == '\0')
-					ret = 0;
-				i++;
-			}
-		}
-		else
-			i++;
 	}
 	return (ret);
 }
