@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 16:11:48 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/21 13:18:43 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/21 14:36:16 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int		check_map(char **s, char *d)
 		ret = check_map_content(s, max);
 	}
 	if (ret == 0 && ret != 3)
-		ft_putstr_fd("Error\nSomething Wrong With The Map's Content\n", 2);
+		ft_putstr_fd("Error\nMap's Content Is Wrong !\n", 2);
 	if (ret == 3)
 		ret = 0;
 	return (ret);
