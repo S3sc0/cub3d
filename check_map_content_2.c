@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 16:36:03 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/21 13:35:27 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/21 16:50:15 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		print_error_message(int ret, int number_of_paths)
 	if (ret != 1)
 	{
 		if (ret == 2)
-			ft_putstr_fd("Error\nLine Starts With The Wrong Character\n", 2);
+			ft_putstr_fd("Error\nLine Starts With An Unallowed Character\n", 2);
 		else if (ret == 3)
 			ft_putstr_fd("Error\nThere's An Invalid Line\n", 2);
 		ret = 0;
