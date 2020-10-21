@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 16:36:03 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/20 17:49:23 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/21 13:35:27 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ int		print_error_message(int ret, int number_of_paths)
 	if (ret != 1)
 	{
 		if (ret == 2)
-			ft_putstr_fd("Error\nNon Allowed Element Is In The Map File\n", 2);
+			ft_putstr_fd("Error\nLine Starts With The Wrong Character\n", 2);
 		else if (ret == 3)
-			ft_putstr_fd("Error\nThere Is a Line With a Space\n", 2);
+			ft_putstr_fd("Error\nThere's An Invalid Line\n", 2);
 		ret = 0;
 	}
 	else if (number_of_paths > 5 || number_of_paths < 5)
