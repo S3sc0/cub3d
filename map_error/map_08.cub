@@ -1,0 +1,17 @@
+R 1000000 1000000
+
+NO ./textures/greystone.xpm
+SO ./textures/mossy.xpm
+WE ./textures/eagle.xpm
+EA ./textures/redbrick.xpm
+
+S ./textures/barrel.xpm
+
+  111111111
+11000000001
+110000N0001
+110200000001
+11111111111
+
+C 77,80,45
+F 242,80,65
