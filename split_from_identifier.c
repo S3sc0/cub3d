@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 10:33:28 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/22 14:28:18 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/22 16:58:16 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		identifier_length(char *s)
 int		path_starts(char *s)
 {
 	int		i;
-	
+
 	i = identifier_length(s);
 	while (s[i] == ' ')
 		i++;
@@ -56,9 +56,9 @@ char	**split_from_identifier(char *s)
 		return (NULL);
 	idn_data[2] = NULL;
 	if (!(idn_data[0] = (char*)malloc(sizeof(char) * (j + 1))))
-			return (free_split(idn_data, 0));
+		return (free_split(idn_data, 0));
 	if (!(idn_data[1] = (char*)malloc(sizeof(char) * (len + 1))))
-			return (free_split(idn_data, 1));
+		return (free_split(idn_data, 1));
 	idn_data[0] = ft_memcpy(idn_data[0], s, j);
 	idn_data[0][j] = '\0';
 	idn_data[1] = ft_memcpy(idn_data[1], (s + i), len);
