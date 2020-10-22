@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 08:59:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/22 11:55:18 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/22 14:07:46 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int		check_resolution(char *s)
 
 	ret = 1;
 	i = -1;
-	str = split_from_identifier(s);
-	//str = ft_split(s, ' ');
+	str = ft_split((s + 1), ' ');
 	if (count_items(str) != 3)
 		ret = 0;
 	if (ret != 0)
@@ -83,7 +82,6 @@ int		check_path(char *s)
 	char	**str;
 
 	str = split_from_identifier(s);
-	//str = ft_split(s, ' ');
 	if (count_items(str) != 2)
 	{
 		ft_putstr_fd("Error\nSomething Wrong With The Path Element\n", 2);
@@ -106,7 +104,6 @@ int		check_rgb(char *s)
 
 	i = -1;
 	str = split_from_identifier(s);
-	//str = ft_split(s, ' ');
 	rgb = ft_split(str[1], ',');
 	ret = 1;
 	if (count_items(str) != 2 || count_items(rgb) != 3 || commas(str[1]) > 2)
