@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 08:59:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/20 14:53:32 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/22 10:25:10 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,27 +48,22 @@ int		check_name(char *s)
 	int		ret;
 
 	ret = 0;
-	if (ft_memcmp(s, "R ", 2) == 0)
+	if (ft_memcmp(s, "R", 2) == 0)
 		ret = 1;
-	else if (ft_memcmp(s, "NO ", 3) == 0)
+	else if (ft_memcmp(s, "NO", 2) == 0)
 		ret = 2;
-	else if (ft_memcmp(s, "EA ", 3) == 0)
+	else if (ft_memcmp(s, "EA", 2) == 0)
 		ret = 2;
-	else if (ft_memcmp(s, "SO ", 3) == 0)
+	else if (ft_memcmp(s, "SO", 2) == 0)
 		ret = 2;
-	else if (ft_memcmp(s, "WE ", 3) == 0)
+	else if (ft_memcmp(s, "WE", 2) == 0)
 		ret = 2;
-	else if (ft_memcmp(s, "S ", 2) == 0)
+	else if (ft_memcmp(s, "S", 1) == 0)
 		ret = 2;
-	else if (ft_memcmp(s, "F ", 2) == 0)
+	else if (ft_memcmp(s, "F", 1) == 0)
 		ret = 3;
-	else if (ft_memcmp(s, "C ", 2) == 0)
+	else if (ft_memcmp(s, "C", 1) == 0)
 		ret = 3;
-	if (ret == 0 && *s != ' ' && *s != '1' && *s != '\t')
-	{
-		ft_putstr_fd("Error\nWrong Identifier Name\n", 2);
-		exit(0);
-	}
 	return (ret);
 }
 
