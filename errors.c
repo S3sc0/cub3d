@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 08:59:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/22 11:01:41 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/22 11:55:18 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int		check_resolution(char *s)
 
 	ret = 1;
 	i = -1;
-	str = ft_split(s, ' ');
+	str = split_from_identifier(s);
+	//str = ft_split(s, ' ');
 	if (count_items(str) != 3)
 		ret = 0;
 	if (ret != 0)
@@ -48,7 +49,7 @@ int		check_name(char *s)
 	int		ret;
 
 	ret = 0;
-	if (ft_memcmp(s, "R", 2) == 0)
+	if (ft_memcmp(s, "R", 1) == 0)
 		ret = 1;
 	else if (ft_memcmp(s, "NO", 2) == 0)
 		ret = 2;
@@ -66,6 +67,7 @@ int		check_name(char *s)
 		ret = 3;
 	if (ret == 0 && *s != ' ' && *s != '1' && *s != '\t')
 	{
+		printf("%s\n", s);
 		ft_putstr_fd("Error\nWrong Identifier Name\n", 2);
 		exit(0);
 	}
@@ -80,7 +82,8 @@ int		check_path(char *s)
 {
 	char	**str;
 
-	str = ft_split(s, ' ');
+	str = split_from_identifier(s);
+	//str = ft_split(s, ' ');
 	if (count_items(str) != 2)
 	{
 		ft_putstr_fd("Error\nSomething Wrong With The Path Element\n", 2);
@@ -102,7 +105,8 @@ int		check_rgb(char *s)
 	int		i;
 
 	i = -1;
-	str = ft_split(s, ' ');
+	str = split_from_identifier(s);
+	//str = ft_split(s, ' ');
 	rgb = ft_split(str[1], ',');
 	ret = 1;
 	if (count_items(str) != 2 || count_items(rgb) != 3 || commas(str[1]) > 2)

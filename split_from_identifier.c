@@ -6,15 +6,15 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 10:33:28 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/22 11:39:58 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/22 12:27:06 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	**ft_free(int b, char **str)
+char	**free_split(char **str, int b)
 {
-	while (b)
+	while (b >= 0)
 		free(str[b--]);
 	free(str);
 	return (NULL);
@@ -52,15 +52,16 @@ char	**split_from_identifier(char *s)
 	i = path_starts(s);
 	j = identifier_length(s);
 	len = ft_strlen((s + i));
-	if (!(identifier_length = malloc(sizeof(char*) * 2)))
+	if (!(idn_data = (char**)malloc(sizeof(char*) * 3)))
 		return (NULL);
-	if (!(idn_data[0] = malloc(sizeof(char) * (j + 1)))
-			return (ft_free(idn_data, 0));
-	if (!(idn_data[1] = malloc(sizeof(char) * (len + 1)))
-			return (ft_free(idn_data, 1));
-	idn_data[0] = ft_memcmp(idn_data[0], s, j);
+	if (!(idn_data[0] = (char*)malloc(sizeof(char) * (j + 1))))
+			return (free_split(idn_data, 0));
+	if (!(idn_data[1] = (char*)malloc(sizeof(char) * (len + 1))))
+			return (free_split(idn_data, 1));
+	idn_data[0] = ft_memcpy(idn_data[0], s, j);
 	idn_data[0][j] = '\0';
-	idn_data[1] = ft_memcmp(idn_data[0], (s + i), len);
+	idn_data[1] = ft_memcpy(idn_data[1], (s + i), len);
 	idn_data[1][len] = '\0';
+	idn_data[2] = NULL;
 	return (idn_data);
 }

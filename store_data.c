@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 08:09:35 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/22 08:46:36 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/22 11:44:05 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	store_resolution(char *s, t_data *ptr)
 {
 	char	**str;
 
-	str = ft_split(s, ' ');
+	str = split_from_identifier(s);
+	//str = ft_split(s, ' ');
 	ptr->wx = ft_atoi(str[1]);
 	ptr->wy = ft_atoi(str[2]);
 	if (ptr->wx > 2560)
@@ -46,7 +47,8 @@ void	store_path(char *s, t_data *ptr)
 	int		b[3];
 	int		res[2];
 
-	str = ft_split(s, ' ');
+	str = split_from_identifier(s);
+	//str = ft_split(s, ' ');
 	xpm_ptr = mlx_xpm_file_to_image(g_mlx_ptr, str[1], &res[0], &res[1]);
 	if (xpm_ptr == NULL)
 	{
@@ -76,7 +78,8 @@ void	store_color(char *s, t_data *ptr)
 	char	**rgb;
 	int		rgb_color;
 
-	str = ft_split(s, ' ');
+	str = split_from_identifier(s);
+	//str = ft_split(s, ' ');
 	rgb = ft_split(str[1], ',');
 	rgb_color = ft_atoi(rgb[0]) * 65536 +
 			ft_atoi(rgb[1]) * 256 + ft_atoi(rgb[2]);
