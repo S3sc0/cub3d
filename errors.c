@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 08:59:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/22 14:18:10 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/22 16:48:23 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,25 @@ int		check_name(char *s)
 int		check_path(char *s)
 {
 	char	**str;
+	int		fd;
+	int		ret;
 
+	ret = 1;
 	str = split_from_identifier(s);
-	if (count_items(str) != 2)
+	fd = open(str[1], O_RDONLY);
+	if (ft_strlen(str[0]) > 1 && fd < 0)
 	{
-		ft_putstr_fd("Error\nSomething Wrong With The Path Element\n", 2);
+		ft_putstr_fd("Error\nThe Path To The Texture Is Wrong\n", 2);
+		ret = 0;
 	}
+	else if (fd < 0)
+	{
+		ft_putstr_fd("Error\nThe Path To The Sprite Is Wrong\n", 2);
+		ret = 0;
+	}
+	close(fd);
 	free_2d(str);
-	return (1);
+	return (ret);
 }
 
 /*
