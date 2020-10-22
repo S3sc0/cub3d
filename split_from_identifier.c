@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 10:33:28 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/22 12:27:06 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/22 14:28:18 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		identifier_length(char *s)
 	int		length;
 
 	length = 0;
-	if (*s == 'R' || *s == 'S' || *s == 'C' || *s == 'F')
+	if (*s == 'R' || (*s == 'S' && s[1] != 'O') || *s == 'C' || *s == 'F')
 		length = 1;
 	else
 		length = 2;
@@ -54,6 +54,7 @@ char	**split_from_identifier(char *s)
 	len = ft_strlen((s + i));
 	if (!(idn_data = (char**)malloc(sizeof(char*) * 3)))
 		return (NULL);
+	idn_data[2] = NULL;
 	if (!(idn_data[0] = (char*)malloc(sizeof(char) * (j + 1))))
 			return (free_split(idn_data, 0));
 	if (!(idn_data[1] = (char*)malloc(sizeof(char) * (len + 1))))
@@ -62,6 +63,5 @@ char	**split_from_identifier(char *s)
 	idn_data[0][j] = '\0';
 	idn_data[1] = ft_memcpy(idn_data[1], (s + i), len);
 	idn_data[1][len] = '\0';
-	idn_data[2] = NULL;
 	return (idn_data);
 }

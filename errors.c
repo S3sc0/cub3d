@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 08:59:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/22 14:07:46 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/22 14:18:10 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ int		check_resolution(char *s)
 	ret = 1;
 	i = -1;
 	str = ft_split((s + 1), ' ');
-	if (count_items(str) != 3)
+	if (count_items(str) != 2)
 		ret = 0;
 	if (ret != 0)
 	{
-		while (str[1][++i] != '\0')
-			if ((str[1][i] < '0' || str[1][i] > '9') && (ret = 0))
+		while (str[0][++i] != '\0')
+			if ((str[0][i] < '0' || str[0][i] > '9') && (ret = 0))
 				break ;
 		i = -1;
-		while (str[2][++i] != '\0')
-			if ((str[2][i] < '0' || str[2][i] > '9') && (ret = 0))
+		while (str[1][++i] != '\0')
+			if ((str[1][i] < '0' || str[1][i] > '9') && (ret = 0))
 				break ;
 	}
 	if (ret == 0)
