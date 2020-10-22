@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 14:12:08 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/21 16:34:39 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/22 11:38:24 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,5 +159,6 @@ int			unallowd_elements_check(char *map);
 int			print_error_message(int ret, int number_of_paths);
 int			commas(char *s);
 int			map_not_found(char *map_data, int i, int ret);
+char		**split_from_identifier(char *s);
 
 #	endif
