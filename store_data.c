@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 08:09:35 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/18 18:23:13 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/22 08:46:36 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ void	store_resolution(char *s, t_data *ptr)
 		ptr->wx = 2560;
 	if (ptr->wy > 1395)
 		ptr->wy = 1395;
+	if (ptr->wx == 0 || ptr->wy == 0)
+	{
+		ft_putstr_fd("Error\nResolution Dimensions Must Not Equal 0\n", 2);
+		exit(1);
+	}
 	free_2d(str);
 }
 
