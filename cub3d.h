@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 14:12:08 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/22 11:38:24 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/25 16:45:37 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,8 @@ int			file_existence(int fd);
 void		if_fail(void *state);
 t_data		ft_data(char *data_file);
 void		open_window(void);
-void		frame_render(int argc, char *argv);
-void		init_frame(int argc, char *argv);
+void		frame_render(int argc);
+void		init_frame(int argc);
 void		put_pixel_img(int x, int y, int color);
 t_player	*my_player(int state);
 void		update_player(int key);
@@ -143,7 +143,7 @@ void		sprite_dst(t_player plr, t_rycrd hi, t_rycrd vi);
 void		draw_sprite(t_player plr, t_data info);
 float		calc_sp_x_start(t_player plr, t_data info, t_crd sprite);
 void		draw_sprite_texture(t_sprite sprt, t_data info, int i);
-void		export_bmp(char *flag, int argc, int width, int height);
+void		export_bmp(int argc, int width, int height);
 int			check_start_line(char **lines, int id, int max);
 int			check_end_line(char **lines, int id, int max, int ret);
 int			horizontal_check(char *line, int id, int max, int ret);
@@ -160,5 +160,6 @@ int			print_error_message(int ret, int number_of_paths);
 int			commas(char *s);
 int			map_not_found(char *map_data, int i, int ret);
 char		**split_from_identifier(char *s);
+void		check_bmp_errors(int fd, char *flag, char c);
 
 #	endif

@@ -6,22 +6,35 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 14:08:23 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/14 14:09:47 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/25 16:43:13 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	check_bmp_errors(int fd, char *flag)
+void	check_bmp_errors(int fd, char *flag, char c)
 {
-	int	length;
+	int	ret;
 
-	length = ft_strlen(flag);
-	if (fd < 0 || ft_memcmp(flag, "--save", length) != 0)
+	ret = 1;
+	if (c == 'y')
 	{
-		ft_putstr_fd("Something wrong can't export the bmp image\n", 1);
-		exit(1);
+		if (ft_memcmp(flag, "--save", 6) != 0)
+		{
+			ft_putstr_fd("Error\nYou've Inserted A Wrong Option\n", 2);
+			ret = 0;
+		}
 	}
+	if (c == 'n')
+	{
+		if (fd < 0)
+		{
+			ft_putstr_fd("Error\nCan't Create The BMP File\n", 2);
+			ret = 0;
+		}
+	}
+	if (ret == 0)
+		exit(1);
 }
 
 void	write_header(int fd, int width, int height)
@@ -76,14 +89,14 @@ void	write_pixel_color(int fd, int width, int height)
 	}
 }
 
-void	export_bmp(char *flag, int argc, int width, int height)
+void	export_bmp(int argc, int width, int height)
 {
 	int	fd;
 
 	if (argc == 3)
 	{
 		fd = open("Scene.bmp", O_TRUNC | O_WRONLY | O_CREAT, 0777);
-		check_bmp_errors(fd, flag);
+		check_bmp_errors(fd, NULL, 'n');
 		write_header(fd, width, height);
 		write_info_header(fd, width, height);
 		write_pixel_color(fd, width, height);

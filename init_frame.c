@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:05:29 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/18 18:50:57 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/25 16:42:27 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void		count_sprites(t_data info)
 ** initializing all the essential elements of cub3d frame
 */
 
-void		init_frame(int argc, char *argv)
+void		init_frame(int argc)
 {
 	t_data	info;
 	int		a[2];
@@ -119,5 +119,5 @@ void		init_frame(int argc, char *argv)
 	g_img_ptr = mlx_new_image(g_mlx_ptr, info.wx, info.wy);
 	g_img_data = (int*)mlx_get_data_addr(g_img_ptr, &a[0], &g_line, &a[1]);
 	my_player(1);
-	frame_render(argc, argv);
+	frame_render(argc);
 }

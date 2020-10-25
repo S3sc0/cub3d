@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:54:49 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/20 11:24:53 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/25 16:47:16 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		update(int key)
 	key == A_KEY || key == W_KEY || key == S_KEY || key == D_KEY)
 	{
 		update_player(key);
-		frame_render(2, NULL);
+		frame_render(2);
 	}
 	return (0);
 }
@@ -69,12 +69,14 @@ int		main(int argc, char *argv[])
 		ft_putstr_fd("Error\nWrong Number Of Arguments\n", 2);
 		return (-1);
 	}
-	data = argc == 3 ? get_data(argv[2]) : get_data(argv[1]);
+	if (argc == 3)
+		check_bmp_errors(0, argv[2], 'y');
+	data = get_data(argv[1]);
 	if (!unallowd_elements_check(data) || !(check_errors(data)))
 		exit(1);
 	if_fail(g_mlx_ptr = mlx_init());
 	ft_data(data);
-	init_frame(argc, argv[1]);
+	init_frame(argc);
 	mlx_hook(g_win_ptr, 2, 1, &update, (void*)0);
 	mlx_loop(g_mlx_ptr);
 	return (0);

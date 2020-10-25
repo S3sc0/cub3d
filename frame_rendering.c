@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 11:51:34 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 18:55:33 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/25 16:42:46 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	draw_background(t_data info)
 ** this function draws the whole frame in the screen
 */
 
-void	frame_render(int argc, char *argv)
+void	frame_render(int argc)
 {
 	t_data		f;
 	t_player	plr;
@@ -68,7 +68,7 @@ void	frame_render(int argc, char *argv)
 	rays(plr, f);
 	draw_sprite(plr, f);
 	if (argc == 3)
-		export_bmp(argv, argc, f.wx, f.wy);
+		export_bmp(argc, f.wx, f.wy);
 	else
 		mlx_put_image_to_window(g_mlx_ptr, g_win_ptr, g_img_ptr, 0, 0);
 }
