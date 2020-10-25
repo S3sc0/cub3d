@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 08:59:20 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/22 16:57:38 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/25 17:05:36 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ int		check_resolution(char *s)
 
 	ret = 1;
 	i = -1;
-	str = ft_split((s + 1), ' ');
-	if (count_items(str) != 2)
+	str = ft_split(s, ' ');
+	if (count_items(str) != 3)
 		ret = 0;
 	if (ret != 0)
 	{
-		while (str[0][++i] != '\0')
-			if ((str[0][i] < '0' || str[0][i] > '9') && (ret = 0))
-				break ;
-		i = -1;
 		while (str[1][++i] != '\0')
 			if ((str[1][i] < '0' || str[1][i] > '9') && (ret = 0))
+				break ;
+		i = -1;
+		while (str[2][++i] != '\0')
+			if ((str[2][i] < '0' || str[2][i] > '9') && (ret = 0))
 				break ;
 	}
 	if (ret == 0)
@@ -83,7 +83,7 @@ int		check_path(char *s)
 	int		ret;
 
 	ret = 1;
-	str = split_from_identifier(s);
+	str = ft_split(s, ' ');
 	fd = open(str[1], O_RDONLY);
 	if (ft_strlen(str[0]) > 1 && fd < 0)
 	{
@@ -113,7 +113,7 @@ int		check_rgb(char *s)
 	int		i;
 
 	i = -1;
-	str = split_from_identifier(s);
+	str = ft_split(s, ' ');
 	rgb = ft_split(str[1], ',');
 	ret = 1;
 	if (count_items(str) != 2 || count_items(rgb) != 3 || commas(str[1]) > 2)
