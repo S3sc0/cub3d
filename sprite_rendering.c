@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 17:06:51 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/15 18:44:14 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/30 10:11:32 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,37 +83,37 @@ void	sort_sprites(t_crd **sprites)
 ** here we calc start and end of the sprite both in height & width
 */
 
-void	calc_sprite_info(t_sprite *g_sprt, t_player plr,
+void	calc_sprite_info(t_sprite *sprt, t_player plr,
 		t_data info, t_crd *sprites)
 {
 	float	dpp;
 
 	dpp = (info.wx / 2) / tan((FOV_ANGLE * RADIN) / 2);
-	g_sprt->height = (SQ_SZ / g_sprite_distance[g_sprt->i]) * dpp;
-	g_sprt->hi_s = -g_sprt->height / 2 + info.wy / 2;
-	g_sprt->hi_s = g_sprt->hi_s < 0 ? 0 : g_sprt->hi_s;
-	g_sprt->hi_e = g_sprt->height / 2 + info.wy / 2;
-	g_sprt->hi_e = g_sprt->hi_e > info.wy ? info.wy - 1 : g_sprt->hi_e;
-	g_sprt->wi_s = calc_sp_x_start(plr, info, sprites[g_sprt->i]) -
-				(g_sprt->height / 2);
-	g_sprt->wi_e = g_sprt->wi_s + g_sprt->height;
+	sprt->height = (SQ_SZ / g_sprite_distance[sprt->i]) * dpp;
+	sprt->hi_s = -sprt->height / 2 + info.wy / 2;
+	sprt->hi_s = sprt->hi_s < 0 ? 0 : sprt->hi_s;
+	sprt->hi_e = sprt->height / 2 + info.wy / 2;
+	sprt->hi_e = sprt->hi_e > info.wy ? info.wy - 1 : sprt->hi_e;
+	sprt->wi_s = calc_sp_x_start(plr, info, sprites[sprt->i]) -
+				(sprt->height / 2);
+	sprt->wi_e = sprt->wi_s + sprt->height;
 }
 
 void	draw_sprite(t_player plr, t_data info)
 {
-	t_sprite	g_sprt;
+	t_sprite	sprt;
 	t_crd		*sprites;
 
 	sprites = (t_crd *)malloc(sizeof(t_crd) * g_sprite_num);
 	store_sprite_position(sprites, info);
 	initial_sprite_properties(sprites, plr);
 	sort_sprites(&sprites);
-	g_sprt.i = 0;
-	while (g_sprt.i < g_sprite_num)
+	sprt.i = 0;
+	while (sprt.i < g_sprite_num)
 	{
-		calc_sprite_info(&g_sprt, plr, info, sprites);
-		draw_sprite_texture(g_sprt, info, g_sprt.i);
-		g_sprt.i++;
+		calc_sprite_info(&sprt, plr, info, sprites);
+		draw_sprite_texture(sprt, info, sprt.i);
+		sprt.i++;
 	}
 	free(g_sprite_distance);
 	free(g_wall_distance);

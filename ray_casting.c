@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:32:11 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/16 18:18:08 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/30 10:57:54 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ float		calc_distance(t_player plr, t_rycrd hi, t_rycrd vi, float ray_angle)
 	float	res2;
 	float	ret;
 
-	sprite_dst(plr, hi, vi);
 	res1 = sqrt(pow(plr.x - hi.x, 2) + pow(plr.y - hi.y, 2));
 	res2 = sqrt(pow(plr.x - vi.x, 2) + pow(plr.y - vi.y, 2));
 	if (res1 < res2)

@@ -6,7 +6,7 @@
 /*   By: aamzouar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 16:48:03 by aamzouar          #+#    #+#             */
-/*   Updated: 2020/10/20 17:43:01 by aamzouar         ###   ########.fr       */
+/*   Updated: 2020/10/30 10:29:22 by aamzouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ float	calc_sp_x_start(t_player plr, t_data info, t_crd sprite)
 	x = sp_angle / pixel_num;
 	return (x);
 }
+
+/*
+ ** Here trp means strip i've made it short just for the norm
+*/
 
 void	draw_sprite_texture(t_sprite sprt, t_data info, int i)
 {
