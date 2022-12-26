@@ -59,7 +59,7 @@ There's a configuration file that allows you to manipulate the game environment 
     C 77,80,140
     F 242,80,65
 ```
-- Change the game map as 2D map where 1 means a wall, 0 means an empty space, 2 means sprite object and N, S, W, E a player and the direction he's facing.
+- Change the game map as 2D map where 1 means a wall, 0 means an empty space, 2 means sprite object and N, S, W and E means a player and the direction he's facing.
 ```
             1111111111111111111111111
             1000000000110000000000001
@@ -76,3 +76,10 @@ There's a configuration file that allows you to manipulate the game environment 
     11110111 1110101 101111010001
     11111111 1111111 111111111111
 ```
+
+## Resources
+
+- [RayCasting part 1](https://lodev.org/cgtutor/raycasting.html)
+- [RayCasting part 2](https://lodev.org/cgtutor/raycasting2.html)
+- [RayCasting part 3](https://lodev.org/cgtutor/raycasting3.html)
+- [RayCasting part 4](https://lodev.org/cgtutor/raycasting4.html)
