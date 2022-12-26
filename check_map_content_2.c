@@ -15,9 +15,7 @@
 int		space_validating(char **lines, int x, int *y, int max_y)
 {
 	int		ret;
-	int		tmp;
 
-	tmp = *y;
 	ret = 1;
 	if (*y != 0 && lines[*y - 1][x] != '1')
 		ret = 0;
