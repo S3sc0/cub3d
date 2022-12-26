@@ -39,7 +39,7 @@ You can move around using you keyboard's arrows or using the following keys **W,
 There's a configuration file that allows you to manipulate the game environment called `map.cub` where you can:
 
 
-- Change the window resolution, the unit is pixil.
+- Change the window resolution, the unit is pixel.
 ```
     R 1000 700
 ```
