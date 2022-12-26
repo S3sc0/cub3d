@@ -1,6 +1,6 @@
 # cub3D
 
-This is a school project inspired by the world-famous Wolfenstein 3D game where I created a playable enviremonet with the help of ray-casting algorithm and a school made graphics library called MinilibX a simple X-Window (X11R6) programming API in C.
+This is a school project inspired by the world-famous Wolfenstein 3D game where I created a playable environment with the help of ray-casting algorithm and a school made graphics library called MinilibX a simple X-Window (X11R6) programming API in C.
 
 ## ScreenShots
 
@@ -10,9 +10,9 @@ This is a school project inspired by the world-famous Wolfenstein 3D game where 
 
 ## How To Use
 
-This project is able to work in both linux machine and our school's mac only. If you have a linux machine follow this guide.
+This project is able to work in both linux machine and our school's mac only. If you have a linux machine follow these steps.
 First you need to have MinilibX library follow [this](https://github.com/42Paris/minilibx-linux) guide to install it.
-To get the project work properly in your machine run this script.
+To get the project work properly in your machine run this script in your terminal.
 ```
 >   ./configure.sh
 ``` 
