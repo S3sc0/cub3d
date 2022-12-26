@@ -14,19 +14,38 @@
 
 FLAG = -Wextra -Werror -Wall
 
-HEADER = cub3d.h
+HEADER = ./src/cub3d.h
 
-SRC = bmp.c check_map_content.c check_map_content_2.c cub3d.c custom_strdup.c errors.c errors_p2.c errors_p3.c errors_p4.c frame_rendering.c get_next_line.c \
-	  init_frame.c normalize_angle.c put_pixel_img.c ray_casting.c sprite_rendering.c sprite_tools.c store_data.c update_frame.c wall_rendering.c \
-	  window.c errors_p5.c
+SRC =	./src/bmp.c \
+		./src/check_map_content.c \
+		./src/check_map_content_2.c \
+		./src/cub3d.c \
+		./src/custom_strdup.c \
+		./src/errors.c \
+		./src/errors_p2.c \
+		./src/errors_p3.c \
+		./src/errors_p4.c \
+		./src/frame_rendering.c \
+		./src/get_next_line.c \
+		./src/init_frame.c \
+		./src/normalize_angle.c \
+		./src/put_pixel_img.c \
+		./src/ray_casting.c \
+		./src/sprite_rendering.c \
+		./src/sprite_tools.c \
+		./src/store_data.c \
+		./src/update_frame.c \
+		./src/wall_rendering.c \
+		./src/window.c \
+		./src/errors_p5.c
 
 NAME = cub3D
 
 all: $(NAME)
 
 $(NAME): $(SRC) $(HEADER)
-	@cd libft && make
-	@clang $(FLAG) -I /usr/local/include $(SRC) ./libft/libft.a -L /usr/local/lib -lmlx -framework OpenGl -framework Appkit -o $(NAME)  
+	@cd ./src/libft && make
+	@clang $(FLAG) -I /usr/local/include $(SRC) ./src/libft/libft.a -L /usr/local/lib -lmlx -framework OpenGl -framework Appkit -o $(NAME)  
 
 
 clean:
